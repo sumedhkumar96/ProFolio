@@ -29,7 +29,7 @@ public class UserController {
         return new ResponseEntity<>(userService.verifySignupOtp(userId, otp), HttpStatus.OK);
     }
 
-    @PostMapping("/login")git a
+    @PostMapping("/login")
     public ResponseEntity<UserAuth> login(@RequestBody UserAuth userAuth) {
         return new ResponseEntity<>(userService.login(userAuth), HttpStatus.OK);
     }
