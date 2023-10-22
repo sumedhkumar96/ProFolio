@@ -92,3 +92,22 @@ form a:hover {
         flex: 0 1 0px;
     }
 }
+.error-page-lottie{
+    width: 50vw;
+    margin: auto;
+}
+.center-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.button{
+    cursor: pointer;
+    padding: 16px;
+    text-align: center;
+    border-radius: 30px;
+    border: none;
+    color: #fff;
+    background-color: #71b557;
+}
