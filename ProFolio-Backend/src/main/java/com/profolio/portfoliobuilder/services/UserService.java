@@ -47,11 +47,9 @@ public class UserService {
         user.setName(userAuth.getName());
         user.setPasswordHash(passwordEncoder.encode(userAuth.getPassword()));
         user.setRole(Role.USER);
-        OneTimePassword oneTimePassword = new OneTimePassword();
-        oneTimePassword.setUser(user);
-        oneTimePassword.setOtpString(oneTimePasswordService.generateOtp());
-        oneTimePasswordRepository.save(oneTimePassword);
+        OneTimePassword oneTimePassword = oneTimePasswordService.createOneTimePassword(user);
         emailService.sendSignupOtp(user.getEmail(), oneTimePassword.getOtpString());
+        userAuth.setPassword(null);
         userAuth.setId(user.getId());
         return userAuth;
     }
@@ -63,6 +61,13 @@ public class UserService {
         user.setVerified(isVerified);
         userRepository.save(user);
         return isVerified;
+    }
+
+    public void resendSignupOtp(String userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found."));
+        OneTimePassword oneTimePassword = oneTimePasswordService.createOneTimePassword(user);
+        emailService.sendSignupOtp(user.getEmail(), oneTimePassword.getOtpString());
     }
 
     public UserAuth login(UserAuth userAuth) {
@@ -82,6 +87,7 @@ public class UserService {
         authToken.setRevoked(false);
         authTokenRepository.save(authToken);
 
+        userAuth.setId(user.getId());
         userAuth.setPassword(null);
         userAuth.setName(user.getName());
         userAuth.setAuthToken(jwtToken);

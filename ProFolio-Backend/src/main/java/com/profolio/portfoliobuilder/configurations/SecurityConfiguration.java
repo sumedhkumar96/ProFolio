@@ -29,6 +29,7 @@ public class SecurityConfiguration {
     private static final String[] WHITE_LIST_URL = {
             "/api/user/signup",
             "/api/user/verify-signup-otp",
+            "/api/user/resend-signup-otp",
             "/api/user/login",
             "/swagger-resources",
             "/swagger-resources/**",

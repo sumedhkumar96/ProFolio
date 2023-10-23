@@ -21,7 +21,14 @@ public class OneTimePasswordService {
     @Autowired
     private OneTimePasswordRepository oneTimePasswordRepository;
 
-    public String generateOtp() {
+    public OneTimePassword createOneTimePassword(User user) {
+        OneTimePassword oneTimePassword = new OneTimePassword();
+        oneTimePassword.setUser(user);
+        oneTimePassword.setOtpString(generateOtpString());
+        return oneTimePasswordRepository.save(oneTimePassword);
+    }
+
+    private String generateOtpString() {
         return RandomStringUtils.randomAlphanumeric(otpLength);
     }
 

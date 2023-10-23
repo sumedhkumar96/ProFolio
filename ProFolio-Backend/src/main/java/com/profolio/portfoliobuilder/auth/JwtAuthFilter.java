@@ -37,7 +37,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         if (request.getServletPath().contains("/api/user/signup")
                 || request.getServletPath().contains("/api/user/verify-signup-otp")
-                || request.getServletPath().contains("/api/user/login")) {
+                || request.getServletPath().contains("/api/user/login")
+                || request.getServletPath().contains("/api/user/resend-signup-otp")) {
             filterChain.doFilter(request, response);
             return;
         }

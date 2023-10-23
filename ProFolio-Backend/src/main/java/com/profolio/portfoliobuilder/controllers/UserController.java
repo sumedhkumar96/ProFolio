@@ -25,8 +25,9 @@ public class UserController {
     }
 
     @GetMapping("/resend-signup-otp")
-    public ResponseEntity<Boolean> resendSignupOtp(@RequestParam("userId") String userId, @RequestParam("otp") String otp) {
-        return new ResponseEntity<>(userService.verifySignupOtp(userId, otp), HttpStatus.OK);
+    public ResponseEntity<Boolean> resendSignupOtp(@RequestParam("userId") String userId) {
+        userService.resendSignupOtp(userId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/login")
