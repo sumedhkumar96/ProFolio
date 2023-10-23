@@ -11,12 +11,17 @@ import './styles/styles.css';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Outlet />,
     errorElement: <ErrorPage />,
     children: [
       {
+        path: "",
+        element: <App />,
+      },
+      {
         path: "signup/",
         element: <Outlet />,
+        action: signUpAction,
         children: [
           {
             path: "",

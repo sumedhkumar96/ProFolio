@@ -9,12 +9,13 @@ export async function action({ request }){
         return false;
     }
     else{
-        return redirect('/verify');
+        return redirect('verify');
     }
 }
 
 export function SignUpPage() {
     return (
+        <main>
         <div className="signup-container">
             <DotLottiePlayer className='illustration' src={signup_animation} autoplay loop />
             <Form action={action} method='post'>
@@ -27,5 +28,6 @@ export function SignUpPage() {
                 <p>Already have an account? <Link to='/login'>Click here to login</Link></p>
             </Form>
         </div>
+        </main>
     );
 }
