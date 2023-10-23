@@ -1,31 +1,43 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { ErrorPage } from './pages/ErrorPage.jsx';
-import { SignUpPage } from './pages/SignUpPage.jsx';
-import { LoginPage } from './pages/LoginPage.jsx';
+import { SignUpPage, action as signUpAction } from './pages/SignUpPage.jsx';
+import { LoginPage, action as loginAction } from './pages/LoginPage.jsx';
+import { OtpPage } from './pages/OtpPage.jsx';
 import './styles/styles.css';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Outlet />,
     errorElement: <ErrorPage />,
     children: [
       {
+        path: "",
+        element: <App />,
+      },
+      {
         path: "signup/",
-        element: <SignUpPage />,
-        children:[
+        element: <Outlet />,
+        action: signUpAction,
+        children: [
+          {
+            path: "",
+            element: <SignUpPage />,
+            action: signUpAction,
+          },
           {
             path: "verify/",
-            element: <LoginPage />,
+            element: <OtpPage />,
           },
         ],
       },
       {
         path: "login/",
         element: <LoginPage />,
+        action: loginAction,
       },
     ],
   },
