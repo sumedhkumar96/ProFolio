@@ -8,6 +8,7 @@ export function OtpPage(){
     }
 
     return (
+    <main>
         <div className="signup-container">
             <DotLottiePlayer className='illustration' src={email_sent_animation} autoplay loop />
             <form onSubmit={handleForm} method='post'>
@@ -17,5 +18,6 @@ export function OtpPage(){
                 <button type="submit">Submit</button>
             </form>
         </div>
+    </main>
     );
 }

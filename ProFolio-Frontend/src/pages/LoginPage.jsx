@@ -10,6 +10,7 @@ export async function action({ request }){
 
 export function LoginPage() {
     return (
+        <main>
         <div className="signup-container">
             <DotLottiePlayer className='illustration' src={person_skills_animation} autoplay loop />
             <Form action={action} method='post'>
@@ -20,5 +21,6 @@ export function LoginPage() {
                 <p>Are you new here? <Link to='/signup'>Click here to register</Link></p>
             </Form>
         </div>
+        </main>
     );
 }
