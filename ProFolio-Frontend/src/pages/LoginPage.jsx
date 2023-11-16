@@ -1,10 +1,24 @@
 import { DotLottiePlayer } from '@dotlottie/react-player';
 import person_skills_animation from '../assets/person_skills.lottie';
-import { Link, Form } from 'react-router-dom';
+import { Link, Form, redirect } from 'react-router-dom';
 
 export async function action({ request }){
     const formData = await request.formData();
-    console.log(formData);
+    let response = await fetch('http://127.0.0.1:8080/api/user/login', {
+        method: 'POST',
+        body: JSON.stringify({'email': formData.get('email'), 'password': formData.get('password') }),
+        headers:{'Content-Type':'application/json',
+        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Methods':'GET,POST,PATCH,OPTIONS,DELETE',
+        'Access-Control-Allow-Credentials':'true'},
+    });
+    console.log(response);
+    if (response.status == 200) {
+        return redirect("/home");
+    }
+    else {
+        alert("Wrong Password, Try Again");
+    }
     return false;
 }
 
