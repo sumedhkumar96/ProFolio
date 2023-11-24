@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"mastodon\",\r\n    \"email\": \"xiwaja8625@wisnick.com\",\r\n    \"password\": \"password\"\r\n}",
+					"raw": "{\r\n    \"name\": \"newuser\",\r\n    \"email\": \"canoxoj467@nexxterp.com\",\r\n    \"password\": \"password\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -45,7 +45,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8080/api/user/verify-signup-otp?otp=DUxVWi&userId=0a0000a6-8b59-1e3c-818b-592e57870001",
+					"raw": "http://127.0.0.1:8080/api/user/verify-signup-otp?otp=QuTntT&userId=0a0000a6-8bd9-1e45-818b-d9ee93be0001",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -62,11 +62,11 @@
 					"query": [
 						{
 							"key": "otp",
-							"value": "DUxVWi"
+							"value": "QuTntT"
 						},
 						{
 							"key": "userId",
-							"value": "0a0000a6-8b59-1e3c-818b-592e57870001"
+							"value": "0a0000a6-8bd9-1e45-818b-d9ee93be0001"
 						}
 					]
 				}
@@ -79,7 +79,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8080/api/user/resend-signup-otp",
+					"raw": "http://127.0.0.1:8080/api/user/resend-signup-otp?userId=0a0000a6-8bd9-1e45-818b-d9ee93be0001",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -92,6 +92,12 @@
 						"api",
 						"user",
 						"resend-signup-otp"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "0a0000a6-8bd9-1e45-818b-d9ee93be0001"
+						}
 					]
 				}
 			},
@@ -104,7 +110,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"nosice7186@wermink.com\",\r\n    \"password\": \"password\"\r\n}",
+					"raw": "{\r\n    \"email\": \"canoxoj467@nexxterp.com\",\r\n    \"password\": \"password\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -149,6 +155,87 @@
 						"api",
 						"user",
 						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload-profile-picture",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYW5veG9qNDY3QG5leHh0ZXJwLmNvbSIsImlhdCI6MTcwMDgwMTg5MiwiZXhwIjoxNzAwODQ1MDkyfQ.YHoa6XrxZnZvm9JuLASvoc6dbWNopXUnk04ScvVDjVE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"contentType": "image/jpeg",
+							"type": "file",
+							"src": "/C:/Users/SUMEDHA/Downloads/08_05_14.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/0a0000a6-8b59-143a-818b-59c590610001/profile-picture",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"0a0000a6-8b59-143a-818b-59c590610001",
+						"profile-picture"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-profile-picture",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYW5veG9qNDY3QG5leHh0ZXJwLmNvbSIsImlhdCI6MTcwMDgwMTg5MiwiZXhwIjoxNzAwODQ1MDkyfQ.YHoa6XrxZnZvm9JuLASvoc6dbWNopXUnk04ScvVDjVE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/0a0000a6-8b59-143a-818b-59c590610001/profile-picture",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"0a0000a6-8b59-143a-818b-59c590610001",
+						"profile-picture"
 					]
 				}
 			},
