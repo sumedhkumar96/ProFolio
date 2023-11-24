@@ -7,6 +7,7 @@ import { SignUpPage, action as signUpAction } from './pages/SignUpPage.jsx';
 import { LoginPage, action as loginAction } from './pages/LoginPage.jsx';
 import { OtpPage } from './pages/OtpPage.jsx';
 import './styles/styles.css';
+import { HomePage } from './pages/HomePage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
             action: signUpAction,
           },
           {
-            path: "verify/",
+            path: "verify/:id",
             element: <OtpPage />,
           },
         ],
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
         path: "login/",
         element: <LoginPage />,
         action: loginAction,
+      },
+      {
+        path: "home/",
+        element: <HomePage />,
       },
     ],
   },

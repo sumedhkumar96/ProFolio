@@ -1,10 +1,22 @@
 import { DotLottiePlayer } from '@dotlottie/react-player';
 import email_sent_animation from '../assets/email_sent.lottie';
+import { redirect, useParams } from 'react-router-dom';
 
 export function OtpPage(){
 
-    function handleForm(e){
+    let { id } = useParams();
+
+
+    async function handleForm(e){
         e.preventDefault();
+        const response = await fetch(`http://127.0.0.1:8080/api/user/verify-signup-otp?otp=${e.target.otp.value}&userId=${id}`);
+        const jsonResponse = await response.json();
+        if(jsonResponse!='true'){
+            alert("Wrong OTP entered, Please Try Again")
+        }
+        else{
+            return redirect('/home/');
+        }
     }
 
     return (
