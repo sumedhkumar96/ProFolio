@@ -3,9 +3,13 @@ package com.profolio.portfoliobuilder.services;
 import com.profolio.portfoliobuilder.auth.JwtService;
 import com.profolio.portfoliobuilder.auth.OneTimePasswordService;
 import com.profolio.portfoliobuilder.models.*;
+import com.profolio.portfoliobuilder.models.dtos.FileUploadDTO;
+import com.profolio.portfoliobuilder.models.enums.MediaCategory;
 import com.profolio.portfoliobuilder.repositories.AuthTokenRepository;
+import com.profolio.portfoliobuilder.repositories.MediaRepository;
 import com.profolio.portfoliobuilder.repositories.OneTimePasswordRepository;
 import com.profolio.portfoliobuilder.repositories.UserRepository;
+import com.profolio.portfoliobuilder.utils.FileUtils;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +17,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
@@ -35,6 +40,10 @@ public class UserService {
     private AuthenticationManager authenticationManager;
     @Autowired
     private AuthTokenRepository authTokenRepository;
+    @Autowired
+    private MediaRepository mediaRepository;
+    @Autowired
+    private FileUtils fileUtils;
 
     @Transactional
     public UserAuth signup(UserAuth userAuth) {
@@ -95,4 +104,33 @@ public class UserService {
         return userAuth;
     }
 
+    public String uploadProfilePicture(String userId, MultipartFile file) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        Optional<Media> optionalMedia = user.getMediaList()
+                .stream()
+                .filter(m -> m.getCategory() == MediaCategory.PROFILE_PICTURE)
+                .findFirst();
+        Media media = optionalMedia.orElse(new Media());
+        FileUploadDTO fileUploadDTO = fileUtils.uploadImageFile(userId, file, media.getFileName());
+        media.setUser(user);
+        media.setCategory(MediaCategory.PROFILE_PICTURE);
+        media.setUrl(fileUploadDTO.getUrl());
+        media.setFileName(fileUploadDTO.getName());
+        mediaRepository.save(media);
+        return media.getUrl();
+    }
+
+    public void deleteProfilePicture(String userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        Optional<Media> optionalMedia = user.getMediaList()
+                .stream()
+                .filter(m -> m.getCategory() == MediaCategory.PROFILE_PICTURE)
+                .findFirst();
+        if (optionalMedia.isEmpty()) {
+            return;
+        }
+        Media media = optionalMedia.get();
+        fileUtils.deleteFileFromStorage(media.getFileName());
+        mediaRepository.delete(media);
+    }
 }

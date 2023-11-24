@@ -4,8 +4,10 @@ import com.profolio.portfoliobuilder.models.UserAuth;
 import com.profolio.portfoliobuilder.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/user")
@@ -35,4 +37,14 @@ public class UserController {
         return new ResponseEntity<>(userService.login(userAuth), HttpStatus.OK);
     }
 
+    @PostMapping(value = "/{id}/profile-picture", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> uploadProfilePicture(@PathVariable("id") String userId, @RequestParam MultipartFile file) {
+        return new ResponseEntity<>(userService.uploadProfilePicture(userId, file), HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/{id}/profile-picture")
+    public ResponseEntity<HttpStatus> deleteProfilePicture(@PathVariable("id") String userId) {
+        userService.deleteProfilePicture(userId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
