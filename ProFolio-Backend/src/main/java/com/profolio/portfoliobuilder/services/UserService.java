@@ -120,4 +120,17 @@ public class UserService {
         return media.getUrl();
     }
 
+    public void deleteProfilePicture(String userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        Optional<Media> optionalMedia = user.getMediaList()
+                .stream()
+                .filter(m -> m.getCategory() == MediaCategory.PROFILE_PICTURE)
+                .findFirst();
+        if (optionalMedia.isEmpty()) {
+            return;
+        }
+        Media media = optionalMedia.get();
+        fileUtils.deleteFileFromStorage(media.getFileName());
+        mediaRepository.delete(media);
+    }
 }

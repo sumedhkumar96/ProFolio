@@ -41,4 +41,10 @@ public class UserController {
     public ResponseEntity<String> uploadProfilePicture(@PathVariable("id") String userId, @RequestParam MultipartFile file) {
         return new ResponseEntity<>(userService.uploadProfilePicture(userId, file), HttpStatus.OK);
     }
+
+    @DeleteMapping(value = "/{id}/profile-picture")
+    public ResponseEntity<HttpStatus> deleteProfilePicture(@PathVariable("id") String userId) {
+        userService.deleteProfilePicture(userId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
