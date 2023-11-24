@@ -30,7 +30,6 @@ public class User implements UserDetails {
     private String email;
     @NotBlank
     private String passwordHash;
-    private String profilePictureUrl;
     private String homeLocation;
     private String currentLocation;
     private String about;
@@ -38,6 +37,8 @@ public class User implements UserDetails {
     private List<Education> educationList;
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<WorkExperience> workExperienceList;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Media> mediaList;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "rel_user_skill",
