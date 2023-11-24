@@ -31,3 +31,14 @@ spring:
           starttls:
             enable: true
           auth: true
+  cloud:
+    gcp:
+      project-id: western-throne-404921
+      credentials:
+        location: classpath:gcp-account-info.json
+        
+gcp:
+  bucket:
+    name: profolio-media-bucket
+  dir:
+    name: user-data

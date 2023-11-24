@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "western-throne-404921",
+  "private_key_id": "bd831b5a7e1e293632b83c2c142cf7a503b580e8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDOUDJ59fK19HlQ\nKj3l/8JBjpKT6729eIsiwpGQyG1yJ7tF27OceQs5LKGZLP2y46f9YyrsRdWzSJHU\nsNSEMG3xRrI7IwymQL0IS7ECobWtpS6S3FqezPxtbZ/C3oYo34O8F5AbQ0D7bYZm\ns3K9VheXcOeGvaPtVAVmhf6nP3Zd1yuU2S9XDeFYSVshLQIWxT9Wi98/EVqmOihP\nxQ7mNzJDgB8nB4TS2/eecshya4Dnh250JQFwjlvbJWJwOKUh+iseBmhl3ZSryugm\nFXDve3+eVplKhrU897PCHuuNa0JQc4KBP9HweEdDVFstHM/+Cc8Uczv0QqIuU1A4\nR1OwYXArAgMBAAECggEAUTtqZHLeWZ4kldfL/18wUTedpvhPAOcRgWIyhlskHKpg\nJiVXFujh7mUQS4tXaLQSVMZTBCyK88hDAweM5W9cGn/HdVlbhao/w6Bp1atuKSy8\npb51P8leKofbO5L6J+W5rLlqWBGm6Fg7bvyA1OOs7kfaIUdR4AQRDEj990QZiuCT\n/qYnH+wuS6e3AficUU2kX3R3TizmmC1jXpvXvH/+9VWJGMHBWetLK+FItPFvGj9E\nnEg05kGJCgWvUtkxkqeF9b4kz1Cc3dhQ0175G4FOnF7mBznUS/PtxyI25kRQj1uY\nzf34RppwT1o7OdoLCqg2eOEQZmo4+33vp0brVYY5wQKBgQD5+WG2CWCAH1C0PTVU\n+NKnKFHhDj108AiRpBqPl6wscyKaKy3pZoJYqQHGnpJ11GIvuOS0tuRuvL7UStq4\nhpOOa2JN0GNNia2CZp/dukaHKQUeIlMmsilnLzg7OGCp2jeyNgdinrdZQE3G/PcJ\nMpJcear/KGtGn7qg4zN066DwMwKBgQDTSWEdQZSigQRfNHMwaV32TLICSqjpgrlZ\n6iz+c0DRxnqptU29mB1o6uu0Gsf6kcrlfLORwCXTcp9KKZF4Iv1JCCiVJxAzi3ao\n0QqLDE8Fk7N55+AbSGmk1v+hNTkJhi9Z8OmPiXFVujhvjyNOqkI4dQIBHfXrjWqp\nArVRSqEoKQKBgFs6pmx3M57OzvdYt1QRk1+qGWfXeJpq19W/XGo3YoC+bExzocfi\nv4N3+svwJ2eVYVglVGKXtPqtK7/yqaxagROjITdg7DzqGEbVCVc0mnTNha6fvFUN\nBItB8nW6d5zFpToG+d8GKcgK7dfHjqjuqffR95QzviMCPGxnPupW7F99AoGAIxER\nsiZZQeNB039EAuvp8V/nR2QWxrKwipDIKO79+hMD9rilj2r4rpoWxoyPVjHuR8o7\nj1whqwdiEo/1mcfM29sjySVzlep2piwToOJJFzbdWcU3N6/8AKTCRoIr1j3UDAxk\n5zK7gavng/RwurSdSvt4erD7SL3uzuApMbW+K4kCgYBbL2BzrnTKswp4A84yJbf7\ny1vPWZgy/NiLyD5o515R6HfDjk483gPSUqtjThf+VR1SObgcnwQpXi90qiztVYY1\np/FIaQjtFUbPCElDHlOb0HTn6M6L3rbNqI2dIflYrMBVS4SjNfhZEZmGnh2yf+sD\ngOyKJ20eZehltE/HdGm+GA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "profolio-gcp@western-throne-404921.iam.gserviceaccount.com",
+  "client_id": "111404560321524145668",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/profolio-gcp%40western-throne-404921.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
