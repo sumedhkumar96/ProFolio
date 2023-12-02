@@ -1,5 +1,6 @@
 package com.profolio.portfoliobuilder.auth;
 
+import com.profolio.portfoliobuilder.exceptions.CustomErrorResponse;
 import com.profolio.portfoliobuilder.models.AuthToken;
 import com.profolio.portfoliobuilder.models.User;
 import com.profolio.portfoliobuilder.repositories.AuthTokenRepository;
@@ -10,6 +11,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -17,6 +20,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 
 @Component
 @RequiredArgsConstructor
@@ -47,13 +52,17 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         final String jwt;
         final String userEmail;
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            filterChain.doFilter(request, response);
+            handleAuthExceptions("Auth token not found", response);
             return;
         }
-
         jwt = authHeader.split(" ")[1].trim();
-        userEmail = jwtService.extractUsername(jwt);
-        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        try {
+            userEmail = jwtService.extractUsername(jwt);
+        } catch (Exception ex) {
+            handleAuthExceptions(ex.getMessage(), response);
+            return;
+        }
+        if (SecurityContextHolder.getContext().getAuthentication() == null) {
             User user = customUserDetailService.loadUserByUsername(userEmail);
             boolean isRevoked = authTokenRepository.findByTokenStringAndUser(jwt, user)
                     .map(AuthToken::isRevoked)
@@ -63,8 +72,24 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                         null, user.getAuthorities());
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+            } else {
+                handleAuthExceptions("Auth token is invalid", response);
+                return;
             }
         }
         filterChain.doFilter(request, response);
+    }
+
+    private void handleAuthExceptions(String message, @NonNull HttpServletResponse response) throws IOException {
+        CustomErrorResponse errorResponse = new CustomErrorResponse(
+                HttpStatus.UNAUTHORIZED,
+                message,
+                "Authentication required",
+                LocalDateTime.now()
+        );
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+        response.getWriter().write(errorResponse.toString());
     }
 }

@@ -1,6 +1,8 @@
 package com.profolio.portfoliobuilder.utils;
 
 import com.google.cloud.storage.*;
+import com.profolio.portfoliobuilder.exceptions.CustomException;
+import com.profolio.portfoliobuilder.models.constants.GeneralConstants;
 import com.profolio.portfoliobuilder.models.dtos.FileUploadDTO;
 import org.apache.tika.Tika;
 import org.apache.tika.mime.MimeType;
@@ -11,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -54,10 +55,16 @@ public class FileUtils {
             contentType = getFileContentType(multipartFile);
             fileExtension = getFileExtension(contentType);
         } catch (Exception ex) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error occurred while processing the file.");
+            throw new CustomException(
+                    "Error occurred while processing the file",
+                    GeneralConstants.TRY_AGAIN_REMEDIATION_MESSAGE,
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if (!ALLOWED_IMAGE_TYPES.contains(fileExtension)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid image file.");
+            throw new CustomException(
+                    "Invalid image file",
+                    "Try again with valid image file",
+                    HttpStatus.BAD_REQUEST);
         }
         String fileName = gcpDirectoryName +
                 "/" +
@@ -68,7 +75,10 @@ public class FileUtils {
         try {
             fileUploadDTO = uploadFileToTheStorage(fileName, multipartFile);
         } catch (Exception ex) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error occurred while uploading the file.");
+            throw new CustomException(
+                    "Error occurred while uploading the file",
+                    GeneralConstants.TRY_AGAIN_REMEDIATION_MESSAGE,
+                    HttpStatus.BAD_REQUEST);
         }
 
         // deleting old profile picture

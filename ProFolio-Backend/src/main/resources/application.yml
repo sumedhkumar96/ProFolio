@@ -31,14 +31,17 @@ spring:
           starttls:
             enable: true
           auth: true
-  cloud:
-    gcp:
-      project-id: western-throne-404921
-      credentials:
-        location: classpath:gcp-account-info.json
-        
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 5MB
+
 gcp:
+  config:
+    file: gcp-account-info.json
+  project:
+    id: western-throne-404921
   bucket:
-    name: profolio-media-bucket
+    id: profolio-media-bucket
   dir:
     name: user-data

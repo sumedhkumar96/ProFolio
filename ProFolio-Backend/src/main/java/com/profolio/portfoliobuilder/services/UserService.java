@@ -2,8 +2,12 @@ package com.profolio.portfoliobuilder.services;
 
 import com.profolio.portfoliobuilder.auth.JwtService;
 import com.profolio.portfoliobuilder.auth.OneTimePasswordService;
+import com.profolio.portfoliobuilder.exceptions.CustomException;
 import com.profolio.portfoliobuilder.models.*;
+import com.profolio.portfoliobuilder.models.constants.GeneralConstants;
 import com.profolio.portfoliobuilder.models.dtos.FileUploadDTO;
+import com.profolio.portfoliobuilder.models.dtos.LoginDTO;
+import com.profolio.portfoliobuilder.models.dtos.SignupDTO;
 import com.profolio.portfoliobuilder.models.enums.MediaCategory;
 import com.profolio.portfoliobuilder.repositories.AuthTokenRepository;
 import com.profolio.portfoliobuilder.repositories.MediaRepository;
@@ -18,7 +22,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -46,46 +49,53 @@ public class UserService {
     private FileUtils fileUtils;
 
     @Transactional
-    public UserAuth signup(UserAuth userAuth) {
-        Optional<User> optionalUser = userRepository.findByEmail(userAuth.getEmail());
+    public SignupDTO signup(SignupDTO signupDTO) {
+        Optional<User> optionalUser = userRepository.findByEmail(signupDTO.getEmail());
         if (optionalUser.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "User with provided email already exists.");
+            throw new CustomException(
+                    "User with provided email already exists",
+                    "Try again with a new email id or login with the existing email id",
+                    HttpStatus.CONFLICT);
         }
         User user = new User();
-        user.setEmail(userAuth.getEmail());
-        user.setName(userAuth.getName());
-        user.setPasswordHash(passwordEncoder.encode(userAuth.getPassword()));
+        user.setEmail(signupDTO.getEmail());
+        user.setName(signupDTO.getName());
+        user.setPasswordHash(passwordEncoder.encode(signupDTO.getPassword()));
         user.setRole(Role.USER);
         OneTimePassword oneTimePassword = oneTimePasswordService.createOneTimePassword(user);
         emailService.sendSignupOtp(user.getEmail(), oneTimePassword.getOtpString());
-        userAuth.setPassword(null);
-        userAuth.setId(user.getId());
-        return userAuth;
+        signupDTO.setPassword(null);
+        signupDTO.setId(user.getId());
+        return signupDTO;
     }
 
     public Boolean verifySignupOtp(String userId, String otp) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found."));
+        User user = getUserById(userId);
         boolean isVerified = oneTimePasswordService.isOtpValid(otp, user);
         user.setVerified(isVerified);
         userRepository.save(user);
         return isVerified;
     }
 
-    public void resendSignupOtp(String userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found."));
+    public String resendSignupOtp(String userId) {
+        User user = getUserById(userId);
+        if (user.isVerified()) {
+            return "User already verified";
+        }
         OneTimePassword oneTimePassword = oneTimePasswordService.createOneTimePassword(user);
         emailService.sendSignupOtp(user.getEmail(), oneTimePassword.getOtpString());
+        return "OTP sent to the registered email ID";
     }
 
-    public UserAuth login(UserAuth userAuth) {
+    public LoginDTO login(LoginDTO loginDTO) {
         authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(userAuth.getEmail(), userAuth.getPassword()));
-        User user = userRepository.findByEmail(userAuth.getEmail())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found."));
+                .authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword()));
+        User user = getUserByEmailId(loginDTO.getEmail());
         if (!user.isVerified()) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "User not verified.");
+            throw new CustomException(
+                    "User not verified",
+                    "Verify using the OTP",
+                    HttpStatus.FORBIDDEN);
         }
 
         String jwtToken = jwtService.generateToken(user);
@@ -96,16 +106,15 @@ public class UserService {
         authToken.setRevoked(false);
         authTokenRepository.save(authToken);
 
-        userAuth.setId(user.getId());
-        userAuth.setPassword(null);
-        userAuth.setName(user.getName());
-        userAuth.setAuthToken(jwtToken);
-        userAuth.setRefreshToken(refreshToken);
-        return userAuth;
+        loginDTO.setId(user.getId());
+        loginDTO.setPassword(null);
+        loginDTO.setAuthToken(jwtToken);
+        loginDTO.setRefreshToken(refreshToken);
+        return loginDTO;
     }
 
     public String uploadProfilePicture(String userId, MultipartFile file) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        User user = getUserById(userId);
         Optional<Media> optionalMedia = user.getMediaList()
                 .stream()
                 .filter(m -> m.getCategory() == MediaCategory.PROFILE_PICTURE)
@@ -121,7 +130,7 @@ public class UserService {
     }
 
     public void deleteProfilePicture(String userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        User user = getUserById(userId);
         Optional<Media> optionalMedia = user.getMediaList()
                 .stream()
                 .filter(m -> m.getCategory() == MediaCategory.PROFILE_PICTURE)
@@ -132,5 +141,21 @@ public class UserService {
         Media media = optionalMedia.get();
         fileUtils.deleteFileFromStorage(media.getFileName());
         mediaRepository.delete(media);
+    }
+
+    public User getUserById(String id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new CustomException(
+                        GeneralConstants.USER_NOT_FOUND,
+                        GeneralConstants.TRY_AGAIN_WITH_VALID_USER,
+                        HttpStatus.NOT_FOUND));
+    }
+
+    public User getUserByEmailId(String emailId) {
+        return userRepository.findByEmail(emailId)
+                .orElseThrow(() -> new CustomException(
+                        GeneralConstants.USER_NOT_FOUND,
+                        GeneralConstants.TRY_AGAIN_WITH_VALID_USER,
+                        HttpStatus.NOT_FOUND));
     }
 }
