@@ -58,6 +58,12 @@ public class UserService {
     private WorkExperienceService workExperienceService;
     @Autowired
     private SkillService skillService;
+    @Autowired
+    private ExternalLinkService externalLinkService;
+    @Autowired
+    private CertificationService certificationService;
+    @Autowired
+    private ProjectService projectService;
 
     @Transactional
     public SignupDTO signup(SignupDTO signupDTO) {
@@ -73,6 +79,8 @@ public class UserService {
         user.setName(signupDTO.getName());
         user.setPasswordHash(passwordEncoder.encode(signupDTO.getPassword()));
         user.setRole(Role.USER);
+        user.setTemplatePreference(1);
+        user = userRepository.save(user);
         OneTimePassword oneTimePassword = oneTimePasswordService.createOneTimePassword(user);
         emailUtil.sendSignupOtp(user.getEmail(), oneTimePassword.getOtpString());
         signupDTO.setPassword(null);
@@ -171,9 +179,7 @@ public class UserService {
     }
 
     public User getUserProfile(String userId) {
-        User user = getUserById(userId);
-        user.setPasswordHash(null);
-        return user;
+        return getUserById(userId);
     }
 
     public User modifyUserProfile(String userId, User user) {
@@ -183,16 +189,16 @@ public class UserService {
         userInDb.setCurrentLocation(user.getCurrentLocation());
         userInDb.setAbout(user.getAbout());
         userInDb.setPhone(user.getPhone());
+        userInDb.setTitle(user.getTitle());
         userInDb.setSkills(skillService.modifySkillList(userInDb, user.getSkills()));
         // saving basic details
         userInDb = userRepository.save(userInDb);
 
         userInDb.setEducationList(educationService.modifyEducationList(userInDb, user.getEducationList()));
         userInDb.setWorkExperienceList(workExperienceService.modifyWorkExperienceList(userInDb, user.getWorkExperienceList()));
-        userInDb.setExternalLinks(user.getExternalLinks());
-        userInDb.setCertificates(user.getCertificates());
-        userInDb.setProjects(user.getProjects());
-        userInDb.setPasswordHash(null);
+        userInDb.setExternalLinks(externalLinkService.modifyExternalLinks(userInDb, user.getExternalLinks()));
+        userInDb.setProjects(projectService.modifyProjects(userInDb, user.getProjects()));
+        userInDb.setCertifications(certificationService.modifyCertifications(userInDb, user.getCertifications()));
         return userInDb;
     }
 

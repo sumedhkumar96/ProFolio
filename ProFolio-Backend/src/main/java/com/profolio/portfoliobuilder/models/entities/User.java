@@ -1,8 +1,7 @@
 package com.profolio.portfoliobuilder.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.profolio.portfoliobuilder.models.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -29,13 +28,13 @@ public class User implements UserDetails {
     @UuidGenerator(style = UuidGenerator.Style.TIME)
     private String id;
 
+    @JsonIgnore
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @JsonIgnore
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
@@ -44,7 +43,11 @@ public class User implements UserDetails {
 
     private String email;
 
+    @JsonIgnore
     private String passwordHash;
+
+    @JsonIgnore
+    private String password;
 
     private String homeLocation;
 
@@ -79,10 +82,14 @@ public class User implements UserDetails {
     private Set<ExternalLink> externalLinks;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Set<Certificate> certificates;
+    private Set<Certification> certifications;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Project> projects;
+
+    private String title;
+
+    private Integer templatePreference;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

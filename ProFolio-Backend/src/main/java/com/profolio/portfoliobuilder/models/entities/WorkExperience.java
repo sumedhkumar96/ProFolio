@@ -23,10 +23,12 @@ public class WorkExperience {
     @UuidGenerator(style = UuidGenerator.Style.TIME)
     private String id;
 
+    @JsonIgnore
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @JsonIgnore
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @UpdateTimestamp
     private LocalDateTime updatedAt;

@@ -2,8 +2,6 @@ package com.profolio.portfoliobuilder.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.profolio.portfoliobuilder.configurations.ApplicationContextSupplier;
 import lombok.Getter;
 import org.springframework.context.ApplicationContext;
@@ -17,7 +15,6 @@ public class CustomErrorResponse {
     private final HttpStatus status;
     private final String message;
     private final String remediation;
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime timestamp;
 
