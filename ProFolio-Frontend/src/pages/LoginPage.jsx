@@ -1,20 +1,33 @@
 import { DotLottiePlayer } from '@dotlottie/react-player';
-import person_skills_animation from '../assets/person_skills.lottie';
+import person_skills_animation from '../assets/lottie/person_skills.lottie';
 import { Link, Form, redirect } from 'react-router-dom';
+import { Fade } from 'react-awesome-reveal';
 
-export async function action({ request }){
+export async function loader() {
+    let userData = JSON.parse(localStorage.getItem('user'));
+    if (userData) {
+        return redirect("/");
+    }
+    return userData;
+}
+
+export async function action({ request }) {
     const formData = await request.formData();
     let response = await fetch('http://127.0.0.1:8080/api/user/login', {
         method: 'POST',
-        body: JSON.stringify({'email': formData.get('email'), 'password': formData.get('password') }),
-        headers:{'Content-Type':'application/json',
-        'Access-Control-Allow-Origin':'*',
-        'Access-Control-Allow-Methods':'GET,POST,PATCH,OPTIONS,DELETE',
-        'Access-Control-Allow-Credentials':'true'},
+        body: JSON.stringify({ 'email': formData.get('email'), 'password': formData.get('password') }),
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,POST,PATCH,OPTIONS,DELETE',
+            'Access-Control-Allow-Credentials': 'true'
+        },
     });
-    console.log(response);
+    let jsonResponse = await response.json();
+    console.log(jsonResponse);
     if (response.status == 200) {
-        return redirect("/home");
+        localStorage.setItem("user", JSON.stringify(jsonResponse));
+        return redirect("/");
     }
     else {
         alert("Wrong Password, Try Again");
@@ -24,17 +37,19 @@ export async function action({ request }){
 
 export function LoginPage() {
     return (
-        <main>
-        <div className="signup-container">
-            <DotLottiePlayer className='illustration' src={person_skills_animation} autoplay loop />
-            <Form action={action} method='post'>
-                <h1>Login</h1>
-                <input type="email" id="email" name="email" placeholder='Email' required />
-                <input type="password" id="password" name="password" placeholder='Password' minLength='6' required />
-                <button type="submit">Login</button>
-                <p>Are you new here? <Link to='/signup'>Click here to register</Link></p>
-            </Form>
-        </div>
+        <main className='gradient-main'>
+            <Fade triggerOnce={true}>
+                <div className="authentication-container">
+                    <DotLottiePlayer className='illustration' src={person_skills_animation} autoplay loop />
+                    <Form action={action} method='post'>
+                        <h1>Login</h1>
+                        <input type="email" id="email" name="email" placeholder='Email' required />
+                        <input type="password" id="password" name="password" placeholder='Password' minLength='6' required />
+                        <button type="submit">Login</button>
+                        <p>Are you new here? <Link to='/signup'>Click here to register</Link></p>
+                    </Form>
+                </div>
+            </Fade>
         </main>
     );
 }

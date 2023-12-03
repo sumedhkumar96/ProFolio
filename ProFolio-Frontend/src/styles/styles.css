@@ -1,39 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
-
-main {
+html{
     font-family: 'Poppins', sans-serif;
-    margin: 0;
-    height: 100vh;
-    color: #333333;
-    background: linear-gradient(45deg, #4657c8, #ba58bb);
+}
+
+p{
+    margin-bottom: 15px;
 }
 
 h2 {
     font-size: 24px;
     font-weight: bold;
     line-height: 29px;
-}
-
-.signup-container {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    min-height: 75%;
-    max-width: 920px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.illustration {
-    max-width: 50%;
-    margin-right: 30px;
-    flex: 0 1 auto;
 }
 
 form {
@@ -44,7 +20,7 @@ form {
 form input {
     display: block;
     width: 80%;
-    padding: 16px;
+    padding: 12px;
     border-radius: 30px;
     margin: 0 auto 10px auto;
     border: none;
@@ -87,12 +63,49 @@ form a:hover {
     text-decoration: underline;
 }
 
+.gradient-main {
+    margin: 0;
+    height: 100vh;
+    color: #333333;
+    background: linear-gradient(300deg, #4657c8, #ba58bb);
+    background-size: 180% 180%;
+    animation: background-gradient-animation 5s ease infinite;
+}
+
+@keyframes background-gradient-animation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.authentication-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    min-height: 75%;
+    max-width: 920px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.illustration {
+    max-width: 50%;
+    margin-right: 30px;
+    flex: 0 1 auto;
+}
+
 @media screen and (max-width:650px) {
     .illustration {
         flex: 0 1 0px;
     }
 }
-.error-page-lottie{
+.big-lottie-animation{
     width: 50vw;
     margin: auto;
 }

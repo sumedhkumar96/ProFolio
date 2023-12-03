@@ -1,35 +1,60 @@
 import { DotLottiePlayer } from '@dotlottie/react-player';
-import email_sent_animation from '../assets/email_sent.lottie';
-import { redirect, useParams } from 'react-router-dom';
+import email_sent_animation from '../assets/lottie/email_sent.lottie';
+import success_animation from '../assets/lottie/otp_success.lottie';
+import { redirect, useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
 
-export function OtpPage(){
+export function OtpPage() {
 
-    let { id } = useParams();
+    const { id } = useParams();
+    const navigate = useNavigate();
 
+    const [isVerified, setIsVerified] = useState(false);
 
-    async function handleForm(e){
+    async function handleForm(e) {
         e.preventDefault();
         const response = await fetch(`http://127.0.0.1:8080/api/user/verify-signup-otp?otp=${e.target.otp.value}&userId=${id}`);
         const jsonResponse = await response.json();
-        if(jsonResponse!='true'){
-            alert("Wrong OTP entered, Please Try Again")
+        console.log(jsonResponse);
+        if (jsonResponse) {
+            setIsVerified(true);
         }
-        else{
-            return redirect('/home/');
+        else {
+            e.preventDefault();
+            alert("Wrong OTP entered, Please Try Again");
         }
     }
 
+    if (isVerified) {
+        setTimeout(() => {
+            console.log('hello');
+            navigate('/login');
+        }, 5000);
+
+        return (
+            <main className='gradient-main'>
+                <div className="authentication-container">
+                    <DotLottiePlayer className='big-lottie-animation' src={success_animation} speed={0.5} autoplay />
+                    <h2>Otp Verified Successfully, Redirecting you Back to Login</h2>
+                </div>
+            </main>
+        );
+    }
+
     return (
-    <main>
-        <div className="signup-container">
-            <DotLottiePlayer className='illustration' src={email_sent_animation} autoplay loop />
-            <form onSubmit={handleForm} method='post'>
-                <h1>Otp Sent</h1>
-                <p>Check your inbox for the otp</p>
-                <input type="text" id="otp" name="otp" placeholder='Enter Otp Here' minLength='6' maxLength='6' required />
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-    </main>
+        <main className='gradient-main'>
+            <Fade triggerOnce={true}>
+                <div className="authentication-container">
+                    <DotLottiePlayer className='illustration' src={email_sent_animation} autoplay loop />
+                    <form onSubmit={handleForm} method='post'>
+                        <h1>Otp Sent</h1>
+                        <p>Check your inbox for the otp</p>
+                        <input type="text" id="otp" name="otp" placeholder='Enter Otp Here' minLength='6' maxLength='6' required />
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </Fade>
+        </main>
     );
 }

@@ -1,6 +1,7 @@
 import { DotLottiePlayer } from '@dotlottie/react-player';
-import signup_animation from '../assets/signup.lottie';
+import signup_animation from '../assets/lottie/signup.lottie';
 import { Link, Form, redirect } from 'react-router-dom';
+import { Fade } from 'react-awesome-reveal';
 
 export async function action({ request }) {
     const formData = await request.formData();
@@ -11,7 +12,7 @@ export async function action({ request }) {
     else {
         const response = await fetch('http://127.0.0.1:8080/api/user/signup', {
             method: 'POST',
-            body: JSON.stringify({ 'name': formData.get('name'),'email': formData.get('email'), 'password': formData.get('password') }),
+            body: JSON.stringify({ 'name': formData.get('name'), 'email': formData.get('email'), 'password': formData.get('password') }),
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
@@ -33,19 +34,21 @@ export async function action({ request }) {
 
 export function SignUpPage() {
     return (
-        <main>
-            <div className="signup-container">
-                <DotLottiePlayer className='illustration' src={signup_animation} autoplay loop />
-                <Form action={action} method='post'>
-                    <h1>Sign Up</h1>
-                    <input type="text" id="name" name="name" placeholder='Name' required />
-                    <input type="email" id="email" name="email" placeholder='Email' required />
-                    <input type="password" id="password" name="password" placeholder='Password' minLength='6' required />
-                    <input type="password" id="confirmpassword" name="confirmpassword" placeholder='Confirm Password' minLength='6' required />
-                    <button type="submit">Sign Up</button>
-                    <p>Already have an account? <Link to='/login'>Click here to login</Link></p>
-                </Form>
-            </div>
+        <main className='gradient-main'>
+            <Fade triggerOnce={true}>
+                <div className="authentication-container">
+                    <DotLottiePlayer className='illustration' src={signup_animation} autoplay loop />
+                    <Form action={action} method='post'>
+                        <h1>Sign Up</h1>
+                        <input type="text" id="name" name="name" placeholder='Name' required />
+                        <input type="email" id="email" name="email" placeholder='Email' required />
+                        <input type="password" id="password" name="password" placeholder='Password' minLength='6' required />
+                        <input type="password" id="confirmpassword" name="confirmpassword" placeholder='Confirm Password' minLength='6' required />
+                        <button type="submit">Sign Up</button>
+                        <p>Already have an account? <Link to='/login'>Click here to login</Link></p>
+                    </Form>
+                </div>
+            </Fade>
         </main>
     );
 }

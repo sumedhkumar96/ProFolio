@@ -4,10 +4,9 @@ import App from './App.jsx'
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { ErrorPage } from './pages/ErrorPage.jsx';
 import { SignUpPage, action as signUpAction } from './pages/SignUpPage.jsx';
-import { LoginPage, action as loginAction } from './pages/LoginPage.jsx';
+import { LoginPage, loader as loginLoader, action as loginAction } from './pages/LoginPage.jsx';
 import { OtpPage } from './pages/OtpPage.jsx';
 import './styles/styles.css';
-import { HomePage } from './pages/HomePage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +26,7 @@ const router = createBrowserRouter([
           {
             path: "",
             element: <SignUpPage />,
+            loader:loginLoader,
             action: signUpAction,
           },
           {
@@ -38,11 +38,8 @@ const router = createBrowserRouter([
       {
         path: "login/",
         element: <LoginPage />,
+        loader:loginLoader,
         action: loginAction,
-      },
-      {
-        path: "home/",
-        element: <HomePage />,
       },
     ],
   },
