@@ -72,4 +72,10 @@ public class UserController {
         return new ResponseEntity<>(userService.modifyUserProfile(userId, user), HttpStatus.ACCEPTED);
     }
 
+    @PatchMapping("/{id}/template-preference/{templateNumber}")
+    public ResponseEntity<User> modifyUserTemplatePreference(@NotNull @Valid @PathVariable("id") String userId,
+                                                             @NotNull @Valid @PathVariable("templateNumber") Integer templateNumber) {
+        return new ResponseEntity<>(userService.modifyUserTemplatePreference(userId, templateNumber), HttpStatus.ACCEPTED);
+    }
+
 }

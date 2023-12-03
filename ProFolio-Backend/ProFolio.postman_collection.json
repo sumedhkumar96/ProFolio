@@ -991,6 +991,247 @@
 					"body": "{\n    \"id\": \"0a0000a6-8c29-18d5-818c-2959c25c0001\",\n    \"name\": \"akon\",\n    \"email\": \"paceyo9291@notedns.com\",\n    \"homeLocation\": \"Africa\",\n    \"currentLocation\": \"USA\",\n    \"about\": \"I am an old singer\",\n    \"educationList\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8faea0000\",\n            \"institutionName\": \"Purdue\",\n            \"degreeName\": \"MSCS\",\n            \"grade\": \"A\",\n            \"description\": \"MSCS in Purdue\",\n            \"location\": \"Indiana\",\n            \"fromDate\": \"2023-12-02\",\n            \"toDate\": \"2025-12-02\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8faf60001\",\n            \"institutionName\": \"VTU\",\n            \"degreeName\": \"BE\",\n            \"grade\": \"A\",\n            \"description\": \"BE in VTU\",\n            \"location\": \"Karnataka\",\n            \"fromDate\": \"2014-12-02\",\n            \"toDate\": \"2018-12-02\"\n        }\n    ],\n    \"workExperienceList\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb480002\",\n            \"organizationName\": \"Dell\",\n            \"fromDate\": \"2019-12-02\",\n            \"toDate\": \"2022-12-02\",\n            \"description\": \"xyz\",\n            \"role\": \"SWE2\",\n            \"location\": \"Bangalore\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb490003\",\n            \"organizationName\": \"Google\",\n            \"fromDate\": \"2019-12-02\",\n            \"toDate\": \"2023-12-02\",\n            \"description\": \"xyz\",\n            \"role\": \"SWE3\",\n            \"location\": \"Bangalore\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb490004\",\n            \"organizationName\": \"Capgemini\",\n            \"fromDate\": \"2013-12-02\",\n            \"toDate\": \"2021-12-02\",\n            \"description\": \"xyz\",\n            \"role\": \"SWE\",\n            \"location\": \"Bangalore\"\n        }\n    ],\n    \"mediaList\": [\n        {\n            \"id\": \"0a0000a6-8c29-18d5-818c-295f44570004\",\n            \"url\": \"https://storage.googleapis.com/download/storage/v1/b/profolio-media-bucket/o/user-data%2F0a0000a6-8c29-18d5-818c-2959c25c00012023-12-02T02:12:38.154636300.jpg?generation=1701501158563010&alt=media\",\n            \"fileName\": \"user-data/0a0000a6-8c29-18d5-818c-2959c25c00012023-12-02T02:12:38.154636300.jpg\",\n            \"category\": \"PROFILE_PICTURE\"\n        }\n    ],\n    \"skills\": [\n        {\n            \"id\": \"0a0000a6-8c2c-1b38-818c-2c6b53e60001\",\n            \"name\": \"java\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-1a84-818c-2df6a8190003\",\n            \"name\": \"singing\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2c-1b38-818c-2c6b53ec0003\",\n            \"name\": \"spring\"\n        }\n    ],\n    \"role\": \"USER\",\n    \"verified\": true,\n    \"phone\": \"7664537734\",\n    \"externalLinks\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb810005\",\n            \"name\": \"Linkedin\",\n            \"url\": \"xyz\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb820006\",\n            \"name\": \"Instagram\",\n            \"url\": \"xyz\"\n        }\n    ],\n    \"certifications\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fbdb0009\",\n            \"name\": \"linux\",\n            \"provider\": \"red hat\",\n            \"issuedOn\": \"2023-12-02\",\n            \"validUntil\": \"2024-12-02\",\n            \"credentialId\": \"sdffgsiufgsiuygsiuy\",\n            \"url\": \"xyz\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fbdc000a\",\n            \"name\": \"Docker\",\n            \"provider\": \"Google\",\n            \"issuedOn\": \"2023-12-02\",\n            \"validUntil\": \"2024-12-02\",\n            \"credentialId\": \"sdffgsiufgsiuygsiuy\",\n            \"url\": \"xyz\"\n        }\n    ],\n    \"projects\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fbb10007\",\n            \"name\": \"profolio\",\n            \"description\": \"xyz\",\n            \"url\": \"xyz\",\n            \"startDate\": \"2023-12-02\",\n            \"endDate\": \"2024-12-02\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fbb20008\",\n            \"name\": \"tecnex\",\n            \"description\": \"xyz\",\n            \"url\": \"xyz\",\n            \"startDate\": \"2023-12-02\",\n            \"endDate\": \"2024-12-02\"\n        }\n    ],\n    \"title\": \"singer\",\n    \"templatePreference\": 1,\n    \"enabled\": true,\n    \"username\": \"paceyo9291@notedns.com\",\n    \"authorities\": [\n        {\n            \"authority\": \"USER\"\n        }\n    ],\n    \"accountNonLocked\": true,\n    \"accountNonExpired\": true,\n    \"credentialsNonExpired\": true\n}"
 				}
 			]
+		},
+		{
+			"name": "get-public-user-profile",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/public/0a0000a6-8c29-18d5-818c-2959c25c0001",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"public",
+						"0a0000a6-8c29-18d5-818c-2959c25c0001"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get-public-user-profile",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/user/public/0a0000a6-8c29-18d5-818c-2959c25c0001",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"public",
+								"0a0000a6-8c29-18d5-818c-2959c25c0001"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Dec 2023 07:15:13 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"0a0000a6-8c29-18d5-818c-2959c25c0001\",\n    \"name\": \"akon\",\n    \"email\": \"paceyo9291@notedns.com\",\n    \"homeLocation\": \"Africa\",\n    \"currentLocation\": \"USA\",\n    \"about\": \"I am an old singer\",\n    \"educationList\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8faea0000\",\n            \"institutionName\": \"Purdue\",\n            \"degreeName\": \"MSCS\",\n            \"grade\": \"A\",\n            \"description\": \"MSCS in Purdue\",\n            \"location\": \"Indiana\",\n            \"fromDate\": \"2023-12-02\",\n            \"toDate\": \"2025-12-02\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8faf60001\",\n            \"institutionName\": \"VTU\",\n            \"degreeName\": \"BE\",\n            \"grade\": \"A\",\n            \"description\": \"BE in VTU\",\n            \"location\": \"Karnataka\",\n            \"fromDate\": \"2014-12-02\",\n            \"toDate\": \"2018-12-02\"\n        }\n    ],\n    \"workExperienceList\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb480002\",\n            \"organizationName\": \"Dell\",\n            \"fromDate\": \"2019-12-02\",\n            \"toDate\": \"2022-12-02\",\n            \"description\": \"xyz\",\n            \"role\": \"SWE2\",\n            \"location\": \"Bangalore\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb490003\",\n            \"organizationName\": \"Google\",\n            \"fromDate\": \"2019-12-02\",\n            \"toDate\": \"2023-12-02\",\n            \"description\": \"xyz\",\n            \"role\": \"SWE3\",\n            \"location\": \"Bangalore\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb490004\",\n            \"organizationName\": \"Capgemini\",\n            \"fromDate\": \"2013-12-02\",\n            \"toDate\": \"2021-12-02\",\n            \"description\": \"xyz\",\n            \"role\": \"SWE\",\n            \"location\": \"Bangalore\"\n        }\n    ],\n    \"mediaList\": [\n        {\n            \"id\": \"0a0000a6-8c29-18d5-818c-295f44570004\",\n            \"url\": \"https://storage.googleapis.com/download/storage/v1/b/profolio-media-bucket/o/user-data%2F0a0000a6-8c29-18d5-818c-2959c25c00012023-12-02T02:12:38.154636300.jpg?generation=1701501158563010&alt=media\",\n            \"fileName\": \"user-data/0a0000a6-8c29-18d5-818c-2959c25c00012023-12-02T02:12:38.154636300.jpg\",\n            \"category\": \"PROFILE_PICTURE\"\n        }\n    ],\n    \"skills\": [\n        {\n            \"id\": \"0a0000a6-8c2c-1b38-818c-2c6b53e60001\",\n            \"name\": \"java\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-1a84-818c-2df6a8190003\",\n            \"name\": \"singing\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2c-1b38-818c-2c6b53ec0003\",\n            \"name\": \"spring\"\n        }\n    ],\n    \"role\": \"USER\",\n    \"verified\": true,\n    \"phone\": \"7664537734\",\n    \"externalLinks\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb820006\",\n            \"name\": \"Instagram\",\n            \"url\": \"xyz\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb810005\",\n            \"name\": \"Linkedin\",\n            \"url\": \"xyz\"\n        }\n    ],\n    \"certifications\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fbdb0009\",\n            \"name\": \"linux\",\n            \"provider\": \"red hat\",\n            \"issuedOn\": \"2023-12-02\",\n            \"validUntil\": \"2024-12-02\",\n            \"credentialId\": \"sdffgsiufgsiuygsiuy\",\n            \"url\": \"xyz\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fbdc000a\",\n            \"name\": \"Docker\",\n            \"provider\": \"Google\",\n            \"issuedOn\": \"2023-12-02\",\n            \"validUntil\": \"2024-12-02\",\n            \"credentialId\": \"sdffgsiufgsiuygsiuy\",\n            \"url\": \"xyz\"\n        }\n    ],\n    \"projects\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fbb10007\",\n            \"name\": \"profolio\",\n            \"description\": \"xyz\",\n            \"url\": \"xyz\",\n            \"startDate\": \"2023-12-02\",\n            \"endDate\": \"2024-12-02\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fbb20008\",\n            \"name\": \"tecnex\",\n            \"description\": \"xyz\",\n            \"url\": \"xyz\",\n            \"startDate\": \"2023-12-02\",\n            \"endDate\": \"2024-12-02\"\n        }\n    ],\n    \"title\": \"singer\",\n    \"templatePreference\": 1,\n    \"enabled\": true,\n    \"username\": \"paceyo9291@notedns.com\",\n    \"accountNonExpired\": true,\n    \"credentialsNonExpired\": true,\n    \"authorities\": [\n        {\n            \"authority\": \"USER\"\n        }\n    ],\n    \"accountNonLocked\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "modify-user-template-preference",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3YXllcmU2NTY0QG5vdGVkbnMuY29tIiwiaWF0IjoxNzAxNTc2MzE1LCJleHAiOjE3MDE2MTk1MTV9.u4rNQ9T6dyyXog4kOJsVq3fYH-ytx66GmbgoZ_fYPK4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/user/0a0000a6-8c29-18d5-818c-2959c25c0001/template-preference/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"0a0000a6-8c29-18d5-818c-2959c25c0001",
+						"template-preference",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "modify-user-template-preference",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/user/0a0000a6-8c29-18d5-818c-2959c25c0001/template-preference/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"0a0000a6-8c29-18d5-818c-2959c25c0001",
+								"template-preference",
+								"2"
+							]
+						}
+					},
+					"status": "Accepted",
+					"code": 202,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 03 Dec 2023 07:27:16 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"0a0000a6-8c29-18d5-818c-2959c25c0001\",\n    \"name\": \"akon\",\n    \"email\": \"paceyo9291@notedns.com\",\n    \"homeLocation\": \"Africa\",\n    \"currentLocation\": \"USA\",\n    \"about\": \"I am an old singer\",\n    \"educationList\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8faea0000\",\n            \"institutionName\": \"Purdue\",\n            \"degreeName\": \"MSCS\",\n            \"grade\": \"A\",\n            \"description\": \"MSCS in Purdue\",\n            \"location\": \"Indiana\",\n            \"fromDate\": \"2023-12-02\",\n            \"toDate\": \"2025-12-02\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8faf60001\",\n            \"institutionName\": \"VTU\",\n            \"degreeName\": \"BE\",\n            \"grade\": \"A\",\n            \"description\": \"BE in VTU\",\n            \"location\": \"Karnataka\",\n            \"fromDate\": \"2014-12-02\",\n            \"toDate\": \"2018-12-02\"\n        }\n    ],\n    \"workExperienceList\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb480002\",\n            \"organizationName\": \"Dell\",\n            \"fromDate\": \"2019-12-02\",\n            \"toDate\": \"2022-12-02\",\n            \"description\": \"xyz\",\n            \"role\": \"SWE2\",\n            \"location\": \"Bangalore\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb490004\",\n            \"organizationName\": \"Capgemini\",\n            \"fromDate\": \"2013-12-02\",\n            \"toDate\": \"2021-12-02\",\n            \"description\": \"xyz\",\n            \"role\": \"SWE\",\n            \"location\": \"Bangalore\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb490003\",\n            \"organizationName\": \"Google\",\n            \"fromDate\": \"2019-12-02\",\n            \"toDate\": \"2023-12-02\",\n            \"description\": \"xyz\",\n            \"role\": \"SWE3\",\n            \"location\": \"Bangalore\"\n        }\n    ],\n    \"mediaList\": [\n        {\n            \"id\": \"0a0000a6-8c29-18d5-818c-295f44570004\",\n            \"url\": \"https://storage.googleapis.com/download/storage/v1/b/profolio-media-bucket/o/user-data%2F0a0000a6-8c29-18d5-818c-2959c25c00012023-12-02T02:12:38.154636300.jpg?generation=1701501158563010&alt=media\",\n            \"fileName\": \"user-data/0a0000a6-8c29-18d5-818c-2959c25c00012023-12-02T02:12:38.154636300.jpg\",\n            \"category\": \"PROFILE_PICTURE\"\n        }\n    ],\n    \"skills\": [\n        {\n            \"id\": \"0a0000a6-8c2c-1b38-818c-2c6b53e60001\",\n            \"name\": \"java\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2c-1b38-818c-2c6b53ec0003\",\n            \"name\": \"spring\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-1a84-818c-2df6a8190003\",\n            \"name\": \"singing\"\n        }\n    ],\n    \"role\": \"USER\",\n    \"verified\": true,\n    \"phone\": \"7664537734\",\n    \"externalLinks\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb810005\",\n            \"name\": \"Linkedin\",\n            \"url\": \"xyz\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fb820006\",\n            \"name\": \"Instagram\",\n            \"url\": \"xyz\"\n        }\n    ],\n    \"certifications\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fbdc000a\",\n            \"name\": \"Docker\",\n            \"provider\": \"Google\",\n            \"issuedOn\": \"2023-12-02\",\n            \"validUntil\": \"2024-12-02\",\n            \"credentialId\": \"sdffgsiufgsiuygsiuy\",\n            \"url\": \"xyz\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fbdb0009\",\n            \"name\": \"linux\",\n            \"provider\": \"red hat\",\n            \"issuedOn\": \"2023-12-02\",\n            \"validUntil\": \"2024-12-02\",\n            \"credentialId\": \"sdffgsiufgsiuygsiuy\",\n            \"url\": \"xyz\"\n        }\n    ],\n    \"projects\": [\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fbb20008\",\n            \"name\": \"tecnex\",\n            \"description\": \"xyz\",\n            \"url\": \"xyz\",\n            \"startDate\": \"2023-12-02\",\n            \"endDate\": \"2024-12-02\"\n        },\n        {\n            \"id\": \"0a0000a6-8c2d-18c7-818c-2df8fbb10007\",\n            \"name\": \"profolio\",\n            \"description\": \"xyz\",\n            \"url\": \"xyz\",\n            \"startDate\": \"2023-12-02\",\n            \"endDate\": \"2024-12-02\"\n        }\n    ],\n    \"title\": \"singer\",\n    \"templatePreference\": 2,\n    \"enabled\": true,\n    \"username\": \"paceyo9291@notedns.com\",\n    \"accountNonExpired\": true,\n    \"credentialsNonExpired\": true,\n    \"authorities\": [\n        {\n            \"authority\": \"USER\"\n        }\n    ],\n    \"accountNonLocked\": true\n}"
+				}
+			]
 		}
 	]
 }

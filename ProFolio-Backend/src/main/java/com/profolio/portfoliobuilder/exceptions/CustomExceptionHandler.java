@@ -4,6 +4,7 @@ import com.profolio.portfoliobuilder.models.constants.GeneralConstants;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -46,7 +47,18 @@ public class CustomExceptionHandler {
         CustomErrorResponse errorResponse = new CustomErrorResponse(
                 HttpStatus.UNAUTHORIZED,
                 ex.getMessage(),
-                "Authentication required.",
+                "Authentication required",
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<CustomErrorResponse> handleBadCredentialsException(BadCredentialsException ex) {
+        CustomErrorResponse errorResponse = new CustomErrorResponse(
+                HttpStatus.UNAUTHORIZED,
+                "Incorrect password",
+                "Try again with valid credentials",
                 LocalDateTime.now()
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);

@@ -47,6 +47,7 @@ public class User implements UserDetails {
     private String passwordHash;
 
     @JsonIgnore
+    @Transient
     private String password;
 
     private String homeLocation;

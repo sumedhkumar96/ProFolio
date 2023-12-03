@@ -202,4 +202,11 @@ public class UserService {
         return userInDb;
     }
 
+    public User modifyUserTemplatePreference(String userId, Integer templateNumber) {
+        User user = getUserById(userId);
+        user.setTemplatePreference(templateNumber);
+        userRepository.save(user);
+        return user;
+    }
+
 }
