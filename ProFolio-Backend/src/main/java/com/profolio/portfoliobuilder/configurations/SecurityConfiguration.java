@@ -36,10 +36,7 @@ public class SecurityConfiguration {
             "/api/user/verify-signup-otp",
             "/api/user/resend-signup-otp",
             "/api/user/login",
-            "/swagger-resources",
-            "/swagger-resources/**",
-            "/swagger-ui/**",
-            "/swagger-ui.html"
+            "/api/user/public/**"
     };
 
     @Autowired

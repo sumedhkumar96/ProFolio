@@ -61,10 +61,15 @@ public class UserController {
         return new ResponseEntity<>(userService.getUserProfile(userId), HttpStatus.OK);
     }
 
+    @GetMapping("/public/{id}")
+    public ResponseEntity<User> getPublicUserProfile(@NotNull @Valid @PathVariable("id") String userId) {
+        return new ResponseEntity<>(userService.getUserProfile(userId), HttpStatus.OK);
+    }
+
     @PatchMapping("/{id}")
     public ResponseEntity<User> modifyUserProfile(@NotNull @Valid @PathVariable("id") String userId,
                                                   @NotNull @Valid @RequestBody User user) {
         return new ResponseEntity<>(userService.modifyUserProfile(userId, user), HttpStatus.ACCEPTED);
     }
-    
+
 }
