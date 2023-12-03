@@ -1,0 +1,24 @@
+
+.portfolio-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .header {
+    text-align: center;
+  }
+  
+  .contact,
+  .about,
+  .education,
+  .experience,
+  .skills,
+  .certifications,
+  .profile-photo {
+    margin-top: 20px;
+  }
+  
+ 
+  

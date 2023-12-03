@@ -1,0 +1,433 @@
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans); 
+@import url(https://fonts.googleapis.com/css?family=Google+Sans); 
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono); 
+body{
+    font-family: 'Google Sans',serif;
+}
+h2,h3,h4{
+    margin-block-start: 0.43em;
+    margin-block-end: 0em;
+}
+.container{
+    
+    padding-left:10%;
+    padding-right:10%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    overflow: hidden;
+
+}
+img{
+    transition: transform 1.5s ease-out;
+}
+img:hover{
+    display: block;
+    transform: scale(1.02);
+    transition: transform 1.5s ease-out;
+    object-fit: cover;
+}
+.grad-orange{
+    background-image: linear-gradient(to right,#FF6E00,#FF6E00,#FE9001);
+}
+.grad-progress{
+    background-image: linear-gradient(to right,#00ff9d,#00ff9d,#01e0fe);
+}
+.orange{
+    color:#FF6E00;
+}
+
+.dark{
+    background-color: #191B1B;
+    color: #B2ADA2;
+}
+.white{
+    color:white;
+}
+.center{
+    text-align: center;
+}
+.section-title{
+    font-family: 'Roboto Mono', sans-serif;
+    font-size: 2.2em;
+    text-align: center;
+    
+}
+.main-title{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2em;
+    margin-bottom: 0px;
+}
+
+.card{
+    
+    text-align: center;
+    border: 0px solid white;
+    border-radius: 15px;
+    background-color: white;
+    width: 70%;
+    height: 20em;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    padding-bottom: 8%;
+}
+.card-space{
+    transition: transform 2s ease;
+}
+.card-space:hover{
+    transform: scale(1.02);
+    -webkit-transition: transform 2s ease-out;
+  -moz-transition: transform 2s ease-out;
+  -o-transition: transform 2s ease-out;
+  transition: transform 2s ease;
+}
+.card-image{
+    width: 100%;
+    
+    object-position: 5% 95%;
+}
+.card-body{
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 4%;
+    padding-bottom: auto;
+    transform: scale(0.9);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2%;
+    width: 80%;
+}
+.card-body p{
+    text-align: justify;
+    font-size: medium;
+}
+.card-top{
+    overflow: hidden;
+    text-align: center;
+    height:40%;
+}
+.git{
+    position: absolute;
+    top: -15%;
+    right: -10%;
+    background-color: white;
+    border:1px solid white;
+    border-radius: 50%;
+    padding: auto;
+}
+.medium{
+    font-size: larger;
+}
+.git-link{
+    color: black;
+    text-decoration: none;
+}
+.git-link:hover{
+    color: blue;
+    
+}
+
+
+.entry{
+    
+    border: 0px solid white;
+    border-radius: 10px;
+    transition: background-color 2s ease;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    transform: scale(0.8);
+    
+
+}
+.light-entry{
+    background-color: white;
+    color: black;
+  transition: background-color 1s ease;
+  border:0px solid #B2ADA2;
+  border-radius: 12px;
+  border-bottom: 0.1px solid gray;
+}
+.dark-entry{
+    
+    color: rgb(197, 194, 194);
+  transition: background-color 2s ease;
+  border-bottom: 0.1px solid gray;
+}
+.light-entry:hover{
+    background-color: rgb(221, 221, 221);
+    color: black;
+  transition: background-color 1s ease;
+  border:0px solid #B2ADA2;
+  border-radius: 12px;
+}
+
+.dark-entry:hover{
+    background-color: rgb(43, 41, 41);
+    color: rgb(197, 194, 194);
+  transition: background-color 2s ease;
+}
+
+
+
+.inline{
+    display: flex;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+.space-around{
+    justify-content: space-around;
+}
+.logo{
+    justify-content: center;
+    padding: 1%;
+    height: 8em;
+    width: 8em;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 0%;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 20px;
+    transform: scale(0.7);
+    overflow: hidden;
+}
+.logo img{
+    transform: scale(0.7);
+    transition: transform 1.5s ease;
+}
+.logo img:hover{
+    transform: scale(0.8);
+    transition: transform 1.5s ease;
+}
+
+.details{
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+.skills{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+
+}
+.skill-card{
+    width: 80%;
+    margin: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1%;
+    transition: background-color 1s ease;
+    border-radius: 10px;
+}
+.social{
+    background-color: white;
+    border: 0px solid white ;
+    border-radius: 15px;
+    justify-content: space-around;
+    padding-left: auto;
+    padding-right: auto;
+    margin-left: 5%;
+    width: 10%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+.side{
+    
+    height: 100%;
+    width: 20%;
+    display: flex;
+    padding: 1%;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    
+}
+.social-link{
+    color: #191B1B;
+    padding: 5%;
+}
+.centre{
+    text-align: center;
+}
+.photo{
+    padding-top: auto;
+    padding-bottom: auto;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.pro-pic{
+    
+    align-items: center;
+    padding-top:auto;
+    padding-bottom: auto;
+    border: 5px solid black;
+    border-radius:  10px 50px 10px 50px;
+    box-shadow: 1px 3px 5px 1px gray;
+    background-size: cover;
+    overflow: hidden;
+    vertical-align: middle;
+    margin: 1%;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 11em;
+    height: 11em;
+    object-fit:fill;
+    position: relative;
+    
+}
+
+
+.pro-pic img{
+    position: absolute;
+    left: -20px;
+    top: -15px;
+    
+    display: block;
+    width: 120%;
+    
+}
+.writing{
+    padding-right: 5%;
+}
+.about{
+    width: 90%;
+    border: 0px solid white;
+    background-color: white;
+    border-radius: 15px;
+    padding: 2%;
+    height: fit-content;
+    text-align: justify;
+    margin: 1%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.about .section-title{
+    margin-top: 0;
+    margin-bottom: 2%;
+}
+
+.example{
+    position: absolute;
+    width: 20em;
+
+}
+.stuff{
+    position:absolute;
+    top: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.head-back{
+    height: 22em;
+    overflow: hidden;
+}
+.stuff-head{
+    text-align: center;
+    height: 5em;
+}
+.stuff-head p{
+    font-family: 'Roboto Mono',sans-serif;
+    font-size: xx-large;
+}
+
+@media screen and (max-width:700px){
+    .side{
+        width: 100%;
+    }
+    .head-back{
+        height: 40em;
+    }
+    .inline{
+        display:block;
+        justify-content: center;
+    }
+    .logo{
+        display: block;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    .container{
+        padding-left:5%;
+        padding-right: 5%;
+    }
+    .entry{
+        text-align: center;
+        padding-top:5% ;
+        border: 1px solid #B2ADA2;
+        border-radius: 10px;
+        margin: 5%;
+        padding: 5%;
+        transform: scale(0.8);
+        
+    }
+    .card{
+        width: 80%;
+    }
+    .card-body p,h4{
+       font-size: small;
+    }
+    .card-body h3{
+        font-size: medium;
+     }
+     .pro-pic,.about{
+         margin-left: auto;
+         margin-right: auto;
+         
+     }
+     .about{
+        padding: 5%;
+     }
+
+}
+
+
+.inline-first{
+    display:flex;
+}
+.inline-second{
+    display:flex;
+}
+
+@media screen and (max-width:1400px){
+    .inline-first{
+        display: block;
+    }
+}
+@media screen and (max-width:700px){
+    .inline-second{
+        display: block;
+    }
+    .skill-card{
+        padding: 0%;
+    }
+    .skill{
+        gap: 0px;
+    }
+}
+@media screen and (max-width:500px){
+    .inline-second{
+        display: block;
+    }
+    .skill-card{
+        padding: 0%;
+    }
+    .skill-card h5{
+        margin-bottom: 0%;
+    }
+    .skills{
+        gap: 0px;
+    }
+    .head-back{
+        height: 42em;
+    }
+    .entry{
+        margin: -20px;
+    }
+}
+

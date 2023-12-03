@@ -1,0 +1,42 @@
+/* Privacy.css */
+.privacy-container, .terms-container, .contact-container {
+    padding: 50px;
+    background: white;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .privacy-container h1,   .terms-container h1, .contact-container h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    background: #4657c8;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+  }
+  
+  .privacy-container p, .terms-container p, .contact-container p {
+    margin-bottom: 1rem;
+  }
+  
+  .privacy-container section, .terms-container section, .contact-container section {
+    margin-bottom: 2rem;
+  }
+  
+  .privacy-container h2, .terms-container h2, .contact-container h2 {
+    margin-bottom: 0.5rem;
+    color:#4657c8;
+  }
+  
+  .privacy-policy, .terms-policy{
+    margin-bottom: 0.5rem;
+    color:#4657c8;
+}
+
+
+@media (max-width: 768px) {
+  .privacy-container, .contact-container, .terms-container {
+    padding: 20px;
+  }
+}
+

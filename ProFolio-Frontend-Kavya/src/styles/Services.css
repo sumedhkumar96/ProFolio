@@ -1,0 +1,104 @@
+.services-container {
+  text-align: center;
+  padding: 50px;
+  background: white;
+  color: #333;
+  position: relative; 
+  padding-bottom: 60px;
+}
+  
+  /* Style for the profile icon */
+  .app-profile {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    margin: 10px; 
+  }
+
+  /* Footer layout and styles */
+  .services-app-footer {
+    display: flex; 
+    align-items: center; 
+    padding: 20px;
+    height: 100%;
+    justify-content: space-between; 
+    color: black; 
+  }
+
+  .services-bottom-container {
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    background-color: rgb(227, 224, 224); 
+    text-align: center;
+    z-index: 100; 
+    padding: 10px 30px; 
+    height: 80px; 
+}
+
+  /* Styling for bottom navigation */
+  .services-bottom-nav ul {
+    list-style-type: none;
+    padding: 10px;
+    display: flex; 
+    gap: 20px;
+  }
+  
+  .services-bottom-nav li {
+    padding: 10px; 
+  }
+  .services-bottom-nav a {
+    text-decoration: none;
+    color: black; 
+    align-items: center;
+  } 
+
+  .services-container h1 {
+    font-size: 2.5rem;
+    background: #4657c8;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+  }
+  
+  .services-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 2rem;
+  }
+  
+  .service {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .service h2 {
+    font-size: 1.75rem;
+    color:#4657c8;
+    margin-bottom: 1rem;
+  }
+  
+  .service p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .service:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(186, 88, 187, 0.4); 
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .services-list {
+        grid-template-columns: 1fr; 
+    }
+  }
+  

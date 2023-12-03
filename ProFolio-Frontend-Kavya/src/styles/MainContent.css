@@ -1,0 +1,160 @@
+.main-container {
+    text-align: center;
+    background: white; 
+    padding: 20px 0; 
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .main-header {
+    width: 100%; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+  }
+  
+  .title-image {
+    max-width: 80%; 
+    height: auto;
+  }
+  
+  .user-profile {
+    position: relative; 
+    cursor: pointer; 
+    align-self: flex-start; 
+  }
+  
+  .user-profile img {
+    border-radius: 50%;
+    width: 40px; 
+    height: 40px; 
+    object-fit: cover; 
+    margin-left: auto; 
+  }
+
+  .templates-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px; 
+    padding: 20px;
+    margin: 20px auto; 
+    max-width: 1200px; 
+}
+
+.templates-section {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; 
+  gap: 30px; 
+  padding: 20px;
+  margin: 20px auto; 
+  max-width: 1200px; 
+}
+
+.template {
+  position: relative; 
+  width: calc(33.333% - 20px); 
+  border: 1px solid #e0e0e0; 
+  padding: 20px;
+  background: #fff; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.template:before,
+.template:after {
+  content: '';
+  position: absolute;
+  border-radius: 10px;
+  z-index: -1;
+  transition: inherit; 
+}
+
+.template:before {
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
+  left: -10px;
+}
+
+.template:after {
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  background: white;
+}
+
+.template:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+}
+
+.template:hover:before {
+  background: linear-gradient(45deg, #4657c8, #ba58bb);
+  top: -11px;
+  right: -11px;
+  bottom: -11px;
+  left: -11px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+}
+
+  
+  .template img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .user-profile {
+    position: relative;
+    cursor: pointer; 
+  }
+  
+  .user-profile img {
+    
+  }
+  
+  .dropdown {
+    position: absolute;
+    right: 0;
+    top: 100%; 
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    width: 150px; 
+    z-index: 10;
+  }
+  
+  .dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .dropdown ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .dropdown ul li:last-child {
+    border-bottom: none;
+  }
+  
+  .dropdown ul li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown ul li a:hover {
+    background-color: #f8f8f8;
+  }
+  

@@ -1,0 +1,95 @@
+/* UserDetails.css */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%; 
+}
+
+
+.App {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4657c8, #ba58bb); 
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+
+}
+
+
+
+.form-container {
+  margin-top: 0; 
+  max-width: 600px;
+  width: 100%;
+  margin: 50px auto;
+  margin-top: 50px; 
+  padding: 20px;
+  background-color: #fff; 
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.gradient-heading {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 30px; 
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+  background-color: white; 
+  width: calc(100% - 20px); 
+  padding: 10px;
+  margin-bottom: 20px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  box-sizing: border-box; 
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  padding-left: 10px; 
+  text-align: left;
+  color: black; 
+}
+
+
+input[type="file"] {
+  margin-bottom: 20px;
+}
+
+
+
+button:hover {
+  background-color: #45a049;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  margin-bottom: 20px; 
+}
+
+/* Add responsiveness to the form */
+@media (max-width: 768px) {
+  .form-container {
+    .form-container {
+      width: 95%; 
+      margin-top: 20px; 
+    }
+  }
+
+  .gradient-heading {
+    font-size: 20px;
+  }
+}
