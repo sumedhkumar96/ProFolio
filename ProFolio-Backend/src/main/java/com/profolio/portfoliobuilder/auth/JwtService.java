@@ -1,6 +1,6 @@
 package com.profolio.portfoliobuilder.auth;
 
-import com.profolio.portfoliobuilder.models.User;
+import com.profolio.portfoliobuilder.models.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

@@ -1,8 +1,8 @@
 package com.profolio.portfoliobuilder.auth;
 
 import com.profolio.portfoliobuilder.exceptions.CustomErrorResponse;
-import com.profolio.portfoliobuilder.models.AuthToken;
-import com.profolio.portfoliobuilder.models.User;
+import com.profolio.portfoliobuilder.models.entities.AuthToken;
+import com.profolio.portfoliobuilder.models.entities.User;
 import com.profolio.portfoliobuilder.repositories.AuthTokenRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

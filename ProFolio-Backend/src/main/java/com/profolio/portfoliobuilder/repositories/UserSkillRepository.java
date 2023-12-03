@@ -1,13 +1,13 @@
 package com.profolio.portfoliobuilder.repositories;
 
-import com.profolio.portfoliobuilder.models.entities.Education;
 import com.profolio.portfoliobuilder.models.entities.User;
+import com.profolio.portfoliobuilder.models.entities.UserSkill;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EducationRepository extends JpaRepository<Education, String> {
+public interface UserSkillRepository extends JpaRepository<UserSkill, String> {
 
     public void deleteAllByUser(User user);
-    
+
 }

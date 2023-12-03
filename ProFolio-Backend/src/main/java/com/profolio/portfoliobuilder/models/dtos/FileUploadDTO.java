@@ -1,8 +1,10 @@
 package com.profolio.portfoliobuilder.models.dtos;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class FileUploadDTO {
     private String name;
     private String url;

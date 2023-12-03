@@ -1,13 +1,13 @@
-package com.profolio.portfoliobuilder.services;
+package com.profolio.portfoliobuilder.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
-public class EmailService {
+@Component
+public class EmailUtil {
     private static final String SIGNUP_OTP_SUBJECT = "ProFolio Email Verification";
     private static final String SIGNUP_OTP_BODY = "Welcome to ProFolio. Your OTP is %s";
     @Value("${spring.mail.username:profol.io@outlook.com}")

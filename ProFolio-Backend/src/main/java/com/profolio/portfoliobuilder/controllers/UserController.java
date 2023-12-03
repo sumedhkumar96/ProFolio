@@ -2,6 +2,7 @@ package com.profolio.portfoliobuilder.controllers;
 
 import com.profolio.portfoliobuilder.models.dtos.LoginDTO;
 import com.profolio.portfoliobuilder.models.dtos.SignupDTO;
+import com.profolio.portfoliobuilder.models.entities.User;
 import com.profolio.portfoliobuilder.services.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -54,4 +55,16 @@ public class UserController {
         userService.deleteProfilePicture(userId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserProfile(@NotNull @Valid @PathVariable("id") String userId) {
+        return new ResponseEntity<>(userService.getUserProfile(userId), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<User> modifyUserProfile(@NotNull @Valid @PathVariable("id") String userId,
+                                                  @NotNull @Valid @RequestBody User user) {
+        return new ResponseEntity<>(userService.modifyUserProfile(userId, user), HttpStatus.ACCEPTED);
+    }
+    
 }

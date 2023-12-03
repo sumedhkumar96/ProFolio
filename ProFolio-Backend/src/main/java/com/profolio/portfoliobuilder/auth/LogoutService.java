@@ -1,6 +1,6 @@
 package com.profolio.portfoliobuilder.auth;
 
-import com.profolio.portfoliobuilder.models.AuthToken;
+import com.profolio.portfoliobuilder.models.entities.AuthToken;
 import com.profolio.portfoliobuilder.repositories.AuthTokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

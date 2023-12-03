@@ -1,7 +1,7 @@
 package com.profolio.portfoliobuilder.auth;
 
-import com.profolio.portfoliobuilder.models.OneTimePassword;
-import com.profolio.portfoliobuilder.models.User;
+import com.profolio.portfoliobuilder.models.entities.OneTimePassword;
+import com.profolio.portfoliobuilder.models.entities.User;
 import com.profolio.portfoliobuilder.repositories.OneTimePasswordRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

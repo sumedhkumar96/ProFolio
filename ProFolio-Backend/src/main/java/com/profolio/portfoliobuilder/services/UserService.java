@@ -3,17 +3,22 @@ package com.profolio.portfoliobuilder.services;
 import com.profolio.portfoliobuilder.auth.JwtService;
 import com.profolio.portfoliobuilder.auth.OneTimePasswordService;
 import com.profolio.portfoliobuilder.exceptions.CustomException;
-import com.profolio.portfoliobuilder.models.*;
 import com.profolio.portfoliobuilder.models.constants.GeneralConstants;
 import com.profolio.portfoliobuilder.models.dtos.FileUploadDTO;
 import com.profolio.portfoliobuilder.models.dtos.LoginDTO;
 import com.profolio.portfoliobuilder.models.dtos.SignupDTO;
+import com.profolio.portfoliobuilder.models.entities.AuthToken;
+import com.profolio.portfoliobuilder.models.entities.Media;
+import com.profolio.portfoliobuilder.models.entities.OneTimePassword;
+import com.profolio.portfoliobuilder.models.entities.User;
 import com.profolio.portfoliobuilder.models.enums.MediaCategory;
+import com.profolio.portfoliobuilder.models.enums.Role;
 import com.profolio.portfoliobuilder.repositories.AuthTokenRepository;
 import com.profolio.portfoliobuilder.repositories.MediaRepository;
 import com.profolio.portfoliobuilder.repositories.OneTimePasswordRepository;
 import com.profolio.portfoliobuilder.repositories.UserRepository;
-import com.profolio.portfoliobuilder.utils.FileUtils;
+import com.profolio.portfoliobuilder.utils.EmailUtil;
+import com.profolio.portfoliobuilder.utils.FileUtil;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +43,7 @@ public class UserService {
     @Autowired
     private OneTimePasswordRepository oneTimePasswordRepository;
     @Autowired
-    private EmailService emailService;
+    private EmailUtil emailUtil;
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
@@ -46,7 +51,13 @@ public class UserService {
     @Autowired
     private MediaRepository mediaRepository;
     @Autowired
-    private FileUtils fileUtils;
+    private FileUtil fileUtil;
+    @Autowired
+    private EducationService educationService;
+    @Autowired
+    private WorkExperienceService workExperienceService;
+    @Autowired
+    private SkillService skillService;
 
     @Transactional
     public SignupDTO signup(SignupDTO signupDTO) {
@@ -63,7 +74,7 @@ public class UserService {
         user.setPasswordHash(passwordEncoder.encode(signupDTO.getPassword()));
         user.setRole(Role.USER);
         OneTimePassword oneTimePassword = oneTimePasswordService.createOneTimePassword(user);
-        emailService.sendSignupOtp(user.getEmail(), oneTimePassword.getOtpString());
+        emailUtil.sendSignupOtp(user.getEmail(), oneTimePassword.getOtpString());
         signupDTO.setPassword(null);
         signupDTO.setId(user.getId());
         return signupDTO;
@@ -83,7 +94,7 @@ public class UserService {
             return "User already verified";
         }
         OneTimePassword oneTimePassword = oneTimePasswordService.createOneTimePassword(user);
-        emailService.sendSignupOtp(user.getEmail(), oneTimePassword.getOtpString());
+        emailUtil.sendSignupOtp(user.getEmail(), oneTimePassword.getOtpString());
         return "OTP sent to the registered email ID";
     }
 
@@ -120,7 +131,7 @@ public class UserService {
                 .filter(m -> m.getCategory() == MediaCategory.PROFILE_PICTURE)
                 .findFirst();
         Media media = optionalMedia.orElse(new Media());
-        FileUploadDTO fileUploadDTO = fileUtils.uploadImageFile(userId, file, media.getFileName());
+        FileUploadDTO fileUploadDTO = fileUtil.uploadImageFile(userId, file, media.getFileName());
         media.setUser(user);
         media.setCategory(MediaCategory.PROFILE_PICTURE);
         media.setUrl(fileUploadDTO.getUrl());
@@ -139,7 +150,7 @@ public class UserService {
             return;
         }
         Media media = optionalMedia.get();
-        fileUtils.deleteFileFromStorage(media.getFileName());
+        fileUtil.deleteFileFromStorage(media.getFileName());
         mediaRepository.delete(media);
     }
 
@@ -158,4 +169,31 @@ public class UserService {
                         GeneralConstants.TRY_AGAIN_WITH_VALID_USER,
                         HttpStatus.NOT_FOUND));
     }
+
+    public User getUserProfile(String userId) {
+        User user = getUserById(userId);
+        user.setPasswordHash(null);
+        return user;
+    }
+
+    public User modifyUserProfile(String userId, User user) {
+        User userInDb = getUserById(userId);
+        userInDb.setName(user.getName());
+        userInDb.setHomeLocation(user.getHomeLocation());
+        userInDb.setCurrentLocation(user.getCurrentLocation());
+        userInDb.setAbout(user.getAbout());
+        userInDb.setPhone(user.getPhone());
+        userInDb.setSkills(skillService.modifySkillList(userInDb, user.getSkills()));
+        // saving basic details
+        userInDb = userRepository.save(userInDb);
+
+        userInDb.setEducationList(educationService.modifyEducationList(userInDb, user.getEducationList()));
+        userInDb.setWorkExperienceList(workExperienceService.modifyWorkExperienceList(userInDb, user.getWorkExperienceList()));
+        userInDb.setExternalLinks(user.getExternalLinks());
+        userInDb.setCertificates(user.getCertificates());
+        userInDb.setProjects(user.getProjects());
+        userInDb.setPasswordHash(null);
+        return userInDb;
+    }
+
 }

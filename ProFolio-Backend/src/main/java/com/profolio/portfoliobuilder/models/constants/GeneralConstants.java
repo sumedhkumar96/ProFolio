@@ -1,8 +1,10 @@
 package com.profolio.portfoliobuilder.models.constants;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class GeneralConstants {
     private GeneralConstants() {
 

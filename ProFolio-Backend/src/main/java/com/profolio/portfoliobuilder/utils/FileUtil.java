@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 
 @Component
-public class FileUtils {
+public class FileUtil {
     private static final List<String> ALLOWED_IMAGE_TYPES = Arrays.asList(".gif", ".jpeg", ".jpg", ".png");
     @Value("${gcp.dir.name}")
     private String gcpDirectoryName;

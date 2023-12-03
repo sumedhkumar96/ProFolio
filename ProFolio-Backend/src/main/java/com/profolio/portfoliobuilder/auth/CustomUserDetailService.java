@@ -1,8 +1,8 @@
 package com.profolio.portfoliobuilder.auth;
 
 import com.profolio.portfoliobuilder.exceptions.CustomException;
-import com.profolio.portfoliobuilder.models.User;
 import com.profolio.portfoliobuilder.models.constants.GeneralConstants;
+import com.profolio.portfoliobuilder.models.entities.User;
 import com.profolio.portfoliobuilder.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
