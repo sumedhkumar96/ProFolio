@@ -1,0 +1,71 @@
+/* App.css */
+
+.App {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"],
+input[type="file"], textarea, select {
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+label{
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+  margin-left: 3px;
+}
+
+input[type="date"]{
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #0073b1;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+button[type="button"] {
+  background-color: #005c8f;
+}
+
+button[type="submit"] {
+  margin-top: 20px;
+}
+
+/* Education section styles */
+h2 {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+/* Add more specific CSS as needed for other sections */
