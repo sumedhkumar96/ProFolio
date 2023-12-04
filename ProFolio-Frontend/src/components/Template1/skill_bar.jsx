@@ -1,6 +1,5 @@
 import React from "react";
 import "./ProgressBar.css"
-import "./style.css"
 var ProgressBar = ({ width, percent, level}) => {
 
     const [value, setValue] = React.useState(0);

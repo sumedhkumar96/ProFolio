@@ -45,7 +45,7 @@ export function HomePage({ logOut }) {
                     )}
                 </div>
             </header>
-        {isUserEditPage?<SelectTemplate />:<UserDetails />}
+        {isUserEditPage?<UserDetails />:<SelectTemplate setIsUserEditPage={setIsUserEditPage} />}
         </>
     );
 }

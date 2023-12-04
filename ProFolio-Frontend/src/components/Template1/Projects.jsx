@@ -1,4 +1,3 @@
-import './style.css';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -6,7 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const git = <FontAwesomeIcon icon={faGithub} size="2x" />
-function Project({ projectHistory }){
+function Project({ projects }){
+
+  if(projects.length==0){
+    return <></>;
+  }
+
     var settings = {
         dots: true,
         infinite: false,
@@ -46,21 +50,20 @@ function Project({ projectHistory }){
             <h1 className="section-title white">Projects</h1>
             <Slider  {...settings}>
             {
-                projectHistory.map(entry => {
+                projects.map(entry => {
                     return(
-                        <div className="card-space" key={entry.id}>
+                        <div className="card-space" key={entry.name}>
                            
                           <div className="card">
                          
                            <div className="card-top">
-                            <img className="card-image" src={entry.image} alt="" />
                             
                            </div>
                            <div className="card-body">
-                             <h3>{entry.title}</h3>
-                             <h4>{entry.mid}</h4>
+                             <h3>{entry.name}</h3>
+                             <h4>{entry.startDate}-{entry.endDate}</h4>
                              <p>{entry.decription}</p>
-                             <a href={entry.link} className="git-link" target="_blank" rel="noreferrer noopener"><div className="git">{git}</div></a>
+                             <a href={entry.url} className="git-link" target="_blank" rel="noreferrer noopener"><div className="git">{git}</div></a>
                            </div>
                         </div>
                         
