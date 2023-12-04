@@ -56,32 +56,32 @@ export function LandingPage() {
               </div>
               <div className="section-content text-center">
                 <Zoom>
-                <div className="row">
-                  <div className="col-md-4">
-                    <div className="icon-box fadeInUp"> <i className="fa fa-life-ring"
-                      aria-hidden="true"></i>
-                      <h5>Easy Template Customization</h5>
-                      <p>Choose from a diverse range of professionally designed templates that suit your style. From color schemes to layout structures, take full control and make your portfolio uniquely yours.
-                      </p>
+                  <div className="row">
+                    <div className="col-md-4">
+                      <div className="icon-box fadeInUp"> <i className="fa fa-life-ring"
+                        aria-hidden="true"></i>
+                        <h5>Easy Template Customization</h5>
+                        <p>Choose from a diverse range of professionally designed templates that suit your style. From color schemes to layout structures, take full control and make your portfolio uniquely yours.
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="col-md-4">
-                    <div className="icon-box fadeInUp"> <i className="fa fa-mobile"
-                      aria-hidden="true"></i>
-                      <h5>Responsive Design</h5>
-                      <p>Seamlessly adapting to various screen sizes, from desktops to tablets and smartphones, our platform guarantees that your professional story is presented with clarity and precision, regardless of the viewing medium.
-                      </p>
+                    <div className="col-md-4">
+                      <div className="icon-box fadeInUp"> <i className="fa fa-mobile"
+                        aria-hidden="true"></i>
+                        <h5>Responsive Design</h5>
+                        <p>Seamlessly adapting to various screen sizes, from desktops to tablets and smartphones, our platform guarantees that your professional story is presented with clarity and precision, regardless of the viewing medium.
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="col-md-4">
-                    <div className="icon-box fadeInUp"> <i className="fa fa-bolt" aria-hidden="true"></i>
-                      <h5>Fast</h5>
-                      <p>We understand the importance of a seamless user experience, and our commitment to optimal performance ensures that your portfolio loads swiftly, providing instant access to your professional narrative.</p>
+                    <div className="col-md-4">
+                      <div className="icon-box fadeInUp"> <i className="fa fa-bolt" aria-hidden="true"></i>
+                        <h5>Fast</h5>
+                        <p>We understand the importance of a seamless user experience, and our commitment to optimal performance ensures that your portfolio loads swiftly, providing instant access to your professional narrative.</p>
+                      </div>
                     </div>
                   </div>
-                </div>
                 </Zoom>
                 <Link to="/signup" className="about-btn">Sign Up Now</Link>
               </div>
