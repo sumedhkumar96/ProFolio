@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import '../styles/UserDetails.css';
+import { useOutletContext } from 'react-router-dom';
+
 
 export default function UserDetails() {
+  const [user, setUser] = useOutletContext();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -125,7 +128,7 @@ export default function UserDetails() {
     }
   };
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     console.log({
       firstName,
@@ -145,7 +148,37 @@ export default function UserDetails() {
       socialMedia,
       projects
     });
-    
+    let response = await fetch(`http://127.0.0.1:8080/api/user/${user.id}/`, {
+            method: 'PATCH',
+            body: JSON.stringify({
+              "id": user.id,
+              "name": `${firstName} ${lastName}`,
+              "phone": phone,
+              "title": preferredPronouns,
+              "about": aboutMe,
+              "templatePreference": 1,
+              "homeLocation" : homeAddress,
+              "currentLocation" : currentAddress,
+              "educationList":education,
+              "workExperienceList": experience,
+              "skills": skills,
+              "externalLinks":socialMedia,
+              "certifications":certifications,
+              "projects": projects
+          }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,POST,PATCH,OPTIONS,DELETE',
+                'Access-Control-Allow-Credentials': 'true',
+                'Authorization':`Bearer ${user.authToken}`,
+            },
+        });
+        const jsonResponse = await response.json();
+        console.log(jsonResponse);
+        if (response.status == 202) {
+            setIsUserEditPage(false);
+        }
   }
 
   return (

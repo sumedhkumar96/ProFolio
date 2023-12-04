@@ -1,5 +1,6 @@
 import { redirect, useLoaderData } from "react-router-dom";
 import { Template1 } from "../components/Template1/Template1";
+import { Template2 } from "../components/Template 2/Template2";
 
 export async function loader({ params }) {
     const response = await fetch(`http://127.0.0.1:8080/api/user/public/${params.id}`);
@@ -17,7 +18,11 @@ export async function loader({ params }) {
 export function PortfolioPage() {
     const userData = useLoaderData();
 
-    return (<>
-        <Template1 userData={userData}/>
-    </>);
+    if(userData.templatePreference==2){
+        return (<Template2 userData={userData}/>);
+    }
+    else{
+        return (<Template1 userData={userData}/>); 
+    }
+
 }

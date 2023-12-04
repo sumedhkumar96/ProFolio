@@ -1,4 +1,4 @@
-import { redirect, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import templateImage from '../assets/images/template_image.png';
 import { Bounce } from "react-awesome-reveal";
 
@@ -37,15 +37,15 @@ export function SelectTemplate({setIsUserEditPage}) {
                 <Bounce triggerOnce={true}>
                     <div className="template" onClick={() => modifyUserTemplatePreference(2)}>
                         <img src={templateImage} alt="Template 2" />
-                        <h4>Designer</h4>
+                        <h4>Simple</h4>
                     </div>
                 </Bounce>
-                <Bounce triggerOnce={true}>
+                {/* <Bounce triggerOnce={true}>
                     <div className="template" onClick={() => modifyUserTemplatePreference(3)}>
                         <img src={templateImage} alt="Template 3" />
                         <h4>Buisness</h4>
                     </div>
-                </Bounce>
+                </Bounce> */}
             </section>
         </div>
     );
