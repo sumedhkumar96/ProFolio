@@ -3,12 +3,11 @@ import '../styles/UserDetails.css';
 import { useOutletContext } from 'react-router-dom';
 
 
-export default function UserDetails() {
+export default function UserDetails({setIsUserEditPage}) {
   const [user, setUser] = useOutletContext();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [homeAddress, setHomeAddress] = useState('');
   const [currentAddress, setCurrentAddress] = useState('');
@@ -19,22 +18,21 @@ export default function UserDetails() {
     url: ''
   }]);
 
-  // const [education, setEducation] = useState([{institute: '', degree: '', year: '', fieldOfStudy :'', educationDescription: ''}]);
+  // const [education, setEducation] = useState([{institutionName: '', degreeName: '', year: '', fieldOfStudy :'', description: ''}]);
   const [education, setEducation] = useState([{
-    institute: '',
-    degree: '',
+    institutionName: '',
+    degreeName: '',
     grade: '',
     location: '',
     fromDate: '',
     toDate: '',
-    fieldOfStudy: '',
-    educationDescription: ''
+    description: ''
   }]);
-  const [experience, setExperience] = useState([{ jobTitle: '', employmentType: '', companyName: '', location: '', locationType: '', startDate: '', endDate: '', industry: '', jobDescription: '', skills: '' }]);
-  const [skills, setSkills] = useState([{ userSkills: '' }]);
-  const [certifications, setCertifications] = useState([{ name: '', organisation: '', issueDate: '', expirationDate: '', credentialId: '', credentialUrl: '', skills: '' }]);
+  const [experience, setExperience] = useState([{ role: '', organizationName: '', location: '',  fromDate: '', toDate: '', description: ''}]);
+  const [skills, setSkills] = useState([]);
+  const [certifications, setCertifications] = useState([{ name: '', organisation: '', issueDate: '', expirationDate: '', credentialId: '', credentialUrl: ''}]);
   const [profilePhoto, setProfilePhoto] = useState(null);
-  const [currentPosition, setCurrentPosition] = useState({ companyOrInsititute: '', positionOrDegree: '', startDate: '', location: '' });
+  const [currentPosition, setCurrentPosition] = useState({ companyOrInsititute: '', positionOrDegree: '', fromDate: '', location: '' });
   const [projects, setProjects] = useState([{
     name: '',
     description: '',
@@ -51,7 +49,7 @@ export default function UserDetails() {
   };
 
   const handleAddEducation = () => {
-    setEducation([...education, { institute: '', degree: '', year: '', fieldOfStudy: '', educationDescription: '' }]);
+    setEducation([...education, { institutionName: '', degreeName: '', year: '', description: '' }]);
   };
 
   const handleSocialMediaChange = (event, index) => {
@@ -74,7 +72,7 @@ export default function UserDetails() {
   }
 
   function handleAddCertification() {
-    setCertifications([...certifications, { name: '', organisation: '', issueDate: '', expirationDate: '', credentialId: '', credentialUrl: '', skills: '' }])
+    setCertifications([...certifications, { name: '', organisation: '', issueDate: '', expirationDate: '', credentialId: '', credentialUrl: '' }])
   }
 
   function handleSkillsChange(event, index) {
@@ -85,7 +83,7 @@ export default function UserDetails() {
   }
 
   function handleAddSkill() {
-    setSkills([...skills, { userSkills: '' }])
+    setSkills([...skills])
   }
 
   function handleExperienceChange(event, index) {
@@ -100,7 +98,7 @@ export default function UserDetails() {
   }
 
   function handleAddExperience() {
-    setExperience([...experience, { jobTitle: '', employmentType: '', companyName: '', location: '', locationType: '', startDate: '', endDate: '', industry: '', jobDescription: '', skills: '' }]);
+    setExperience([...experience, { role: '', employmentType: '', organizationName: '', location: '', fromDate: '', toDate: '', description: '' }]);
   }
 
   const handleProjectChange = (event, index) => {
@@ -133,7 +131,6 @@ export default function UserDetails() {
     console.log({
       firstName,
       lastName,
-      email,
       phone,
       homeAddress,
       currentAddress,
@@ -148,7 +145,17 @@ export default function UserDetails() {
       socialMedia,
       projects
     });
-    let response = await fetch(`http://127.0.0.1:8080/api/user/${user.id}/`, {
+    console.log(user.authToken);
+    console.log((education==[{
+      institutionName: '',
+      degreeName: '',
+      grade: '',
+      location: '',
+      fromDate: '',
+      toDate: '',
+      description: ''
+    }]));
+    let response = await fetch(`http://127.0.0.1:8080/api/user/${user.id}`, {
             method: 'PATCH',
             body: JSON.stringify({
               "id": user.id,
@@ -159,12 +166,12 @@ export default function UserDetails() {
               "templatePreference": 1,
               "homeLocation" : homeAddress,
               "currentLocation" : currentAddress,
-              "educationList":education,
-              "workExperienceList": experience,
+              "educationList":(education.length==1 && education[0].degreeName=='')?null:education,
+              "workExperienceList": (experience.length==1 && experience[0].organizationName=='')?null:experience,
               "skills": skills,
-              "externalLinks":socialMedia,
-              "certifications":certifications,
-              "projects": projects
+              "externalLinks":(socialMedia.length==1 && socialMedia[0].name=='')?null:socialMedia,
+              "certifications":(certifications.length==1 && certifications[0].name=='')?null:certifications,
+              "projects": (projects.length==1 && projects[0].name=='')?null:projects,
           }),
             headers: {
                 'Content-Type': 'application/json',
@@ -192,21 +199,6 @@ export default function UserDetails() {
             placeholder="Name"
             value={firstName}
             onChange={(event) => setFirstName(event.target.value)}
-          />
-          {/* <input
-                type="text"
-                placeholder="Last Name"
-                value={lastName}
-                onChange={(event) => setLastName(event.target.value)}
-              /> */}
-          {/* Email field */}
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
           />
 
           {/* Phone field */}
@@ -239,20 +231,6 @@ export default function UserDetails() {
             onChange={(e) => setCurrentAddress(e.target.value)}
           />
 
-          {/* Preferred Pronouns Dropdown */}
-          {/* <label htmlFor="preferred-pronouns">Preferred Pronouns</label>
-          <select
-            id="preferred-pronouns"
-            value={preferredPronouns}
-            onChange={(e) => setPreferredPronouns(e.target.value)}
-          >
-            <option value="">Select...</option>
-            <option value="he/him">He/Him</option>
-            <option value="she/her">She/Her</option>
-            <option value="they/them">They/Them</option>
-            <option value="other">Other</option>
-          </select> */}
-
           {/* About Me Textarea */}
           <label htmlFor="about-me">About Me</label>
           <textarea
@@ -262,60 +240,25 @@ export default function UserDetails() {
             onChange={(e) => setAboutMe(e.target.value)}
           />
 
-          {/* Current Position */}
-          {/* <div>
-                <h2 className="gradient-heading">Current Position</h2>
-                  <input
-                      type="text"
-                      placeholder="Company or Institue Name"
-                      name="companyOrInsititute"
-                      value={currentPosition.companyOrInsititute}
-                      onChange={handleCurrentPositionChange}
-                  />
-                  <input
-                      type="text"
-                      placeholder="Position or Degree"
-                      name="positionOrDegree"
-                      value={currentPosition.positionOrDegree}
-                      onChange={handleCurrentPositionChange}
-                  /><br></br>
-                  <label htmlFor='start-date'>Start Date</label>
-                  <input
-                      type="date"
-                      id='start-date'
-                      placeholder="Start date"
-                      name="startDate"
-                      value={currentPosition.startDate}
-                      onChange={handleCurrentPositionChange}
-                  /><br></br>
-                  <input
-                      type="text"
-                      placeholder="Location"
-                      name="location"
-                      value={currentPosition.location}
-                      onChange={handleCurrentPositionChange}
-                  />
-              </div> */}
-
           {/* Education Section */}
           <div>
             <h2 className="gradient-heading">Education</h2>
             {education.map((edu, index) => (
               <div key={index}>
-                <label htmlFor='institute'>Institute</label>
+                <label htmlFor='institutionName'>Institute Name</label>
                 <input
                   type="text"
-                  placeholder="Institute"
-                  name="institute"
-                  value={edu.institute}
+                  placeholder="Institute Name"
+                  name="institutionName"
+                  value={edu.institutionName}
                   onChange={(event) => handleEducationChange(event, index)}
                 />
-                <label htmlFor='degree'>Degree</label>
+                <label htmlFor='degreeName'>Degree Name</label>
                 <input
                   type="text"
-                  placeholder="Degree"
-                  name="degree"
-                  value={edu.degree}
+                  placeholder="Degree Name"
+                  name="degreeName"
+                  value={edu.degreeName}
                   onChange={(event) => handleEducationChange(event, index)}
                 />
                 <label htmlFor={`grade-${index}`}>Grade</label>
@@ -350,21 +293,12 @@ export default function UserDetails() {
                   value={edu.toDate}
                   onChange={(event) => handleEducationChange(event, index)}
                 />
-                <label htmlFor='fieldOfStudy'>Field of Study</label>
-                <input
-                  type="text"
-                  id='fieldOfStudy'
-                  name="fieldOfStudy"
-                  placeholder='Field of study'
-                  value={edu.fieldOfStudy}
-                  onChange={(event) => handleEducationChange(event, index)}
-                />
                 <label htmlFor='desciption'>Description</label>
                 <textarea
-                  id='educationDescription'
+                  id='description'
                   placeholder='Description'
-                  name="educationDescription"
-                  value={edu.educationDescription}
+                  name="description"
+                  value={edu.description}
                   onChange={(event) => handleEducationChange(event, index)}
                 />
                 <hr />
@@ -382,35 +316,20 @@ export default function UserDetails() {
             <h2 className="gradient-heading">Experience</h2>
             {experience.map((exp, index) => (
               <div key={index}>
-                <label htmlFor="jobTitle">Role</label>
+                <label htmlFor="role">Role</label>
                 <input
                   type="text"
                   placeholder="Role"
-                  name="jobTitle"
-                  value={exp.jobTitle}
+                  name="role"
+                  value={exp.role}
                   onChange={(event) => handleExperienceChange(event, index)}
                 />
-                <label htmlFor="employment-type">Current employment status</label>
-                <select
-                  id="employment-type"
-                  onChange={(event) => handleExperienceChange(event, index)}
-                  name="employmentType"
-                  value={exp.employmentType}
-                >
-                  <option value="">-- Choose --</option>
-                  <option value="Full-time">Full-time</option>
-                  <option value="Part-time">Part-time</option>
-                  <option value="Self-employed">Self-employed</option>
-                  <option value="Freelance">Freelance</option>
-                  <option value="Internship">Internship</option>
-                  <option value="Apprenticeship">Apprenticeship</option>
-                </select>
                 <label htmlFor="employment-type">Organization Name</label>
                 <input
                   type="text"
                   placeholder="Organization Name"
-                  name="companyName"
-                  value={exp.companyName}
+                  name="organizationName"
+                  value={exp.organizationName}
                   onChange={(event) => handleExperienceChange(event, index)}
                 />
                 <label htmlFor="location">Location</label>
@@ -421,56 +340,30 @@ export default function UserDetails() {
                   value={exp.location}
                   onChange={(event) => handleExperienceChange(event, index)}
                 />
-                {/* <label htmlFor="locationType">Current employment status</label>
-                <select 
-                    id="locationType"
-                    onChange={(event) => handleExperienceChange(event, index)}
-                    name="locationType"
-                    value={exp.locationType}
-                    >
-                    <option value="">-- Choose --</option>
-                    <option value="On-site">On-site</option>
-                    <option value="Hybrid">Hybrid</option>
-                    <option value="Remote">Remote</option>
-                </select> */}
-                <label htmlFor="startDate">Start date</label>
+                <label htmlFor="fromDate">From date</label>
                 <input
                   type="date"
-                  id='startDate'
-                  name="startDate"
-                  value={exp.startDate}
+                  placeholder='From date'
+                  id='fromDate'
+                  name="fromDate"
+                  value={exp.fromDate}
                   onChange={(event) => handleExperienceChange(event, index)}
                 />
-                <label htmlFor="endDate">End date</label>
+                <label htmlFor="toDate">To date</label>
                 <input
                   type="date"
-                  placeholder='End date'
-                  id='endDate'
-                  name="endDate"
-                  value={exp.endDate}
+                  placeholder='To date'
+                  id='toDate'
+                  name="toDate"
+                  value={exp.toDate}
                   onChange={(event) => handleExperienceChange(event, index)}
                 />
-                {/* <input
-                      type="text"
-                      placeholder="Industry"
-                      name="industry"
-                      value={exp.industry}
-                      onChange={(event) => handleExperienceChange(event, index)}
-                    /> */}
-                <label htmlFor="jobDescription">Job Description</label>
+                <label htmlFor="description">Description</label>
                 <textarea
-                  id='jobDescription'
-                  name="jobDescription"
-                  placeholder='Job Description'
-                  value={exp.jobDescription}
-                  onChange={(event) => handleExperienceChange(event, index)}
-                />
-                <label htmlFor="skills">Skills</label>
-                <textarea
-                  id='skills'
-                  name="skills"
-                  placeholder='Skills'
-                  value={exp.skills}
+                  id='description'
+                  name="description"
+                  placeholder='Description'
+                  value={exp.description}
                   onChange={(event) => handleExperienceChange(event, index)}
                 />
                 <hr />
@@ -589,15 +482,6 @@ export default function UserDetails() {
                   name="credentialUrl"
                   placeholder='Credential URL'
                   value={item.credentialUrl}
-                  onChange={(event) => handleCertificationsChange(event, index)}
-                />
-                <label htmlFor='skills'>Skills</label>
-                <input
-                  type="text"
-                  id='skills'
-                  name="skills"
-                  placeholder='Skills'
-                  value={item.skills}
                   onChange={(event) => handleCertificationsChange(event, index)}
                 />
                 <hr />
