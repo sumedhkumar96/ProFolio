@@ -1,33 +1,28 @@
+function Experience({ workExperienceList }) {
 
-
-function Experience({ experienceHistory }) {
+    if(workExperienceList.length==0){
+        return <></>;
+    }
 
     return (
         <section className="container dark">
             <h1 className="section-title">Experience</h1>
             {
-                experienceHistory.map(entry => {
+                workExperienceList.map(entry => {
                     return (
-
-                        <div className="entry inline dark-entry" key={entry.id}>
-                            <div className="logo">
-                                <img src={entry.logo} alt="" height="100%" width="100%" />
-                            </div>
+                        <div className="entry inline dark-entry" key={entry.organizationName}>
                             <div className="details">
-                                <h2>{entry.job_title}</h2>
+                                <h2>{entry.role}</h2>
                                 <div className="space-around">
                                     <div className="inline">
-                                        <h3> {entry.employer}&emsp;|&emsp;</h3>
-                                        <h3>{entry.from} - {entry.to}  </h3>
+                                        <h3> {entry.organizationName}&emsp;|&emsp;</h3>
+                                        <h3>{entry.fromDate} - {entry.toDate}  </h3>
                                     </div>
                                     <p>{entry.description}</p>
-                                    <p><b>Technologies</b> : {entry.techs}</p>
-
+                                    <p><b>Role</b> : {entry.role}</p>
                                 </div>
                             </div>
-
                         </div>
-
                     )
                 })
             }

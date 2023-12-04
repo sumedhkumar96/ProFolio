@@ -1,25 +1,23 @@
-import { useEffect } from "react";
-import { redirect, useParams } from "react-router-dom";
+import { redirect, useLoaderData } from "react-router-dom";
+import { Template1 } from "../components/Template1/Template1";
+
+export async function loader({ params }) {
+    const response = await fetch(`http://127.0.0.1:8080/api/user/public/${params.id}`);
+    const jsonResponse = await response.json();
+    console.log(jsonResponse);
+    if (response.status == 200) {
+        console.log(jsonResponse.templatePreference);
+        return jsonResponse;
+    }
+    else {
+        return redirect("/error");
+    }
+}
 
 export function PortfolioPage() {
-    const { id } = useParams();
-
-    useEffect(() => {
-        async function fetchUserData() {
-            const response = await fetch(`http://127.0.0.1:8080/api/user/public/${id}`);
-            const jsonResponse = await response.json();
-            console.log(jsonResponse);
-            if (response.status == 200) {
-                //parse user data
-            }
-            else {
-                return redirect("/error");
-            }
-        }
-        fetchUserData();
-    }, []);
+    const userData = useLoaderData();
 
     return (<>
-        <h1>Hello</h1>
+        <Template1 userData={userData}/>
     </>);
 }

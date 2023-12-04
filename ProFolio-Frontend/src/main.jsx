@@ -7,7 +7,7 @@ import { SignUpPage, action as signUpAction } from './pages/SignUpPage.jsx';
 import { LoginPage, loader as loginLoader, action as loginAction } from './pages/LoginPage.jsx';
 import { OtpPage } from './pages/OtpPage.jsx';
 import './styles/styles.css';
-import { PortfolioPage } from './pages/PortfolioPage.jsx';
+import { loader as portfolioLoader, PortfolioPage } from './pages/PortfolioPage.jsx';
 import { AuthChecker } from './components/AuthChecker.jsx';
 
 const router = createBrowserRouter([
@@ -48,6 +48,7 @@ const router = createBrowserRouter([
   {
     path: "/user/:id",
     element: <PortfolioPage />,
+    loader:portfolioLoader,
     errorElement: <ErrorPage />,
   }
 ]);

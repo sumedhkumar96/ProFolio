@@ -1,6 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; 
-import '../styles/Privacy.css'; 
+ import '../styles/Privacy.css'; 
 
 const Privacy = () => {
   return (
