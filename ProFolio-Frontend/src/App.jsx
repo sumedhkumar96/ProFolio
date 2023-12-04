@@ -1,28 +1,18 @@
 import './styles/App.css';
-import { HomePage } from "./pages/HomePage";
-import { LandingPage } from "./pages/LandingPage";
-import { createContext, useEffect, useState } from 'react';
-
-export const UserContext=createContext(null);
+import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
 function App() {
 
   const [user, setUser] = useState(null);
 
-  useEffect(()=>{
-    let data=localStorage.getItem('user');
-    setUser(data);
-  },[user]);
-
-  function logOut(){
-    localStorage.removeItem("user");
-    setUser(null);
-}
+  useEffect(() => {
+    let data = localStorage.getItem('user');
+    setUser(JSON.parse(data));
+  }, []);
 
   return (
-    <UserContext.Provider value={user}>
-      {user?<HomePage logOut={logOut}/>:<LandingPage />}
-    </UserContext.Provider>
+      <Outlet context={[user,setUser]}/>
   );
 }
 

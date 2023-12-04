@@ -7,16 +7,17 @@ import { SignUpPage, action as signUpAction } from './pages/SignUpPage.jsx';
 import { LoginPage, loader as loginLoader, action as loginAction } from './pages/LoginPage.jsx';
 import { OtpPage } from './pages/OtpPage.jsx';
 import './styles/styles.css';
+import { AuthChecker } from './pages/AuthChecker.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Outlet />,
+    element: <App />,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "",
-        element: <App />,
+        element: <AuthChecker />,
       },
       {
         path: "signup/",
