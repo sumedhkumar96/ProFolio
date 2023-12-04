@@ -1,4 +1,4 @@
-import { useOutletContext } from 'react-router-dom';
+import { redirect, useOutletContext } from 'react-router-dom';
 import templateImage from '../assets/images/template_image.png';
 import { Bounce } from "react-awesome-reveal";
 
@@ -11,14 +11,17 @@ export function SelectTemplate() {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                // 'Access-Control-Allow-Origin': '*',
-                // 'Access-Control-Allow-Methods': 'GET,POST,PATCH,OPTIONS,DELETE',
-                // 'Access-Control-Allow-Credentials': 'true',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,POST,PATCH,OPTIONS,DELETE',
+                'Access-Control-Allow-Credentials': 'true',
                 'Authorization':`Bearer ${user.authToken}`,
             },
         });
         const jsonResponse = await response.json();
         console.log(jsonResponse);
+        if (response.status == 200) {
+            localStorage.setItem("user", JSON.stringify(jsonResponse));
+        }
     }
 
     return (

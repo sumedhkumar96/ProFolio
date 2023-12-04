@@ -2,8 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background: linear-gradient(to left, #7a60ff, #cd9ffa);
+  background-color: white;
 }
 
 .center-display-column {
@@ -26,10 +25,13 @@
 .title-image {
   max-width: 80%;
   height: auto;
+  max-height: 70px;
 }
 
 .user-profile {
   position: relative;
+  top: 15px;
+  right: 15px;
   cursor: pointer;
   align-self: flex-start;
 }

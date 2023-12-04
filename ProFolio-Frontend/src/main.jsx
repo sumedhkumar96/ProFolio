@@ -7,7 +7,8 @@ import { SignUpPage, action as signUpAction } from './pages/SignUpPage.jsx';
 import { LoginPage, loader as loginLoader, action as loginAction } from './pages/LoginPage.jsx';
 import { OtpPage } from './pages/OtpPage.jsx';
 import './styles/styles.css';
-import { AuthChecker } from './pages/AuthChecker.jsx';
+import { PortfolioPage } from './pages/PortfolioPage.jsx';
+import { AuthChecker } from './components/AuthChecker.jsx';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,11 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/user/:id",
+    element: <PortfolioPage />,
+    errorElement: <ErrorPage />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

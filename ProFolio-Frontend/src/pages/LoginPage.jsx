@@ -2,6 +2,7 @@ import { DotLottiePlayer } from '@dotlottie/react-player';
 import person_skills_animation from '../assets/lottie/person_skills.lottie';
 import { Link, Form, redirect } from 'react-router-dom';
 import { Fade } from 'react-awesome-reveal';
+import { useOutletContext } from "react-router-dom";
 
 export async function loader() {
     let userData = JSON.parse(localStorage.getItem('user'));
@@ -36,6 +37,7 @@ export async function action({ request }) {
 }
 
 export function LoginPage() {
+
     return (
         <main className='gradient-main'>
             <Fade triggerOnce={true}>

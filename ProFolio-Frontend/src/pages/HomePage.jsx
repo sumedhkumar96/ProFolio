@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import { useState, useRef, useEffect } from 'react';
-import logo from '../assets/images/logo.png';
 import user_icon from '../assets/images/usericon.png';
 import '../styles/MainContent.css';
 import { SelectTemplate } from "../components/SelectTemplate";
+import UserDetails from "./UserDetails";
 
 export function HomePage({ logOut }) {
+    const [user, setUser] = useOutletContext();
+    const [isUserEditPage, setIsUserEditPage] = useState(false);
+    
     const [showDropdown, setShowDropdown] = useState(false);
     const dropdownRef = useRef(null);
     const toggleDropdown = () => setShowDropdown(!showDropdown);
@@ -27,22 +30,22 @@ export function HomePage({ logOut }) {
         <>
         <header className="header">
                 <div className="main-header">
-                    <img src={logo} alt="Title" className="title-image" />
+                    <img src="/PROFOLIOTitle.PNG" alt="Title" className="title-image" />
                 </div>
                 <div className="user-profile" onClick={toggleDropdown} ref={dropdownRef}>
                     <img src={user_icon} alt="User Profile" className="clickable" />
                     {showDropdown && (
                         <div className="dropdown">
                             <ul>
-                                <li><Link to="/settings">Edit Details</Link></li>
-                                <li><Link to="/userdetails">My Portfolio</Link></li>
+                                <li><Link onClick={()=>setIsUserEditPage(!isUserEditPage)}>{(isUserEditPage)?"Change Template":"Edit Details"}</Link></li>
+                                <li><Link to={`/user/${user.id}`}>My Portfolio</Link></li>
                                 <li><Link onClick={logOut}>Log Out</Link></li>
                             </ul>
                         </div>
                     )}
                 </div>
             </header>
-        <SelectTemplate />
+        {isUserEditPage?<SelectTemplate />:<UserDetails />}
         </>
     );
 }
