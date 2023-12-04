@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -44,7 +45,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 || request.getServletPath().contains("/api/user/verify-signup-otp")
                 || request.getServletPath().contains("/api/user/login")
                 || request.getServletPath().contains("/api/user/resend-signup-otp")
-                || request.getServletPath().contains("/api/user/public/")) {
+                || request.getServletPath().contains("/api/user/public/")
+                || request.getMethod().contains(HttpMethod.OPTIONS.name())) {
             filterChain.doFilter(request, response);
             return;
         }

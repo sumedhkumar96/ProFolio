@@ -10,6 +10,12 @@ otp:
   length: 6
   expiration: 15 #minutes
 
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE
+
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/profolio
