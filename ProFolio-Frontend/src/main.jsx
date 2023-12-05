@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { createHashRouter, Outlet, RouterProvider } from "react-router-dom";
 import { ErrorPage } from './pages/ErrorPage.jsx';
 import { SignUpPage, action as signUpAction } from './pages/SignUpPage.jsx';
 import { LoginPage, loader as loginLoader, action as loginAction } from './pages/LoginPage.jsx';
@@ -10,7 +10,7 @@ import './styles/styles.css';
 import { loader as portfolioLoader, PortfolioPage } from './pages/PortfolioPage.jsx';
 import { AuthChecker } from './components/AuthChecker.jsx';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
