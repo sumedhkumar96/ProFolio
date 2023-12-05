@@ -10,7 +10,7 @@ export async function action({ request }) {
         return false;
     }
     else {
-        const response = await fetch('http://127.0.0.1:8080/api/user/signup', {
+        const response = await fetch('https://profolio-backend-21ac7eb4f0a8.herokuapp.com/api/user/signup', {
             method: 'POST',
             body: JSON.stringify({ 'name': formData.get('name'), 'email': formData.get('email'), 'password': formData.get('password') }),
             headers: {
