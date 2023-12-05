@@ -13,8 +13,6 @@ export function AuthChecker() {
   }, []);
 
   async function logOut() {
-    localStorage.removeItem("user");
-    setUser(null);
     const response = await fetch(`${url}/api/user/logout`, {
       method: 'POST',
       headers: {
