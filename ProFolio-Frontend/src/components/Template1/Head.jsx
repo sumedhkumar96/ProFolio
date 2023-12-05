@@ -28,7 +28,7 @@ export default function Head({ userData }) {
                     <p>
                         <Typewriter
                             options={{
-                                strings: [`Hello I am ${userData.name}`],
+                                strings: [`Hello I am ${userData.name}`,'Welcome to my Portfolio'],
                                 autoStart: true,
                                 loop: true,
                             }}

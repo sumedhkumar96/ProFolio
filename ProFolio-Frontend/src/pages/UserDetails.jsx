@@ -1,17 +1,16 @@
 import { useState } from 'react';
 import '../styles/UserDetails.css';
-import { useOutletContext } from 'react-router-dom';
+import { redirect, useNavigate, useOutletContext } from 'react-router-dom';
 
-
-export default function UserDetails({setIsUserEditPage}) {
+export default function UserDetails() {
+  let navigate=useNavigate();
   const [user, setUser] = useOutletContext();
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [Name, setName] = useState('');
+  const [title, setTitle] = useState('');
   const [phone, setPhone] = useState('');
   const [homeAddress, setHomeAddress] = useState('');
   const [currentAddress, setCurrentAddress] = useState('');
-  const [preferredPronouns, setPreferredPronouns] = useState('');
   const [aboutMe, setAboutMe] = useState('');
   const [socialMedia, setSocialMedia] = useState([{
     name: '',
@@ -28,9 +27,18 @@ export default function UserDetails({setIsUserEditPage}) {
     toDate: '',
     description: ''
   }]);
-  const [experience, setExperience] = useState([{ role: '', organizationName: '', location: '',  fromDate: '', toDate: '', description: ''}]);
-  const [skills, setSkills] = useState([]);
-  const [certifications, setCertifications] = useState([{ name: '', organisation: '', issueDate: '', expirationDate: '', credentialId: '', credentialUrl: ''}]);
+  // const [experience, setExperience] = useState([{ role: '', organizationName: '', location: '',  fromDate: '', toDate: '', description: ''}]);
+  const [workExperience, setWorkExperience] = useState([{ 
+    role: '', 
+    organizationName: '', 
+    location: '',  
+    fromDate: '', 
+    toDate: '', 
+    description: '' 
+  }]);
+  // const [skills, setSkills] = useState([]);
+  const [userSkills, setUserSkills] = useState([{ name: '' }]);
+  const [certifications, setCertifications] = useState([{ name: '', provider: '', issuedOn: '', validUntil: '', credentialId: '', url: ''}]);
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [currentPosition, setCurrentPosition] = useState({ companyOrInsititute: '', positionOrDegree: '', fromDate: '', location: '' });
   const [projects, setProjects] = useState([{
@@ -49,7 +57,7 @@ export default function UserDetails({setIsUserEditPage}) {
   };
 
   const handleAddEducation = () => {
-    setEducation([...education, { institutionName: '', degreeName: '', year: '', description: '' }]);
+    setEducation([...education, { institutionName: '', degreeName: '', grade: '', location: '', fromDate: '', toDate: '', description: '' }]);
   };
 
   const handleSocialMediaChange = (event, index) => {
@@ -72,33 +80,37 @@ export default function UserDetails({setIsUserEditPage}) {
   }
 
   function handleAddCertification() {
-    setCertifications([...certifications, { name: '', organisation: '', issueDate: '', expirationDate: '', credentialId: '', credentialUrl: '' }])
+    setCertifications([...certifications, { name: '', provider: '', issuedOn: '', validUntil: '', credentialId: '', url: '' }])
   }
 
-  function handleSkillsChange(event, index) {
+  function handleUserSkillChange(event, index) {
+    const updatedSkills = [...userSkills];
+    updatedSkills[index] = { name: event.target.value };
+    setUserSkills(updatedSkills);
+  }
+
+  function handleAddUserSkill() {
+    setUserSkills([...userSkills, { name: '' }]);
+  }
+
+  function handleWorkExperienceChange(event, index) {
     const { name, value } = event.target;
-    const updatedskill = [...skills];
-    updatedskill[index][name] = value;
-    setSkills(updatedskill);
-  }
-
-  function handleAddSkill() {
-    setSkills([...skills])
-  }
-
-  function handleExperienceChange(event, index) {
-    const { name, value } = event.target;
-    setExperience(prevExperience => {
+    setWorkExperience(prevExperience => {
       const updatedExperience = [...prevExperience];
-      const experienceItem = updatedExperience[index] || {};
-      experienceItem[name] = value;
-      updatedExperience[index] = experienceItem;
+      updatedExperience[index] = { ...updatedExperience[index], [name]: value };
       return updatedExperience;
     });
   }
 
-  function handleAddExperience() {
-    setExperience([...experience, { role: '', employmentType: '', organizationName: '', location: '', fromDate: '', toDate: '', description: '' }]);
+  function handleAddWorkExperience() {
+    setWorkExperience([...workExperience, { 
+      role: '', 
+      organizationName: '', 
+      location: '', 
+      fromDate: '', 
+      toDate: '', 
+      description: '' 
+    }]);
   }
 
   const handleProjectChange = (event, index) => {
@@ -129,16 +141,15 @@ export default function UserDetails({setIsUserEditPage}) {
   async function handleSubmit(event) {
     event.preventDefault();
     console.log({
-      firstName,
-      lastName,
+      Name,
+      title,
       phone,
       homeAddress,
       currentAddress,
-      preferredPronouns,
       aboutMe,
       education,
-      experience,
-      skills,
+      workExperience,
+      userSkills,
       certifications,
       profilePhoto,
       currentPosition,
@@ -159,16 +170,16 @@ export default function UserDetails({setIsUserEditPage}) {
             method: 'PATCH',
             body: JSON.stringify({
               "id": user.id,
-              "name": `${firstName} ${lastName}`,
+              "name": Name,
+              'title':title,
               "phone": phone,
-              "title": preferredPronouns,
               "about": aboutMe,
               "templatePreference": 1,
               "homeLocation" : homeAddress,
               "currentLocation" : currentAddress,
               "educationList":(education.length==1 && education[0].degreeName=='')?null:education,
-              "workExperienceList": (experience.length==1 && experience[0].organizationName=='')?null:experience,
-              "skills": skills,
+              "workExperienceList": (workExperience.length === 1 && workExperience[0].organizationName === '') ? null : workExperience,
+              "skills": userSkills.map(skill => ({ "name": skill.name })),
               "externalLinks":(socialMedia.length==1 && socialMedia[0].name=='')?null:socialMedia,
               "certifications":(certifications.length==1 && certifications[0].name=='')?null:certifications,
               "projects": (projects.length==1 && projects[0].name=='')?null:projects,
@@ -184,7 +195,7 @@ export default function UserDetails({setIsUserEditPage}) {
         const jsonResponse = await response.json();
         console.log(jsonResponse);
         if (response.status == 202) {
-            setIsUserEditPage(false);
+            return navigate(`/user/${user.id}`);
         }
   }
 
@@ -197,8 +208,16 @@ export default function UserDetails({setIsUserEditPage}) {
           <input
             type="text"
             placeholder="Name"
-            value={firstName}
-            onChange={(event) => setFirstName(event.target.value)}
+            value={Name}
+            onChange={(event) => setName(event.target.value)}
+          />
+
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
           />
 
           {/* Phone field */}
@@ -314,15 +333,15 @@ export default function UserDetails({setIsUserEditPage}) {
           {/* Experience Section */}
           <div>
             <h2 className="gradient-heading">Experience</h2>
-            {experience.map((exp, index) => (
-              <div key={index}>
-                <label htmlFor="role">Role</label>
+           {workExperience.map((exp, index) => (
+            <div key={index}>
+            <label htmlFor={`workExp-role-${index}`}>Role</label>
                 <input
                   type="text"
                   placeholder="Role"
                   name="role"
                   value={exp.role}
-                  onChange={(event) => handleExperienceChange(event, index)}
+                  onChange={(event) => handleWorkExperienceChange(event, index)}
                 />
                 <label htmlFor="employment-type">Organization Name</label>
                 <input
@@ -330,7 +349,7 @@ export default function UserDetails({setIsUserEditPage}) {
                   placeholder="Organization Name"
                   name="organizationName"
                   value={exp.organizationName}
-                  onChange={(event) => handleExperienceChange(event, index)}
+                  onChange={(event) => handleWorkExperienceChange(event, index)}
                 />
                 <label htmlFor="location">Location</label>
                 <input
@@ -338,7 +357,7 @@ export default function UserDetails({setIsUserEditPage}) {
                   placeholder="Location"
                   name="location"
                   value={exp.location}
-                  onChange={(event) => handleExperienceChange(event, index)}
+                  onChange={(event) => handleWorkExperienceChange(event, index)}
                 />
                 <label htmlFor="fromDate">From date</label>
                 <input
@@ -347,7 +366,7 @@ export default function UserDetails({setIsUserEditPage}) {
                   id='fromDate'
                   name="fromDate"
                   value={exp.fromDate}
-                  onChange={(event) => handleExperienceChange(event, index)}
+                  onChange={(event) => handleWorkExperienceChange(event, index)}
                 />
                 <label htmlFor="toDate">To date</label>
                 <input
@@ -356,7 +375,7 @@ export default function UserDetails({setIsUserEditPage}) {
                   id='toDate'
                   name="toDate"
                   value={exp.toDate}
-                  onChange={(event) => handleExperienceChange(event, index)}
+                  onChange={(event) => handleWorkExperienceChange(event, index)}
                 />
                 <label htmlFor="description">Description</label>
                 <textarea
@@ -364,35 +383,33 @@ export default function UserDetails({setIsUserEditPage}) {
                   name="description"
                   placeholder='Description'
                   value={exp.description}
-                  onChange={(event) => handleExperienceChange(event, index)}
+                  onChange={(event) => handleWorkExperienceChange(event, index)}
                 />
                 <hr />
               </div>
             ))}
-            <button type="button" onClick={handleAddExperience}>
+            <button type="button" onClick={handleAddWorkExperience}>
               Add Experience
             </button>
           </div>
           <br></br>
-
-          {/* User Skills Section */}
+          {/* Skills Section */}
           <div>
             <h2 className="gradient-heading">Skills</h2>
-            {skills.map((item, index) => (
+            {userSkills.map((skill, index) => (
               <div key={index}>
-                <label htmlFor="skills">Skills</label>
+                <label htmlFor={`userSkill-${index}`}>Skill</label>
                 <input
                   type="text"
-                  placeholder="Enter your skill"
-                  name="userSkills"
-                  value={item.skills}
-                  onChange={(event) => handleSkillsChange(event, index)}
+                  placeholder="Enter a skill"
+                  value={skill.name}
+                  onChange={(event) => handleUserSkillChange(event, index)}
                 />
                 <hr />
               </div>
             ))}
 
-            <button type="button" onClick={handleAddSkill}>
+            <button type="button" onClick={handleAddUserSkill}>
               Add Skill
             </button>
           </div>
@@ -442,28 +459,28 @@ export default function UserDetails({setIsUserEditPage}) {
                   value={item.name}
                   onChange={(event) => handleCertificationsChange(event, index)}
                 />
-                <label htmlFor="organisation">Issuing Organization</label>
+                <label htmlFor="provider">Issuing Organization</label>
                 <input
                   type="text"
                   placeholder="Issuing Organization"
-                  name="organisation"
-                  value={item.organisation}
+                  name="provider"
+                  value={item.provider}
                   onChange={(event) => handleCertificationsChange(event, index)}
                 />
                 <label htmlFor='issue-date'>Issue date</label>
                 <input
                   type="date"
                   id='issue-date'
-                  name="issueDate"
-                  value={item.issueDate}
+                  name="issuedOn"
+                  value={item.issuedOn}
                   onChange={(event) => handleCertificationsChange(event, index)}
                 />
                 <label htmlFor='expiration-date'>Valid Untill</label>
                 <input
                   type="date"
                   id='expiration-date'
-                  name="expirationDate"
-                  value={item.expirationDate}
+                  name="validUntil"
+                  value={item.validUntil}
                   onChange={(event) => handleCertificationsChange(event, index)}
                 />
                 <label htmlFor='credentialId'>Credential ID</label>
@@ -479,9 +496,9 @@ export default function UserDetails({setIsUserEditPage}) {
                 <input
                   type="text"
                   id='credential-url'
-                  name="credentialUrl"
+                  name="url"
                   placeholder='Credential URL'
-                  value={item.credentialUrl}
+                  value={item.url}
                   onChange={(event) => handleCertificationsChange(event, index)}
                 />
                 <hr />
