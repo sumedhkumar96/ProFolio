@@ -1,13 +1,17 @@
-import { redirect, useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import templateImage from '../assets/images/template_image.png';
+import templateImage3 from '../assets/images/template_image3.jpg';
 import { Bounce } from "react-awesome-reveal";
+import { url } from "../components/Constants.jsx";
 
-export function SelectTemplate({isFirstTime ,setIsUserEditPage}) {
+export function SelectTemplate() {
     const [user, setUser] = useOutletContext();
+
+    const navigate=useNavigate();
 
     async function modifyUserTemplatePreference(template_id) {
         console.log(user.authToken);
-        let response = await fetch(`http://127.0.0.1:8080/api/user/${user.id}/template-preference/${template_id}`, {
+        let response = await fetch(`${url}/api/user/${user.id}/template-preference/${template_id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,12 +24,7 @@ export function SelectTemplate({isFirstTime ,setIsUserEditPage}) {
         const jsonResponse = await response.json();
         console.log(jsonResponse);
         if (response.status == 202) {
-            if(isFirstTime){
-                setIsUserEditPage(true);
-            }
-            else{
-                return redirect(`/user/${user.id}`);
-            }
+            return navigate(`/user/${user.id}`);
         }
     }
 
@@ -45,12 +44,12 @@ export function SelectTemplate({isFirstTime ,setIsUserEditPage}) {
                         <h4>Simple</h4>
                     </div>
                 </Bounce>
-                {/* <Bounce triggerOnce={true}>
+                <Bounce triggerOnce={true}>
                     <div className="template" onClick={() => modifyUserTemplatePreference(3)}>
-                        <img src={templateImage} alt="Template 3" />
-                        <h4>Buisness</h4>
+                        <img src={templateImage3} alt="Template 3" />
+                        <h4>Cool</h4>
                     </div>
-                </Bounce> */}
+                </Bounce>
             </section>
         </div>
     );

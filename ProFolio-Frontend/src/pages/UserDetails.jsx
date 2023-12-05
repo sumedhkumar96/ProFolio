@@ -1,16 +1,57 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../styles/UserDetails.css';
-import { redirect, useNavigate, useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
+import { url } from "../components/Constants.jsx";
 
 export default function UserDetails() {
-  let navigate=useNavigate();
-  const [user, setUser] = useOutletContext();
+  let navigate = useNavigate();
 
+  useEffect(() => {
+    async function getUserData() {
+      const response = await fetch(`${url}/api/user/public/${user.id}`);
+      const jsonResponse = await response.json();
+      console.log(jsonResponse);
+      if (jsonResponse) {
+        setName(jsonResponse.name);
+        setTitle(jsonResponse.title);
+        setPhone(jsonResponse.phone);
+        setHomeLocation(jsonResponse.homeLocation);
+        setCurrentAddress(jsonResponse.currentLocation);
+        setAboutMe(jsonResponse.aboutMe);
+        if (jsonResponse.educationList!=[]) {
+          setEducation(jsonResponse.educationList);
+        }
+        if(jsonResponse.skills!=[]){
+          setUserSkills(jsonResponse.skills);
+        }
+        if(jsonResponse.workExperienceList!=[]){
+          setWorkExperience(jsonResponse.workExperienceList);
+        }
+        if(jsonResponse.externalLinks!=[]){
+          setSocialMedia(jsonResponse.externalLinks);
+        }
+        if(jsonResponse.certifications!=[]){
+          setCertifications(jsonResponse.certifications);
+        }
+        if(jsonResponse.projects!=[]){
+          setProjects(jsonResponse.projects);
+        }
+
+      }
+      else {
+        alert("Wrong OTP entered, Please Try Again");
+      }
+    }
+
+    getUserData();
+  }, []);
+
+  const [user, setUser] = useOutletContext();
   const [Name, setName] = useState('');
   const [title, setTitle] = useState('');
   const [phone, setPhone] = useState('');
-  const [homeAddress, setHomeAddress] = useState('');
-  const [currentAddress, setCurrentAddress] = useState('');
+  const [homeLocation, setHomeLocation] = useState('');
+  const [currentLocation, setCurrentAddress] = useState('');
   const [aboutMe, setAboutMe] = useState('');
   const [socialMedia, setSocialMedia] = useState([{
     name: '',
@@ -28,17 +69,17 @@ export default function UserDetails() {
     description: ''
   }]);
   // const [experience, setExperience] = useState([{ role: '', organizationName: '', location: '',  fromDate: '', toDate: '', description: ''}]);
-  const [workExperience, setWorkExperience] = useState([{ 
-    role: '', 
-    organizationName: '', 
-    location: '',  
-    fromDate: '', 
-    toDate: '', 
-    description: '' 
+  const [workExperience, setWorkExperience] = useState([{
+    role: '',
+    organizationName: '',
+    location: '',
+    fromDate: '',
+    toDate: '',
+    description: ''
   }]);
   // const [skills, setSkills] = useState([]);
   const [userSkills, setUserSkills] = useState([{ name: '' }]);
-  const [certifications, setCertifications] = useState([{ name: '', provider: '', issuedOn: '', validUntil: '', credentialId: '', url: ''}]);
+  const [certifications, setCertifications] = useState([{ name: '', provider: '', issuedOn: '', validUntil: '', credentialId: '', url: '' }]);
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [currentPosition, setCurrentPosition] = useState({ companyOrInsititute: '', positionOrDegree: '', fromDate: '', location: '' });
   const [projects, setProjects] = useState([{
@@ -103,13 +144,13 @@ export default function UserDetails() {
   }
 
   function handleAddWorkExperience() {
-    setWorkExperience([...workExperience, { 
-      role: '', 
-      organizationName: '', 
-      location: '', 
-      fromDate: '', 
-      toDate: '', 
-      description: '' 
+    setWorkExperience([...workExperience, {
+      role: '',
+      organizationName: '',
+      location: '',
+      fromDate: '',
+      toDate: '',
+      description: ''
     }]);
   }
 
@@ -126,26 +167,43 @@ export default function UserDetails() {
 
   const handleProfilePhotoChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
+    setProfilePhoto(file);
+    // if (file) {
 
-      const reader = new FileReader();
+    //   const reader = new FileReader();
 
-      reader.onloadend = () => {
-        setProfilePhoto(reader.result);
-      };
+    //   reader.onloadend = () => {
+    //     setProfilePhoto(reader.result);
+    //   };
 
-      reader.readAsDataURL(file);
-    }
+    //   reader.readAsDataURL(file);
+    // }
   };
 
   async function handleSubmit(event) {
     event.preventDefault();
+
+    if (profilePhoto != null) {
+      let formData = new FormData();
+      console.log(profilePhoto);
+      formData.append("file", profilePhoto);
+      const responseImage = await fetch(`${url}/api/user/${user.id}/profile-picture`, {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Authorization': `Bearer ${user.authToken}`,
+        },
+      });
+      console.log(responseImage);
+    }
+
+
     console.log({
       Name,
       title,
       phone,
-      homeAddress,
-      currentAddress,
+      homeLocation,
+      currentLocation,
       aboutMe,
       education,
       workExperience,
@@ -157,7 +215,7 @@ export default function UserDetails() {
       projects
     });
     console.log(user.authToken);
-    console.log((education==[{
+    console.log((education == [{
       institutionName: '',
       degreeName: '',
       grade: '',
@@ -166,37 +224,37 @@ export default function UserDetails() {
       toDate: '',
       description: ''
     }]));
-    let response = await fetch(`http://127.0.0.1:8080/api/user/${user.id}`, {
-            method: 'PATCH',
-            body: JSON.stringify({
-              "id": user.id,
-              "name": Name,
-              'title':title,
-              "phone": phone,
-              "about": aboutMe,
-              "templatePreference": 1,
-              "homeLocation" : homeAddress,
-              "currentLocation" : currentAddress,
-              "educationList":(education.length==1 && education[0].degreeName=='')?null:education,
-              "workExperienceList": (workExperience.length === 1 && workExperience[0].organizationName === '') ? null : workExperience,
-              "skills": userSkills.map(skill => ({ "name": skill.name })),
-              "externalLinks":(socialMedia.length==1 && socialMedia[0].name=='')?null:socialMedia,
-              "certifications":(certifications.length==1 && certifications[0].name=='')?null:certifications,
-              "projects": (projects.length==1 && projects[0].name=='')?null:projects,
-          }),
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,POST,PATCH,OPTIONS,DELETE',
-                'Access-Control-Allow-Credentials': 'true',
-                'Authorization':`Bearer ${user.authToken}`,
-            },
-        });
-        const jsonResponse = await response.json();
-        console.log(jsonResponse);
-        if (response.status == 202) {
-            return navigate(`/user/${user.id}`);
-        }
+    let response = await fetch(`${url}/api/user/${user.id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        "id": user.id,
+        "name": Name,
+        'title': title,
+        "phone": phone,
+        "about": aboutMe,
+        "templatePreference": 1,
+        "homeLocation": homeLocation,
+        "currentLocation": currentLocation,
+        "educationList": (education.length == 1 && education[0].degreeName == '') ? null : education,
+        "workExperienceList": (workExperience.length === 1 && workExperience[0].organizationName === '') ? null : workExperience,
+        "skills": userSkills.map(skill => ({ "name": skill.name })),
+        "externalLinks": (socialMedia.length == 1 && socialMedia[0].name == '') ? null : socialMedia,
+        "certifications": (certifications.length == 1 && certifications[0].name == '') ? null : certifications,
+        "projects": (projects.length == 1 && projects[0].name == '') ? null : projects,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,POST,PATCH,OPTIONS,DELETE',
+        'Access-Control-Allow-Credentials': 'true',
+        'Authorization': `Bearer ${user.authToken}`,
+      },
+    });
+    const jsonResponse = await response.json();
+    console.log(jsonResponse);
+    if (response.status == 202) {
+      return navigate(`/user/${user.id}`);
+    }
   }
 
   return (
@@ -236,8 +294,8 @@ export default function UserDetails() {
             id="home-address"
             type="text"
             placeholder="Home Address"
-            value={homeAddress}
-            onChange={(e) => setHomeAddress(e.target.value)}
+            value={homeLocation}
+            onChange={(e) => setHomeLocation(e.target.value)}
           />
 
           {/* Current Address field */}
@@ -246,7 +304,7 @@ export default function UserDetails() {
             id="current-address"
             type="text"
             placeholder="Current Address"
-            value={currentAddress}
+            value={currentLocation}
             onChange={(e) => setCurrentAddress(e.target.value)}
           />
 
@@ -333,9 +391,9 @@ export default function UserDetails() {
           {/* Experience Section */}
           <div>
             <h2 className="gradient-heading">Experience</h2>
-           {workExperience.map((exp, index) => (
-            <div key={index}>
-            <label htmlFor={`workExp-role-${index}`}>Role</label>
+            {workExperience.map((exp, index) => (
+              <div key={index}>
+                <label htmlFor={`workExp-role-${index}`}>Role</label>
                 <input
                   type="text"
                   placeholder="Role"
@@ -568,7 +626,7 @@ export default function UserDetails() {
 
           {/* Profile Photo Upload */}
           <label htmlFor='profile-photo'>Upload your picture for profile photo</label>
-          <input id='profile-photo' type="file" onChange={handleProfilePhotoChange} />
+          <input id='profile-photo' type="file" accept="image/*" onChange={handleProfilePhotoChange} />
           <button type="submit">Submit</button>
         </form>
       </div>

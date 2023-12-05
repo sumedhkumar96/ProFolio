@@ -2,7 +2,7 @@ import { DotLottiePlayer } from '@dotlottie/react-player';
 import person_skills_animation from '../assets/lottie/person_skills.lottie';
 import { Link, Form, redirect } from 'react-router-dom';
 import { Fade } from 'react-awesome-reveal';
-import { useOutletContext } from "react-router-dom";
+import { url } from "../components/Constants.jsx";
 
 export async function loader() {
     let userData = JSON.parse(localStorage.getItem('user'));
@@ -14,7 +14,7 @@ export async function loader() {
 
 export async function action({ request }) {
     const formData = await request.formData();
-    let response = await fetch('http://127.0.0.1:8080/api/user/login', {
+    let response = await fetch(`${url}/api/user/login`, {
         method: 'POST',
         body: JSON.stringify({ 'email': formData.get('email'), 'password': formData.get('password') }),
         headers: {
@@ -31,7 +31,7 @@ export async function action({ request }) {
         return redirect("/");
     }
     else {
-        alert("Wrong Password, Try Again");
+        alert(jsonResponse.message);
     }
     return false;
 }

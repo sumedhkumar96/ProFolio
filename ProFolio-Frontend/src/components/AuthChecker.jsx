@@ -2,6 +2,7 @@ import { useOutletContext } from "react-router-dom";
 import { HomePage } from "../pages/HomePage";
 import { LandingPage } from "../pages/LandingPage";
 import { useEffect } from "react";
+import { url } from "../components/Constants.jsx";
 
 export function AuthChecker() {
   const [user, setUser] = useOutletContext();
@@ -14,7 +15,7 @@ export function AuthChecker() {
   async function logOut() {
     localStorage.removeItem("user");
     setUser(null);
-    const response = await fetch(`http://127.0.0.1:8080/api/user/logout`, {
+    const response = await fetch(`${url}/api/user/logout`, {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',

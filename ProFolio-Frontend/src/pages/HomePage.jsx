@@ -7,7 +7,6 @@ import UserDetails from "./UserDetails";
 
 export function HomePage({ logOut }) {
     const [user, setUser] = useOutletContext();
-    const [isFirstTime, setIsFirstTime] = useState(true);
     const [isUserEditPage, setIsUserEditPage] = useState(false);
     
     const [showDropdown, setShowDropdown] = useState(false);
@@ -46,7 +45,7 @@ export function HomePage({ logOut }) {
                     )}
                 </div>
             </header>
-        {isUserEditPage?<UserDetails />:<SelectTemplate isFirstTime={isFirstTime} setIsUserEditPage={setIsUserEditPage} />}
+        {isUserEditPage?<UserDetails />:<SelectTemplate setIsUserEditPage={setIsUserEditPage} />}
         </>
     );
 }

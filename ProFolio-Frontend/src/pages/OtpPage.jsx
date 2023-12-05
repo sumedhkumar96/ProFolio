@@ -1,9 +1,10 @@
 import { DotLottiePlayer } from '@dotlottie/react-player';
 import email_sent_animation from '../assets/lottie/email_sent.lottie';
 import success_animation from '../assets/lottie/otp_success.lottie';
-import { redirect, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
+import { url } from "../components/Constants.jsx";
 
 export function OtpPage() {
 
@@ -14,7 +15,7 @@ export function OtpPage() {
 
     async function handleForm(e) {
         e.preventDefault();
-        const response = await fetch(`http://127.0.0.1:8080/api/user/verify-signup-otp?otp=${e.target.otp.value}&userId=${id}`);
+        const response = await fetch(`${url}/api/user/verify-signup-otp?otp=${e.target.otp.value}&userId=${id}`);
         const jsonResponse = await response.json();
         console.log(jsonResponse);
         if (jsonResponse) {
