@@ -10,7 +10,7 @@ function Skills({ skills }) {
                     skills.map(skill => {
                         return (
                             <div className="dark-entry skill-card" style={{ padding: 20 }} key={skill.name}>
-                                <ProgressBar width={95} percent={100} level={100} />
+                                <ProgressBar width={95} percent={100} level={"Expert"} className=".text-center"/>
                                 <h4>{skill.name}</h4>
                             </div>
                         )
