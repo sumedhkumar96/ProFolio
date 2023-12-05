@@ -1,8 +1,8 @@
-import { useOutletContext } from 'react-router-dom';
+import { redirect, useOutletContext } from 'react-router-dom';
 import templateImage from '../assets/images/template_image.png';
 import { Bounce } from "react-awesome-reveal";
 
-export function SelectTemplate({setIsUserEditPage}) {
+export function SelectTemplate({isFirstTime ,setIsUserEditPage}) {
     const [user, setUser] = useOutletContext();
 
     async function modifyUserTemplatePreference(template_id) {
@@ -20,7 +20,12 @@ export function SelectTemplate({setIsUserEditPage}) {
         const jsonResponse = await response.json();
         console.log(jsonResponse);
         if (response.status == 202) {
-            setIsUserEditPage(true);
+            if(isFirstTime){
+                setIsUserEditPage(true);
+            }
+            else{
+                return redirect(`/user/${user.id}`);
+            }
         }
     }
 
