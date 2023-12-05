@@ -5,6 +5,8 @@ import Skill from './Skills';
 import Head from './Head';
 import '../../styles/Template1.css';
 import { Link } from 'react-router-dom';
+import Certification from './Certification';
+import ContactMe from './ContactMe';
 
 
 export function Template1({ userData }) {
@@ -16,6 +18,8 @@ export function Template1({ userData }) {
             <Education educationList={userData.educationList} />
             <Experience workExperienceList={userData.workExperienceList} />
             <Project projects={userData.projects} />
+            <Certification certifications={userData.certifications} />
+            <ContactMe contacts={userData.externalLinks} />
             <footer className="grad-progress center">This site was designed and developed by <Link to="/">Profolio</Link></footer>
         </div>
     );
