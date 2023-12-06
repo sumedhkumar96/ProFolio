@@ -1,16 +1,13 @@
-import '../../styles/Templates4.css';
 import { Link } from 'react-router-dom';
-import React from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { defaultAvatarUrl } from '../Constants.jsx';
-import Typewriter from 'typewriter-effect';
+import '../../styles/Templates4.css';
 
-
-export default function Template4({ userData }) {
+export function Template4({ userData }) {
     let imageUrl = `${defaultAvatarUrl}`;
 
     if (userData.mediaList.length > 0) {

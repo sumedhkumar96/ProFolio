@@ -3,7 +3,7 @@ import { Template1 } from "../components/Template1/Template1";
 import { Template2 } from "../components/Template 2/Template2";
 import { url } from "../components/Constants.jsx";
 import { Template3 } from "../components/Template 3/Template3.jsx";
-import  Template4  from "../components/Template 4/Template4";
+import { Template4 } from "../components/Template 4/Template4.jsx";
 
 export async function loader({ params }) {
     const response = await fetch(`${url}/api/user/public/${params.id}`);
@@ -30,7 +30,7 @@ export function PortfolioPage() {
     else if(userData.templatePreference==3){
         return (<Template3 userData={userData}/>); 
     }
-    else{
+    else if(userData.templatePreference==4){
         return (<Template4 userData={userData}/>);
     }
 

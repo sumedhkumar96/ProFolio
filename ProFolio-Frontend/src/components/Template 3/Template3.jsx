@@ -1,5 +1,5 @@
 import { MainBody } from "./MainBody";
-import NavBar from "./Navbar";
+import NavBar from "./NavBar.jsx";
 import '../../styles/custom.scss';
 import '../../styles/stars.css';
 import '../../styles/Template3.css';
