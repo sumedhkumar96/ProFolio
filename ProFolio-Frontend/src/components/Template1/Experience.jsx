@@ -16,10 +16,10 @@ function Experience({ workExperienceList }) {
                                 <div className="space-around">
                                     <div className="inline">
                                         <h3> {entry.organizationName}&emsp;|&emsp;</h3>
-                                        <h3>{entry.fromDate} - {entry.toDate}  </h3>
+                                        <h3><label>From: </label> {entry.fromDate} <label>To: </label>  {entry.toDate}  </h3>
                                     </div>
                                     <p>{entry.description}</p>
-                                    <p><b>Role</b> : {entry.role}</p>
+                                    {/* <p><b>Role</b> : {entry.role}</p> */}
                                 </div>
                             </div>
                         </div>
