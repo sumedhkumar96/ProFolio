@@ -17,7 +17,7 @@ export default function UserDetails() {
         setPhone(jsonResponse.phone);
         setHomeLocation(jsonResponse.homeLocation);
         setCurrentAddress(jsonResponse.currentLocation);
-        setAboutMe(jsonResponse.aboutMe);
+        setAboutMe(jsonResponse.about);
         if (jsonResponse.educationList!=[]) {
           setEducation(jsonResponse.educationList);
         }
