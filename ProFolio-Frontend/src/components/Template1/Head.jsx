@@ -5,10 +5,10 @@ import Typewriter from 'typewriter-effect';
 
 export default function Head({ userData }) {
 
-    let imageUrl=`${defaultAvatarUrl}`;
+    let imageUrl = `${defaultAvatarUrl}`;
 
-    if(userData.mediaList.length>0){
-        imageUrl=userData.mediaList[0].url;
+    if (userData.mediaList.length > 0) {
+        imageUrl = userData.mediaList[0].url;
     }
 
     let linkedInUrl = '';
@@ -29,12 +29,12 @@ export default function Head({ userData }) {
     return (
         <section className="light head-back grad-orange" >
             <div className="stuff">
-            <ParticleBackground canvasClassName="example" />
+                <ParticleBackground className="particle-background" />
                 <div className="stuff-head">
                     <p>
                         <Typewriter
                             options={{
-                                strings: [`Hello I am ${userData.name}`,'Welcome to my Portfolio'],
+                                strings: [`Hello I am ${userData.name}`, 'Welcome to my Portfolio'],
                                 autoStart: true,
                                 loop: true,
                             }}
