@@ -164,3 +164,7 @@
     transition: 0.5s;
     text-decoration: underline;
 }
+
+.no-left-margin{
+margin-left: -20px ;
+}
