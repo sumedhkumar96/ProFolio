@@ -30,7 +30,7 @@ export function HomePage({ logOut }) {
         <>
         <header className="header">
                 <div className="main-header">
-                    <img src="/PROFOLIOTitle.PNG" alt="Title" className="title-image" />
+                    <img src="/alt-logo.png" alt="Title" className="title-image" />
                 </div>
                 <div className="user-profile" onClick={toggleDropdown} ref={dropdownRef}>
                     <img src={user_icon} alt="User Profile" className="clickable" />
