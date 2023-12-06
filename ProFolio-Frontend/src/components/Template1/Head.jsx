@@ -57,6 +57,7 @@ export default function Head({ userData }) {
                     <div className="writing">
                         <h1 className="main-title">{userData.name}</h1>
                         {/* <h3>{userData.title}</h3> */}
+                        <br/>
                         {userData.about}
                     </div>
                     <div className="side">
