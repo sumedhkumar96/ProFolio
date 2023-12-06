@@ -18,22 +18,22 @@ export default function UserDetails() {
         setHomeLocation(jsonResponse.homeLocation);
         setCurrentAddress(jsonResponse.currentLocation);
         setAboutMe(jsonResponse.about);
-        if (jsonResponse.educationList!=[]) {
+        if (jsonResponse.educationList != []) {
           setEducation(jsonResponse.educationList);
         }
-        if(jsonResponse.skills!=[]){
+        if (jsonResponse.skills != []) {
           setUserSkills(jsonResponse.skills);
         }
-        if(jsonResponse.workExperienceList!=[]){
+        if (jsonResponse.workExperienceList != []) {
           setWorkExperience(jsonResponse.workExperienceList);
         }
-        if(jsonResponse.externalLinks!=[]){
+        if (jsonResponse.externalLinks != []) {
           setSocialMedia(jsonResponse.externalLinks);
         }
-        if(jsonResponse.certifications!=[]){
+        if (jsonResponse.certifications != []) {
           setCertifications(jsonResponse.certifications);
         }
-        if(jsonResponse.projects!=[]){
+        if (jsonResponse.projects != []) {
           setProjects(jsonResponse.projects);
         }
 
@@ -259,64 +259,62 @@ export default function UserDetails() {
       <div className="form-container">
         <h1 className="gradient-heading">Update Your Personal Details</h1>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            placeholder="Name"
-            value={Name}
-            onChange={(event) => setName(event.target.value)}
-          />
+          <fieldset>
+          <legend><span className="number">1</span> Your basic info</legend>
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              placeholder="Name"
+              value={Name}
+              onChange={(event) => setName(event.target.value)}
+            />
 
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            placeholder="Title"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-          />
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              placeholder="Title"
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+            />
 
-          {/* Phone field */}
-          <label htmlFor="phone">Phone</label>
-          <input
-            id="phone"
-            type="tel"
-            placeholder="Phone"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
+            <label htmlFor="phone">Phone</label>
+            <input
+              id="phone"
+              type="tel"
+              placeholder="Phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
 
-          {/* Home Address field */}
-          <label htmlFor="home-address">Home Address</label>
-          <input
-            id="home-address"
-            type="text"
-            placeholder="Home Address"
-            value={homeLocation}
-            onChange={(e) => setHomeLocation(e.target.value)}
-          />
+            <label htmlFor="home-address">Home Address</label>
+            <input
+              id="home-address"
+              type="text"
+              placeholder="Home Address"
+              value={homeLocation}
+              onChange={(e) => setHomeLocation(e.target.value)}
+            />
 
-          {/* Current Address field */}
-          <label htmlFor="current-address">Current Address</label>
-          <input
-            id="current-address"
-            type="text"
-            placeholder="Current Address"
-            value={currentLocation}
-            onChange={(e) => setCurrentAddress(e.target.value)}
-          />
+            <label htmlFor="current-address">Current Address</label>
+            <input
+              id="current-address"
+              type="text"
+              placeholder="Current Address"
+              value={currentLocation}
+              onChange={(e) => setCurrentAddress(e.target.value)}
+            />
 
-          {/* About Me Textarea */}
-          <label htmlFor="about-me">About Me</label>
-          <textarea
-            id="about-me"
-            placeholder="A little bit about yourself..."
-            value={aboutMe}
-            onChange={(e) => setAboutMe(e.target.value)}
-          />
+            <label htmlFor="about-me">About Me</label>
+            <textarea
+              id="about-me"
+              placeholder="A little bit about yourself..."
+              value={aboutMe}
+              onChange={(e) => setAboutMe(e.target.value)}
+            />
+          </fieldset>
 
-          {/* Education Section */}
-          <div>
-            <h2 className="gradient-heading">Education</h2>
+          <fieldset>
+          <legend><span className="number">2</span>Education</legend>
             {education.map((edu, index) => (
               <div key={index}>
                 <label htmlFor='institutionName'>Institute Name</label>
@@ -382,12 +380,13 @@ export default function UserDetails() {
             <button type="button" onClick={handleAddEducation}>
               Add Education
             </button>
-          </div>
+          </fieldset>
           <br></br>
 
           {/* Experience Section */}
-          <div>
-            <h2 className="gradient-heading">Experience</h2>
+          <fieldset>
+          <legend><span className="number">3</span> Experience</legend>
+
             {workExperience.map((exp, index) => (
               <div key={index}>
                 <label htmlFor={`workExp-role-${index}`}>Role</label>
@@ -446,11 +445,11 @@ export default function UserDetails() {
             <button type="button" onClick={handleAddWorkExperience}>
               Add Experience
             </button>
-          </div>
+          </fieldset>
           <br></br>
           {/* Skills Section */}
-          <div>
-            <h2 className="gradient-heading">Skills</h2>
+          <fieldset>
+          <legend><span className="number">3</span> Skills</legend>
             {userSkills.map((skill, index) => (
               <div key={index}>
                 <label htmlFor={`userSkill-${index}`}>Skill</label>
@@ -467,12 +466,12 @@ export default function UserDetails() {
             <button type="button" onClick={handleAddUserSkill}>
               Add Skill
             </button>
-          </div>
+          </fieldset>
           <br></br>
 
           {/* Social Media Section */}
-          <div>
-            <h2 className="gradient-heading">Social Media</h2>
+          <fieldset>
+          <legend><span className="number">4</span> Social Media</legend>
             {socialMedia.map((platform, index) => (
               <div key={index}>
                 <label htmlFor={`socialMedia-name-${index}`}>Platform Name</label>
@@ -498,12 +497,12 @@ export default function UserDetails() {
             <button type="button" onClick={handleAddSocialMedia}>
               Add Social Media
             </button>
-          </div>
+          </fieldset>
           <br></br>
 
           {/* Certifications Section */}
-          <div>
-            <h2 className="gradient-heading">Certifications or Licenses</h2>
+          <fieldset>
+          <legend><span className="number">5</span> Certifications</legend>
             {certifications.map((item, index) => (
               <div key={index}>
                 <label htmlFor="name">Certification or License Name</label>
@@ -563,12 +562,12 @@ export default function UserDetails() {
             <button type="button" onClick={handleAddCertification}>
               Add certifications or license
             </button>
-          </div>
+          </fieldset>
           <br></br>
 
           {/* Projects Section */}
-          <div>
-            <h2 className="gradient-heading">Projects</h2>
+          <fieldset>
+          <legend><span className="number">6</span> Projects</legend>
             {projects.map((project, index) => (
               <div key={index}>
                 <label htmlFor={`project-name-${index}`}>Project Name</label>
@@ -618,7 +617,7 @@ export default function UserDetails() {
             <button type="button" onClick={handleAddProject}>
               Add Project
             </button>
-          </div>
+          </fieldset>
           <br></br>
 
           {/* Profile Photo Upload */}

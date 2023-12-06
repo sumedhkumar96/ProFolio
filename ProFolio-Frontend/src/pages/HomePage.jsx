@@ -27,7 +27,7 @@ export function HomePage({ logOut }) {
     }, []);
 
     return (
-        <div className="home-page gradient-main">
+        <div className="home-page">
         <header className="header">
                 <div className="main-header">
                     <img src="/alt-logo.png" alt="Title" className="title-image" />
