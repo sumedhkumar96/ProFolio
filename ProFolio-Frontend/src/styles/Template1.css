@@ -374,18 +374,14 @@
   margin-bottom: 2%;
 }
 
-.template-1-container .example {
+.template-1-container .particle-background {
   position: absolute;
   width: 20em;
-
+  height: 250px;
 }
 
 .template-1-container .stuff {
-  position: absolute;
-  width: 100%;
-  top: 1%;
-  padding-left: 5%;
-  padding-right: 5%;
+  position: relative;
 }
 
 .template-1-container .head-back {
@@ -518,4 +514,18 @@
   .template-1-container .entry {
     margin: -20px;
   }
+}
+
+.tsparticles-container{
+  position: relative;
+}
+#tsparticles{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  z-index: 0;
 }
