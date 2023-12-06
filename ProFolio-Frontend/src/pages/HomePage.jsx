@@ -4,6 +4,8 @@ import user_icon from '../assets/images/usericon.png';
 import '../styles/MainContent.css';
 import { SelectTemplate } from "../components/SelectTemplate";
 import UserDetails from "./UserDetails";
+import logo from '../assets/images/alt-logo.png';
+
 
 export function HomePage({ logOut }) {
     const [user, setUser] = useOutletContext();
@@ -27,10 +29,10 @@ export function HomePage({ logOut }) {
     }, []);
 
     return (
-        <>
+        <div className="home-page">
         <header className="header">
                 <div className="main-header">
-                    <img src="/PROFOLIOTitle.PNG" alt="Title" className="title-image" />
+                    <img src={logo} alt="Title" className="title-image" />
                 </div>
                 <div className="user-profile" onClick={toggleDropdown} ref={dropdownRef}>
                     <img src={user_icon} alt="User Profile" className="clickable" />
@@ -46,6 +48,6 @@ export function HomePage({ logOut }) {
                 </div>
             </header>
         {isUserEditPage?<UserDetails />:<SelectTemplate setIsUserEditPage={setIsUserEditPage} />}
-        </>
+        </div>
     );
 }

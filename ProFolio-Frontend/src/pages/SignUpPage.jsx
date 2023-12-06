@@ -34,7 +34,8 @@ export async function action({ request }) {
 
 export function SignUpPage() {
     return (
-        <main className='gradient-main'>
+        <main className='gradient-main no-scroll-bar'>
+            <div id="stars"></div>
             <Fade triggerOnce={true}>
                 <div className="authentication-container">
                     <DotLottiePlayer className='illustration' src={signup_animation} autoplay loop />

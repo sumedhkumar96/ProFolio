@@ -2,7 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: transparent;
+}
+
+.gradient-main h2{
+color:white;
 }
 
 .center-display-column {
@@ -17,6 +21,7 @@
 
 .main-header {
   width: 100%;
+  padding-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,11 +104,11 @@
 }
 
 .template:hover:before {
-  background: linear-gradient(45deg, #4657c8, #ba58bb);
-  top: -11px;
-  right: -11px;
-  bottom: -11px;
-  left: -11px;
+  background: black;
+  top: -5px;
+  right: -5px;
+  bottom: -5px;
+  left: -5px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 

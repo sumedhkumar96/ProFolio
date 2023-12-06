@@ -19,8 +19,8 @@ export default function Education({ educationList }) {
                                         {entry.description}
                                     </p>
                                     <div className="inline">
-                                        <h3>{entry.fromDate} - {entry.toDate}&emsp;|&emsp;</h3>
-                                        <h3>{entry.grade}</h3>
+                                        <h3><label>From: </label> {entry.fromDate} <label>To: </label> {entry.toDate}&emsp;|&emsp;</h3>
+                                        <h3><label>CGPA: </label> {entry.grade}</h3>
 
                                     </div>
                                     <h4>{entry.degreeName}</h4>

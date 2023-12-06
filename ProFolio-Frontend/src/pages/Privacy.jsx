@@ -1,4 +1,3 @@
- import '../styles/Privacy.css'; 
 
 const Privacy = () => {
   return (

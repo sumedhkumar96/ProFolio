@@ -1,49 +1,48 @@
 import { MainBody } from "./MainBody";
+import NavBar from "./NavBar.jsx";
+import '../../styles/custom.scss';
+import '../../styles/stars.css';
+import '../../styles/Template3.css';
+import AboutMe from "./AboutMe";
+import Experience from "./Experience";
+import Education from "./Education";
+import Projects from "./Projects";
+import Skills from "./Skills";
+import { Link } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
-export function Template3({userData}) {
+export function Template3({ userData }) {
     return (
-        <>
-            <MainBody
-                title={userData.name}
-                message={userData.about}
-            />
-            {/* {about.show && (
-                <AboutMe
-                    heading={about.heading}
-                    message={about.message}
-                    link={about.imageLink}
-                    imgSize={about.imageSize}
-                    resume={about.resume}
-                />
-            )}
+        <div className="template-3-container">
+            <NavBar userData={userData} />
+            <MainBody userData={userData} />
+            <AboutMe userData={userData} />
             {
-                experiences.show && (
-                    <Experience experiences={experiences} />
+                userData.educationList.length != 0 && (
+                    <Education educationList={userData.educationList} />
                 )
             }
-            {repos.show && (
-                <Project
-                    heading={repos.heading}
-                    username={repos.gitHubUsername}
-                    length={repos.reposLength}
-                    specfic={repos.specificRepos}
-                />
+            {
+                userData.workExperienceList.length != 0 && (
+                    <Experience workExperienceList={userData.workExperienceList} />
+                )
+            }
+            {userData.projects.length != 0 && (
+                <Projects projects={userData.projects} />
             )}
-            {leadership.show && (
-                <Leadership
-                    heading={leadership.heading}
-                    message={leadership.message}
-                    img={leadership.images}
-                    imageSize={leadership.imageSize}
-                />
+            {userData.skills.length != 0 && (
+                <Skills skills={userData.skills} />
             )}
-            {skills.show && (
-                <Skills
-                    heading={skills.heading}
-                    hardSkills={skills.hardSkills}
-                    softSkills={skills.softSkills}
-                />
-            )} */}
-        </>
+            <footer className="mt-auto py-5 text-center ">
+                <Container>
+                    <i className="fas fa-code" /> with <i className="fas fa-heart" /> by{" "}
+                    <Link rel="noopener" to="/"> <span className="badge bg-dark">
+                            Profolio
+                    </span>
+                    </Link>{" "}
+                    using <i className="fab fa-react" />
+                </Container>
+            </footer>
+        </div>
     );
 }

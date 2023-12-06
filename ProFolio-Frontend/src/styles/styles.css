@@ -124,3 +124,7 @@ form a:hover {
     color: #fff;
     background-color: #71b557;
 }
+
+.no-scroll-bar{
+    overflow-y: hidden;
+}
