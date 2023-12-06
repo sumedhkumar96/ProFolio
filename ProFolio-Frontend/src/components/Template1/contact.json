@@ -1,0 +1,18 @@
+[
+    {
+        "icon":"git1",
+        "brand":"github"
+    },
+    {
+        "icon":"li1",
+        "brand":"linkedin"
+    },
+    {
+        "icon":"insta1",
+        "brand":"Instagaram"
+    },
+    {
+        "icon":"what1",
+        "brand":"whatsapp"
+    }
+]
