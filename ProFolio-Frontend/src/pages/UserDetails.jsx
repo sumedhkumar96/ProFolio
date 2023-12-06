@@ -58,7 +58,6 @@ export default function UserDetails() {
     url: ''
   }]);
 
-  // const [education, setEducation] = useState([{institutionName: '', degreeName: '', year: '', fieldOfStudy :'', description: ''}]);
   const [education, setEducation] = useState([{
     institutionName: '',
     degreeName: '',
@@ -68,7 +67,6 @@ export default function UserDetails() {
     toDate: '',
     description: ''
   }]);
-  // const [experience, setExperience] = useState([{ role: '', organizationName: '', location: '',  fromDate: '', toDate: '', description: ''}]);
   const [workExperience, setWorkExperience] = useState([{
     role: '',
     organizationName: '',
@@ -77,7 +75,6 @@ export default function UserDetails() {
     toDate: '',
     description: ''
   }]);
-  // const [skills, setSkills] = useState([]);
   const [userSkills, setUserSkills] = useState([{ name: '' }]);
   const [certifications, setCertifications] = useState([{ name: '', provider: '', issuedOn: '', validUntil: '', credentialId: '', url: '' }]);
   const [profilePhoto, setProfilePhoto] = useState(null);

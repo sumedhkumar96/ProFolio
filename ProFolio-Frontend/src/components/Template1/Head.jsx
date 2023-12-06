@@ -14,15 +14,24 @@ export default function Head({ userData }) {
     let linkedInUrl = '';
     let githubUrl = '';
     let instagramUrl = '';
+    let facebookUrl='';
+    let twitterUrl='';
+
     for (let i = 0; i < userData.externalLinks.length; i++) {
-        if (userData.externalLinks[i].name == "Linkedin") {
+        if (userData.externalLinks[i].name.toLowerCase() == "Linkedin") {
             linkedInUrl = userData.externalLinks[i].url;
         }
-        else if (userData.externalLinks[i].name == "Github") {
+        else if (userData.externalLinks[i].name.toLowerCase() == "Github") {
             githubUrl = userData.externalLinks[i].url;
         }
-        else if (userData.externalLinks[i].name == "Instagram") {
+        else if (userData.externalLinks[i].name.toLowerCase() == "Instagram") {
             instagramUrl = userData.externalLinks[i].url;
+        }
+        else if (userData.externalLinks[i].name.toLowerCase() == "facebook") {
+            facebookUrl = userData.externalLinks[i].url;
+        }
+        else if (userData.externalLinks[i].name.toLowerCase() == "twitter") {
+            twitterUrl = userData.externalLinks[i].url;
         }
     }
 
@@ -54,6 +63,8 @@ export default function Head({ userData }) {
                         {githubUrl && <div className="social-link"><a href={githubUrl} className="git-link" target="_blank" rel="noreferrer noopener">{icons["git2"]}</a></div>}
                         {linkedInUrl && <div className="social-link"><a href={linkedInUrl} className="git-link" target="_blank" rel="noreferrer noopener">{icons["li2"]}</a></div>}
                         {instagramUrl && <div className="social-link"><a href={instagramUrl} className="git-link" target="_blank" rel="noreferrer noopener">{icons["insta2"]}</a></div>}
+                        {facebookUrl && <div className="social-link"><a href={facebookUrl} className="git-link" target="_blank" rel="noreferrer noopener">{icons["facebook2"]}</a></div>}
+                        {twitterUrl && <div className="social-link"><a href={twitterUrl} className="git-link" target="_blank" rel="noreferrer noopener">{icons["twitter2"]}</a></div>}
                     </div>
                 </div>
             </div>

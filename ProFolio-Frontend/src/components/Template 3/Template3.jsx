@@ -5,6 +5,7 @@ import '../../styles/stars.css';
 import '../../styles/Template3.css';
 import AboutMe from "./AboutMe";
 import Experience from "./Experience";
+import Education from "./Education";
 import Projects from "./Projects";
 import Skills from "./Skills";
 import { Link } from "react-router-dom";
@@ -17,6 +18,11 @@ export function Template3({ userData }) {
             <MainBody userData={userData} />
             <AboutMe userData={userData} />
             {
+                userData.educationList.length != 0 && (
+                    <Education educationList={userData.educationList} />
+                )
+            }
+            {
                 userData.workExperienceList.length != 0 && (
                     <Experience workExperienceList={userData.workExperienceList} />
                 )
@@ -27,9 +33,6 @@ export function Template3({ userData }) {
             {userData.skills.length != 0 && (
                 <Skills skills={userData.skills} />
             )}
-            {/* <footer>
-            © Created by <Link id="profile-link" to="/">Profolio</Link>
-            </footer> */}
             <footer className="mt-auto py-5 text-center ">
                 <Container>
                     <i className="fas fa-code" /> with <i className="fas fa-heart" /> by{" "}

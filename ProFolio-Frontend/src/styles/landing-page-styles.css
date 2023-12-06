@@ -88,6 +88,7 @@
     margin-top: 30px;
     display: inline-block;
     font-size: 18px;
+    text-decoration: none;
 }
 
 .banner-button:hover {
@@ -206,6 +207,7 @@
     margin-top: 30px;
     display: inline-block;
     font-size: 18px;
+    text-decoration: none;
 }
 
 .about-btn:hover {

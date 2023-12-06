@@ -3,6 +3,8 @@ import person_skills_animation from '../assets/lottie/person_skills.lottie';
 import { Link, Form, redirect } from 'react-router-dom';
 import { Fade } from 'react-awesome-reveal';
 import { url } from "../components/Constants.jsx";
+import '../styles/stars.css';
+
 
 export async function loader() {
     let userData = JSON.parse(localStorage.getItem('user'));
@@ -39,7 +41,8 @@ export async function action({ request }) {
 export function LoginPage() {
 
     return (
-        <main className='gradient-main'>
+        <main className='gradient-main no-scroll-bar'>
+            <div id="stars"></div>
             <Fade triggerOnce={true}>
                 <div className="authentication-container">
                     <DotLottiePlayer className='illustration' src={person_skills_animation} autoplay loop />

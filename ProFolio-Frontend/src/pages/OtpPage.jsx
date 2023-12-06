@@ -34,7 +34,8 @@ export function OtpPage() {
         }, 5000);
 
         return (
-            <main className='gradient-main'>
+            <main className='gradient-main no-scroll-bar'>
+                <div id="stars"></div>
                 <div className="authentication-container">
                     <DotLottiePlayer className='big-lottie-animation' src={success_animation} speed={0.5} autoplay />
                     <h2>Otp Verified Successfully, Redirecting you Back to Login</h2>

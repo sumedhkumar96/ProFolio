@@ -27,7 +27,7 @@ export function HomePage({ logOut }) {
     }, []);
 
     return (
-        <>
+        <div className="home-page gradient-main">
         <header className="header">
                 <div className="main-header">
                     <img src="/alt-logo.png" alt="Title" className="title-image" />
@@ -46,6 +46,6 @@ export function HomePage({ logOut }) {
                 </div>
             </header>
         {isUserEditPage?<UserDetails />:<SelectTemplate setIsUserEditPage={setIsUserEditPage} />}
-        </>
+        </div>
     );
 }
