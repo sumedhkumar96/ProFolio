@@ -1,3 +1,5 @@
+package com.profolio.portfoliobuilder;
+
 import com.profolio.portfoliobuilder.models.entities.Education;
 import com.profolio.portfoliobuilder.models.entities.User;
 import com.profolio.portfoliobuilder.repositories.EducationRepository;
@@ -33,7 +35,7 @@ public class EducationServiceTest {
         doNothing().when(educationRepository).deleteAllByUser(user);
 
         // Mock behavior of educationRepository.saveAll
-        when(educationRepository.saveAll(educationList)).thenReturn(educationList);
+        when(educationRepository.saveAll(educationList)).thenReturn(educationList.stream().toList());
 
         // Call the method to be tested
         Set<Education> result = educationService.modifyEducationList(user, educationList);

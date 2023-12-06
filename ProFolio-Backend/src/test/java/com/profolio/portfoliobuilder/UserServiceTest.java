@@ -1,14 +1,19 @@
+package com.profolio.portfoliobuilder;
+
+import com.profolio.portfoliobuilder.auth.OneTimePasswordService;
 import com.profolio.portfoliobuilder.exceptions.CustomException;
-import com.profolio.portfoliobuilder.models.dtos.LoginDTO;
 import com.profolio.portfoliobuilder.models.dtos.SignupDTO;
+import com.profolio.portfoliobuilder.models.entities.OneTimePassword;
 import com.profolio.portfoliobuilder.models.entities.User;
 import com.profolio.portfoliobuilder.repositories.UserRepository;
-import org.junit.jupiter.api.BeforeEach;
+import com.profolio.portfoliobuilder.services.UserService;
+import com.profolio.portfoliobuilder.utils.EmailUtil;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -18,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UserServiceTest {
 
     @Mock
@@ -29,13 +35,15 @@ public class UserServiceTest {
     @Mock
     private AuthenticationManager authenticationManager;
 
-    @InjectMocks
-    private UserService userService;
+    @Mock
+    private OneTimePasswordService oneTimePasswordService;
 
-    @BeforeEach
-    public void setUp() {
-        userService = new UserService(userRepository, passwordEncoder, authenticationManager);
-    }
+    @Mock
+    private EmailUtil emailUtil;
+
+    @InjectMocks
+    @Spy
+    private UserService userService;
 
     @Test
     public void testSignup_Success() {
@@ -44,7 +52,11 @@ public class UserServiceTest {
         signupDTO.setName("Test User");
         signupDTO.setPassword("test123");
 
+        OneTimePassword oneTimePassword = new OneTimePassword();
+        oneTimePassword.setOtpString("123");
+
         when(userRepository.findByEmail("test@example.com")).thenReturn(Optional.empty());
+        when(oneTimePasswordService.createOneTimePassword(any())).thenReturn(oneTimePassword);
         when(userRepository.save(any(User.class))).thenAnswer(invocation -> {
             User user = invocation.getArgument(0);
             user.setId("123");
@@ -96,10 +108,12 @@ public class UserServiceTest {
     public void testResendSignupOtp_NotVerified() {
         User user = new User();
         user.setVerified(false);
+        user.setEmail("test@example.com");
 
         when(userRepository.findById("123")).thenReturn(Optional.of(user));
-        when(oneTimePasswordService.createOneTimePassword(user)).thenReturn(new OneTimePassword());
-        when(emailUtil.sendSignupOtp("test@example.com", "123456")).thenReturn("OTP sent to the registered email ID");
+        OneTimePassword oneTimePassword = new OneTimePassword();
+        oneTimePassword.setOtpString("123456");
+        when(oneTimePasswordService.createOneTimePassword(user)).thenReturn(oneTimePassword);
 
         String result = userService.resendSignupOtp("123");
 

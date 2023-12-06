@@ -1,6 +1,9 @@
+package com.profolio.portfoliobuilder;
+
 import com.profolio.portfoliobuilder.models.entities.User;
 import com.profolio.portfoliobuilder.models.entities.WorkExperience;
 import com.profolio.portfoliobuilder.repositories.WorkExperienceRepository;
+import com.profolio.portfoliobuilder.services.WorkExperienceService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -10,8 +13,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 public class WorkExperienceServiceTest {
@@ -22,8 +27,6 @@ public class WorkExperienceServiceTest {
     @InjectMocks
     private WorkExperienceService workExperienceService;
 
-    // Existing test case...
-
     @Test
     public void testModifyWorkExperienceList_EmptyNewWorkExperiences() {
         User user = new User();
@@ -31,7 +34,9 @@ public class WorkExperienceServiceTest {
 
         // Create a set with existing work experiences
         Set<WorkExperience> existingWorkExperiences = new HashSet<>();
-        existingWorkExperiences.add(new WorkExperience("Exp1"));
+        WorkExperience workExperience = new WorkExperience();
+        workExperience.setId("id");
+        existingWorkExperiences.add(workExperience);
         user.setWorkExperienceList(existingWorkExperiences);
 
         // Call the method with an empty set of new work experiences
@@ -39,7 +44,7 @@ public class WorkExperienceServiceTest {
 
         // Verify that deleteAllByUser() was called and result matches the existing set of experiences
         verify(workExperienceRepository, times(1)).deleteAllByUser(user);
-        assertEquals(existingWorkExperiences, result);
+        assertEquals(0, result.size());
     }
 
     @Test

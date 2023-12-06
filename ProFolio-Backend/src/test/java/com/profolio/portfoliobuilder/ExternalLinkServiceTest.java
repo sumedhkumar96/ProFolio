@@ -1,12 +1,15 @@
+package com.profolio.portfoliobuilder;
+
 import com.profolio.portfoliobuilder.models.entities.ExternalLink;
 import com.profolio.portfoliobuilder.models.entities.User;
 import com.profolio.portfoliobuilder.repositories.ExternalLinkRepository;
 import com.profolio.portfoliobuilder.services.ExternalLinkService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Spy;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -16,12 +19,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class ExternalLinkServiceTest {
 
-    @Autowired
+    @Spy
+    @InjectMocks
     private ExternalLinkService externalLinkService;
 
-    @MockBean
+    @Mock
     private ExternalLinkRepository externalLinkRepository;
 
     @Test
@@ -34,7 +39,7 @@ public class ExternalLinkServiceTest {
         doNothing().when(externalLinkRepository).deleteAllByUser(user);
 
         // Mock behavior of externalLinkRepository.saveAll
-        when(externalLinkRepository.saveAll(externalLinks)).thenReturn(externalLinks);
+        when(externalLinkRepository.saveAll(externalLinks)).thenReturn(externalLinks.stream().toList());
 
         // Call the method to be tested
         Set<ExternalLink> result = externalLinkService.modifyExternalLinks(user, externalLinks);

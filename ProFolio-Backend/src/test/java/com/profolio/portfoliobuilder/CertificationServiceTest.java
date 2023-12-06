@@ -1,3 +1,5 @@
+package com.profolio.portfoliobuilder;
+
 import com.profolio.portfoliobuilder.models.entities.Certification;
 import com.profolio.portfoliobuilder.models.entities.User;
 import com.profolio.portfoliobuilder.repositories.CertificationRepository;
@@ -33,7 +35,7 @@ public class CertificationServiceTest {
         doNothing().when(certificationRepository).deleteAllByUser(user);
 
         // Mock behavior of certificationRepository.saveAll
-        when(certificationRepository.saveAll(certifications)).thenReturn(certifications);
+        when(certificationRepository.saveAll(certifications)).thenReturn(certifications.stream().toList());
 
         // Call the method to be tested
         Set<Certification> result = certificationService.modifyCertifications(user, certifications);

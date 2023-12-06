@@ -1,13 +1,16 @@
+package com.profolio.portfoliobuilder;
+
 import com.profolio.portfoliobuilder.models.entities.Skill;
 import com.profolio.portfoliobuilder.models.entities.User;
 import com.profolio.portfoliobuilder.repositories.SkillRepository;
 import com.profolio.portfoliobuilder.repositories.UserSkillRepository;
 import com.profolio.portfoliobuilder.services.SkillService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Spy;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -17,22 +20,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @DataJpaTest
-public class SkillServiceTest {
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+public class SkillsServiceTest {
 
-    @Autowired
+    @Spy
+    @InjectMocks
     private SkillService skillService;
 
-    @MockBean
+    @Mock
     private SkillRepository skillRepository;
 
-    @MockBean
+    @Mock
     private UserSkillRepository userSkillRepository;
 
     @Test
     public void testModifySkillList() {
         User user = new User(); // Create a mock User object if needed
-        Skill skill1 = new Skill("Java"); // Create mock Skill objects
-        Skill skill2 = new Skill("Python");
+        user.setSkills(new HashSet<>());
+        Skill skill1 = new Skill(); // Create mock Skill objects
+        skill1.setName("Java");
+        Skill skill2 = new Skill();
+        skill2.setName("Python");
         Set<Skill> newSkills = new HashSet<>();
         newSkills.add(skill1);
         newSkills.add(skill2);
