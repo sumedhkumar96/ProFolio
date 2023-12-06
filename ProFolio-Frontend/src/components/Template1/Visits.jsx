@@ -4,31 +4,38 @@ class Visits extends Component {
   constructor(props) {
     super(props);
 
+    // Check if visit count is stored in local storage
+    const storedCount = localStorage.getItem("visitCount");
+    const initialCount = storedCount ? parseInt(storedCount, 10) : 0;
+
     this.state = {
-      count: 0,
-      DataisLoaded: false,
+      count: initialCount,
+      dataIsLoaded: true, // No need to fetch data on each refresh
     };
   }
 
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/posts/1")
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({
-          count: data.id,
-          DataisLoaded: true,
-        });
-      });
+    // Update the visit count in local storage and state
+    const { count } = this.state;
+    const newCount = count + 1;
+    
+    localStorage.setItem("visitCount", newCount);
+    
+    this.setState({
+      count: newCount,
+    });
   }
 
   render() {
-    const { DataisLoaded, count } = this.state;
-    if (!DataisLoaded)
+    const { dataIsLoaded, count } = this.state;
+
+    if (!dataIsLoaded) {
       return (
         <div>
           <h1>Please wait some time....</h1>
         </div>
       );
+    }
 
     return (
       <div className="count center">
