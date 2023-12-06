@@ -4,6 +4,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+/**
+ * The type Application context supplier.
+ */
 @Component
 public class ApplicationContextSupplier implements ApplicationContextAware {
 
@@ -14,6 +17,11 @@ public class ApplicationContextSupplier implements ApplicationContextAware {
         context = applicationContext;
     }
 
+    /**
+     * Gets context.
+     *
+     * @return the context
+     */
     public static ApplicationContext getContext() {
         return context;
     }

@@ -30,6 +30,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
+/**
+ * The type User service.
+ */
 @Service
 public class UserService {
     @Autowired
@@ -65,6 +68,12 @@ public class UserService {
     @Autowired
     private ProjectService projectService;
 
+    /**
+     * Signup signup dto.
+     *
+     * @param signupDTO the signup dto
+     * @return the signup dto
+     */
     @Transactional
     public SignupDTO signup(SignupDTO signupDTO) {
         Optional<User> optionalUser = userRepository.findByEmail(signupDTO.getEmail());
@@ -88,6 +97,13 @@ public class UserService {
         return signupDTO;
     }
 
+    /**
+     * Verify signup otp boolean.
+     *
+     * @param userId the user id
+     * @param otp    the otp
+     * @return the boolean
+     */
     public Boolean verifySignupOtp(String userId, String otp) {
         User user = getUserById(userId);
         boolean isVerified = oneTimePasswordService.isOtpValid(otp, user);
@@ -96,6 +112,12 @@ public class UserService {
         return isVerified;
     }
 
+    /**
+     * Resend signup otp string.
+     *
+     * @param userId the user id
+     * @return the string
+     */
     public String resendSignupOtp(String userId) {
         User user = getUserById(userId);
         if (user.isVerified()) {
@@ -106,6 +128,12 @@ public class UserService {
         return "OTP sent to the registered email ID";
     }
 
+    /**
+     * Login login dto.
+     *
+     * @param loginDTO the login dto
+     * @return the login dto
+     */
     public LoginDTO login(LoginDTO loginDTO) {
         authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword()));
@@ -132,6 +160,13 @@ public class UserService {
         return loginDTO;
     }
 
+    /**
+     * Upload profile picture string.
+     *
+     * @param userId the user id
+     * @param file   the file
+     * @return the string
+     */
     public String uploadProfilePicture(String userId, MultipartFile file) {
         User user = getUserById(userId);
         Optional<Media> optionalMedia = user.getMediaList()
@@ -148,6 +183,11 @@ public class UserService {
         return media.getUrl();
     }
 
+    /**
+     * Delete profile picture.
+     *
+     * @param userId the user id
+     */
     public void deleteProfilePicture(String userId) {
         User user = getUserById(userId);
         Optional<Media> optionalMedia = user.getMediaList()
@@ -162,6 +202,12 @@ public class UserService {
         mediaRepository.delete(media);
     }
 
+    /**
+     * Gets user by id.
+     *
+     * @param id the id
+     * @return the user by id
+     */
     public User getUserById(String id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new CustomException(
@@ -170,6 +216,12 @@ public class UserService {
                         HttpStatus.NOT_FOUND));
     }
 
+    /**
+     * Gets user by email id.
+     *
+     * @param emailId the email id
+     * @return the user by email id
+     */
     public User getUserByEmailId(String emailId) {
         return userRepository.findByEmail(emailId)
                 .orElseThrow(() -> new CustomException(
@@ -178,10 +230,23 @@ public class UserService {
                         HttpStatus.NOT_FOUND));
     }
 
+    /**
+     * Gets user profile.
+     *
+     * @param userId the user id
+     * @return the user profile
+     */
     public User getUserProfile(String userId) {
         return getUserById(userId);
     }
 
+    /**
+     * Modify user profile user.
+     *
+     * @param userId the user id
+     * @param user   the user
+     * @return the user
+     */
     public User modifyUserProfile(String userId, User user) {
         User userInDb = getUserById(userId);
         userInDb.setName(user.getName());
@@ -202,6 +267,13 @@ public class UserService {
         return userInDb;
     }
 
+    /**
+     * Modify user template preference user.
+     *
+     * @param userId         the user id
+     * @param templateNumber the template number
+     * @return the user
+     */
     public User modifyUserTemplatePreference(String userId, Integer templateNumber) {
         User user = getUserById(userId);
         user.setTemplatePreference(templateNumber);

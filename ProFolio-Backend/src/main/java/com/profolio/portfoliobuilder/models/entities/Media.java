@@ -12,6 +12,9 @@ import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
 
+/**
+ * The type Media.
+ */
 @Getter
 @Setter
 @Entity(name = "tbl_media")

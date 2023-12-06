@@ -10,12 +10,22 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The type Certification service.
+ */
 @Service
 public class CertificationService {
 
     @Autowired
     private CertificationRepository certificationRepository;
 
+    /**
+     * Modify certifications set.
+     *
+     * @param user           the user
+     * @param certifications the certifications
+     * @return the set
+     */
     @Transactional
     public Set<Certification> modifyCertifications(User user, Set<Certification> certifications) {
         certificationRepository.deleteAllByUser(user);

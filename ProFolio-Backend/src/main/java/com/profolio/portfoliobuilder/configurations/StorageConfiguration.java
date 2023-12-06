@@ -12,6 +12,9 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * The type Storage configuration.
+ */
 @Configuration
 public class StorageConfiguration {
     @Value("${gcp.config.file}")
@@ -21,12 +24,24 @@ public class StorageConfiguration {
     @Value("${gcp.bucket.id}")
     private String gcpBucketId;
 
+    /**
+     * Gets google credentials.
+     *
+     * @return the google credentials
+     * @throws IOException the io exception
+     */
     @Bean
     public GoogleCredentials getGoogleCredentials() throws IOException {
         InputStream inputStream = new ClassPathResource(gcpConfigFile).getInputStream();
         return GoogleCredentials.fromStream(inputStream);
     }
 
+    /**
+     * Gets storage.
+     *
+     * @param googleCredentials the google credentials
+     * @return the storage
+     */
     @Bean
     public Storage getStorage(GoogleCredentials googleCredentials) {
         return StorageOptions.newBuilder()
@@ -36,6 +51,12 @@ public class StorageConfiguration {
                 .getService();
     }
 
+    /**
+     * Gets bucket.
+     *
+     * @param storage the storage
+     * @return the bucket
+     */
     @Bean
     public Bucket getBucket(Storage storage) {
         return storage.get(gcpBucketId);

@@ -11,6 +11,9 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * The type Skill service.
+ */
 @Service
 public class SkillService {
 
@@ -20,6 +23,13 @@ public class SkillService {
     @Autowired
     private UserSkillRepository userSkillRepository;
 
+    /**
+     * Modify skill list set.
+     *
+     * @param user      the user
+     * @param newSkills the new skills
+     * @return the set
+     */
     public Set<Skill> modifySkillList(User user, Set<Skill> newSkills) {
         Set<Skill> existingSkills = user.getSkills();
 
@@ -37,7 +47,7 @@ public class SkillService {
             existingSkills.clear();
             existingSkills.addAll(updatedSkills);
         }
-        
+
         return existingSkills;
     }
 }

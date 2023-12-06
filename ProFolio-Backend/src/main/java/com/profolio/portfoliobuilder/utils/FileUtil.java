@@ -22,6 +22,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 
+/**
+ * The type File util.
+ */
 @Component
 public class FileUtil {
     private static final List<String> ALLOWED_IMAGE_TYPES = Arrays.asList(".gif", ".jpeg", ".jpg", ".png");
@@ -38,16 +41,38 @@ public class FileUtil {
     @Autowired
     private ExecutorService executorService;
 
+    /**
+     * Gets file extension.
+     *
+     * @param contentType the content type
+     * @return the file extension
+     * @throws MimeTypeException the mime type exception
+     */
     public String getFileExtension(String contentType) throws MimeTypeException {
         MimeTypes allTypes = MimeTypes.getDefaultMimeTypes();
         MimeType type = allTypes.forName(contentType);
         return type.getExtension();
     }
 
+    /**
+     * Gets file content type.
+     *
+     * @param multipartFile the multipart file
+     * @return the file content type
+     * @throws IOException the io exception
+     */
     public String getFileContentType(MultipartFile multipartFile) throws IOException {
         return tika.detect(multipartFile.getBytes());
     }
 
+    /**
+     * Upload image file file upload dto.
+     *
+     * @param userId           the user id
+     * @param multipartFile    the multipart file
+     * @param existingFileName the existing file name
+     * @return the file upload dto
+     */
     public FileUploadDTO uploadImageFile(String userId, MultipartFile multipartFile, String existingFileName) {
         String contentType = null;
         String fileExtension = null;
@@ -89,6 +114,14 @@ public class FileUtil {
         return fileUploadDTO;
     }
 
+    /**
+     * Upload file to the storage file upload dto.
+     *
+     * @param fileName      the file name
+     * @param multipartFile the multipart file
+     * @return the file upload dto
+     * @throws IOException the io exception
+     */
     public FileUploadDTO uploadFileToTheStorage(String fileName, MultipartFile multipartFile) throws IOException {
         BlobInfo blobInfo = BlobInfo.newBuilder(gcpBucketId, fileName)
                 .setAcl(new ArrayList<>(Collections.singletonList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
@@ -100,6 +133,11 @@ public class FileUtil {
         return fileUploadDTO;
     }
 
+    /**
+     * Delete file from storage.
+     *
+     * @param fileName the file name
+     */
     public void deleteFileFromStorage(String fileName) {
         BlobId blobId = BlobId.of(gcpBucketId, fileName);
         storage.delete(blobId);

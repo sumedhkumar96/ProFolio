@@ -13,6 +13,9 @@ import org.hibernate.annotations.UuidGenerator;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+/**
+ * The type Skill.
+ */
 @Getter
 @Setter
 @Entity(name = "tbl_skill")

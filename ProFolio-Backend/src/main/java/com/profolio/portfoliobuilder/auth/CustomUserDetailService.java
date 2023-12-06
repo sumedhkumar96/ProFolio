@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+/**
+ * The type Custom user detail service.
+ */
 @Service
 public class CustomUserDetailService implements UserDetailsService {
     @Autowired

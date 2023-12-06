@@ -13,6 +13,9 @@ import org.hibernate.annotations.UuidGenerator;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * The type Project.
+ */
 @Getter
 @Setter
 @Entity(name = "tbl_project")

@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * The type Logout service.
+ */
 @Service
 @RequiredArgsConstructor
 public class LogoutService implements LogoutHandler {

@@ -19,6 +19,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * The type User.
+ */
 @Getter
 @Setter
 @Entity(name = "tbl_user")

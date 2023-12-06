@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * The type User skill.
+ */
 @Getter
 @Setter
 @Entity(name = "rel_user_skill")

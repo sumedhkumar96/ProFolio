@@ -6,6 +6,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
+/**
+ * The type Email util.
+ */
 @Component
 public class EmailUtil {
     private static final String SIGNUP_OTP_SUBJECT = "ProFolio Email Verification";
@@ -15,10 +18,23 @@ public class EmailUtil {
     @Autowired
     private JavaMailSender mailSender;
 
+    /**
+     * Send signup otp.
+     *
+     * @param to  the to
+     * @param otp the otp
+     */
     public void sendSignupOtp(String to, String otp) {
         sendNewMail(to, SIGNUP_OTP_SUBJECT, String.format(SIGNUP_OTP_BODY, otp));
     }
 
+    /**
+     * Send new mail.
+     *
+     * @param to      the to
+     * @param subject the subject
+     * @param body    the body
+     */
     public void sendNewMail(String to, String subject, String body) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromEmailAddress);

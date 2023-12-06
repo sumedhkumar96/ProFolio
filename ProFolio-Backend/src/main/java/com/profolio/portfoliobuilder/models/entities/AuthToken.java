@@ -11,6 +11,9 @@ import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
 
+/**
+ * The type Auth token.
+ */
 @Getter
 @Setter
 @Entity(name = "tbl_auth_token")

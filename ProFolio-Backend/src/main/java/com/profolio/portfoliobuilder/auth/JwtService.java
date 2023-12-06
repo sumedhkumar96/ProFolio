@@ -14,6 +14,9 @@ import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
 
+/**
+ * The type Jwt service.
+ */
 @Service
 public class JwtService {
 
@@ -24,19 +27,45 @@ public class JwtService {
     @Value("${application.security.jwt.refresh-token.expiration}")
     private Long refreshExpiration;
 
+    /**
+     * Extract username string.
+     *
+     * @param token the token
+     * @return the string
+     */
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
+    /**
+     * Extract claim t.
+     *
+     * @param <T>            the type parameter
+     * @param token          the token
+     * @param claimsResolver the claims resolver
+     * @return the t
+     */
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
+    /**
+     * Generate token string.
+     *
+     * @param userDetails the user details
+     * @return the string
+     */
     public String generateToken(UserDetails userDetails) {
         return buildToken(userDetails, jwtExpiration);
     }
 
+    /**
+     * Generate refresh token string.
+     *
+     * @param userDetails the user details
+     * @return the string
+     */
     public String generateRefreshToken(UserDetails userDetails) {
         return buildToken(userDetails, refreshExpiration);
     }
@@ -51,6 +80,13 @@ public class JwtService {
                 .compact();
     }
 
+    /**
+     * Is token valid boolean.
+     *
+     * @param token the token
+     * @param user  the user
+     * @return the boolean
+     */
     public boolean isTokenValid(String token, User user) {
         final String username = extractUsername(token);
         return (username.equals(user.getUsername())) && !isTokenExpired(token);

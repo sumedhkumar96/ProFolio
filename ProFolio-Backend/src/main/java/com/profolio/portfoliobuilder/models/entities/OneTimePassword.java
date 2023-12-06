@@ -11,6 +11,9 @@ import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
 
+/**
+ * The type One time password.
+ */
 @Getter
 @Setter
 @Entity(name = "tbl_one_time_password")

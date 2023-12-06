@@ -12,6 +12,9 @@ import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
 
+/**
+ * The type External link.
+ */
 @Getter
 @Setter
 @Entity(name = "tbl_external_link")

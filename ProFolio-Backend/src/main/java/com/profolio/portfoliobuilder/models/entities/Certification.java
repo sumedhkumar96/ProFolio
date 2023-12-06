@@ -14,6 +14,9 @@ import org.hibernate.annotations.UuidGenerator;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * The type Certification.
+ */
 @Getter
 @Setter
 @Entity(name = "tbl_certification")

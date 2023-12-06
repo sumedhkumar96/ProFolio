@@ -10,14 +10,27 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * The type General configuration.
+ */
 @Component
 public class GeneralConfiguration {
 
+    /**
+     * Gets tika.
+     *
+     * @return the tika
+     */
     @Bean
     public Tika getTika() {
         return new Tika();
     }
 
+    /**
+     * Gets executor service.
+     *
+     * @return the executor service
+     */
     @Bean(destroyMethod = "shutdown")
     public ExecutorService getExecutorService() {
         int availableProcessors = Runtime.getRuntime().availableProcessors();
@@ -25,6 +38,11 @@ public class GeneralConfiguration {
         return Executors.newFixedThreadPool(idealThreadCount);
     }
 
+    /**
+     * Gets object mapper.
+     *
+     * @return the object mapper
+     */
     @Bean
     public ObjectMapper getObjectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();

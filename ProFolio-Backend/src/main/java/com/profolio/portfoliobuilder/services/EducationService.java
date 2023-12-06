@@ -10,12 +10,22 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The type Education service.
+ */
 @Service
 public class EducationService {
 
     @Autowired
     private EducationRepository educationRepository;
 
+    /**
+     * Modify education list set.
+     *
+     * @param user          the user
+     * @param educationList the education list
+     * @return the set
+     */
     @Transactional
     public Set<Education> modifyEducationList(User user, Set<Education> educationList) {
         educationRepository.deleteAllByUser(user);

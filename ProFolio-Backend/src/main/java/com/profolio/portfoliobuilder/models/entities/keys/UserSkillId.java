@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
+/**
+ * The type User skill id.
+ */
 @Setter
 @Getter
 @Embeddable

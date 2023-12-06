@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+/**
+ * The type One time password service.
+ */
 @Component
 public class OneTimePasswordService {
     @Value("${otp.length}")
@@ -21,6 +24,12 @@ public class OneTimePasswordService {
     @Autowired
     private OneTimePasswordRepository oneTimePasswordRepository;
 
+    /**
+     * Create one time password one time password.
+     *
+     * @param user the user
+     * @return the one time password
+     */
     public OneTimePassword createOneTimePassword(User user) {
         OneTimePassword oneTimePassword = new OneTimePassword();
         oneTimePassword.setUser(user);
@@ -32,6 +41,13 @@ public class OneTimePasswordService {
         return RandomStringUtils.randomAlphanumeric(otpLength);
     }
 
+    /**
+     * Is otp valid boolean.
+     *
+     * @param otpString the otp string
+     * @param user      the user
+     * @return the boolean
+     */
     public boolean isOtpValid(String otpString, User user) {
         Optional<OneTimePassword> optionalOneTimePassword = oneTimePasswordRepository.findByOtpStringAndUser(otpString, user);
         return optionalOneTimePassword

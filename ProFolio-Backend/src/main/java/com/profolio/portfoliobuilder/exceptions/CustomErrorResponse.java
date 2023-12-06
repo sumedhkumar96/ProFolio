@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
+/**
+ * The type Custom error response.
+ */
 @Getter
 public class CustomErrorResponse {
 
@@ -18,6 +21,14 @@ public class CustomErrorResponse {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime timestamp;
 
+    /**
+     * Instantiates a new Custom error response.
+     *
+     * @param status      the status
+     * @param message     the message
+     * @param remediation the remediation
+     * @param timestamp   the timestamp
+     */
     public CustomErrorResponse(HttpStatus status, String message, String remediation, LocalDateTime timestamp) {
         this.status = status;
         this.message = message;
