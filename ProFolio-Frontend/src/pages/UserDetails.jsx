@@ -449,7 +449,7 @@ export default function UserDetails() {
           <br></br>
           {/* Skills Section */}
           <fieldset>
-          <legend><span className="number">3</span> Skills</legend>
+          <legend><span className="number">4</span> Skills</legend>
             {userSkills.map((skill, index) => (
               <div key={index}>
                 <label htmlFor={`userSkill-${index}`}>Skill</label>
@@ -471,7 +471,7 @@ export default function UserDetails() {
 
           {/* Social Media Section */}
           <fieldset>
-          <legend><span className="number">4</span> Social Media</legend>
+          <legend><span className="number">5</span> Social Media</legend>
             {socialMedia.map((platform, index) => (
               <div key={index}>
                 <label htmlFor={`socialMedia-name-${index}`}>Platform Name</label>
@@ -502,7 +502,7 @@ export default function UserDetails() {
 
           {/* Certifications Section */}
           <fieldset>
-          <legend><span className="number">5</span> Certifications</legend>
+          <legend><span className="number">6</span> Certifications</legend>
             {certifications.map((item, index) => (
               <div key={index}>
                 <label htmlFor="name">Certification or License Name</label>
@@ -567,7 +567,7 @@ export default function UserDetails() {
 
           {/* Projects Section */}
           <fieldset>
-          <legend><span className="number">6</span> Projects</legend>
+          <legend><span className="number">7</span> Projects</legend>
             {projects.map((project, index) => (
               <div key={index}>
                 <label htmlFor={`project-name-${index}`}>Project Name</label>

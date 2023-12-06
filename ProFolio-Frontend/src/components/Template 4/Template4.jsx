@@ -14,26 +14,6 @@ export function Template4({ userData }) {
         imageUrl = userData.mediaList[0].url;
     }
 
-    if (userData.workExperienceList.length == 0) {
-        return <></>;
-    }
-
-    if (userData.educationList.length == 0) {
-        return <></>;
-    }
-
-    if (userData.projects.length == 0) {
-        return <></>;
-    }
-
-    if (userData.certifications.length == 0) {
-        return <></>;
-    }
-
-    if (userData.externalLinks.length === 0) {
-        return <></>;
-    }
-
     var settings = {
         dots: true,
         infinite: false,
