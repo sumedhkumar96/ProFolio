@@ -44,9 +44,9 @@ function ContactMe({ contacts }) {
                 <Visits />
             </section>
 
-            <footer className='grad-progress center' style={{ paddingTop: 5, paddingBottom: 5 }}>
+            {/* <footer className='grad-progress center' style={{ paddingTop: 5, paddingBottom: 5 }}>
                 {icons["copy1"]} <small>This site was designed and developed by Kavya Nandigam</small>
-            </footer>
+            </footer> */}
 
         </section>
     );

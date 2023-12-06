@@ -20,7 +20,7 @@ export function Template1({ userData }) {
             <Project projects={userData.projects} />
             <Certification certifications={userData.certifications} />
             <ContactMe contacts={userData.externalLinks} />
-            <footer className="grad-progress center">This site was designed and developed by <Link to="/">Profolio</Link></footer>
+            <footer className="grad-progress center">This site was designed and developed by Kavya Nandigam of team <Link to="/">PROFOLIO</Link>.</footer>
         </div>
     );
 }

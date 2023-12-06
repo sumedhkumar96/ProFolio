@@ -61,7 +61,7 @@ function Project({ projects }){
                            </div>
                            <div className="card-body">
                              <h3>{entry.name}</h3>
-                             <h4>{entry.startDate}-{entry.endDate}</h4>
+                             <h4><label>From: </label> {entry.startDate} <label>To: </label> {entry.endDate}</h4>
                              <p>{entry.decription}</p>
                              <a href={entry.url} className="git-link" target="_blank" rel="noreferrer noopener"><div className="git">{git}</div></a>
                            </div>

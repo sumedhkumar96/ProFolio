@@ -1,0 +1,354 @@
+  .user-profile-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px black;
+  }
+  
+  .user-profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Add margin for spacing */
+  }
+  
+  .user-profile-photo {
+    width: 200px; /* Adjust the width as needed */
+    height: 200px; /* Adjust the height as needed */
+    border-radius: 50%;
+    margin-right: 20px;
+    background-color: rgb(223, 213, 213);
+  }
+  
+  .user-profile-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-education{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; 
+  }
+
+
+
+.user-education:hover{
+    transform: scale(1.0); /* Slightly scale up the entry */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+.user-education .entry h2 {
+  border-bottom: none;
+}
+ 
+
+.user-projects{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; 
+}
+
+.user-projects:hover{
+  transform: scale(1.0); /* Slightly scale up the entry */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+.user-projects .entry h2 {
+border-bottom: none;
+}
+
+.user-work-experience{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; 
+}
+
+
+.user-work-experience:hover{
+  transform: scale(1.0); /* Slightly scale up the entry */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+.user-work-experience .entry h2 {
+border-bottom: none;
+}
+  
+  .user-education, .user-work-experience, .user-skills, .user-projects, .social-links, .certifications {
+    margin-bottom: 20px;
+    background-color: #faf7f7;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-profile-info h2 {
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    color: #3498db;
+    font-size: 1.8em;
+  }
+
+  .user-work-experience h2 {
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    color: #3498db;
+    font-size: 1.8em;
+  }
+
+  .user-projects h2 {
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    color: #3498db;
+    font-size: 1.8em;
+  } 
+
+  .inline > h5 {
+    display: inline-block;
+    margin-right: 10px; /* Adjust as needed */
+}
+
+  .user-education h2 {
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    color: #3498db;
+    font-size: 1.8em;
+  }
+
+  .user-skills h2 {
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    color: #3498db;
+    font-size: 1.8em;
+  }
+
+  .social-links h2 {
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    color: #3498db;
+    font-size: 1.8em;
+  }
+
+  .social-links{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; 
+  }
+  
+  
+  .social-links:hover{
+    transform: scale(1.0); /* Slightly scale up the entry */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  }
+
+
+  .certifications h2 {
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    color: #3498db;
+    font-size: 1.8em;
+  }
+
+  .certifications{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; 
+  }
+  
+  
+  .certifications:hover{
+    transform: scale(1.0); /* Slightly scale up the entry */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  }
+
+  .user-skills{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; 
+  }
+  
+  
+  .user-skills:hover{
+    transform: scale(1.0); /* Slightly scale up the entry */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  }
+  
+  .user-skills .entry h2 {
+  border-bottom: none;
+  }
+ 
+  /* Using flexbox */
+.user-projects .card-space {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; 
+}
+
+.user-projects .card {
+  flex: 1 0 21%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* This will align the content inside the card */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  margin: 10px; /* Keep the margin for some space between the cards */
+  background: #fff; /* Background color for the card */
+  border-radius: 4px; /* Optional border radius for aesthetics */
+  height: auto; /* Set to auto initially */
+}
+
+
+.user-projects .card {
+  height: 300px; 
+}
+
+.user-projects .card-body {
+  flex-grow: 1; 
+}
+
+.user-projects .card-space {
+    padding: 10px; 
+    
+  }
+
+  .user-projects .card:hover {
+    transform: scale(1.05); /* Scale up the card slightly */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Increase the shadow for a "lifted" effect */
+  }
+
+  .user-projects .card {
+    margin: 10px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* p {
+    line-height: 1.6;
+    color: #555;
+  } */
+  
+  .template4-footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #777; /* Gray */
+    font-size: 0.9em;
+  }
+  
+  /* Links styling */
+  /* a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  } */
+  
+  /* Projects */
+  .projects button {
+    color: #fff;
+    transition: background-color 0.3s, transform 0.3s ease-in-out;
+  }
+  
+  .projects button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+  }
+  
+  /* Social Links */
+  .social-links button {
+    /* color: #fff; */
+    transition: background-color 0.3s, transform 0.3s ease-in-out;
+  }
+  
+  .social-links button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* Certifications */
+  .user-certifications button {
+    color: #fff;
+    transition: background-color 0.3s, transform 0.3s ease-in-out;
+  }
+  
+  .user-certifications button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+  }
+  
+  .user-certifications-badge {
+    background-color: #3498db;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin-bottom: 10px;
+  }
+
+  /* .user-skills ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    
+  } */
+/*   
+ .user-skills li {
+    margin: 8px;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 6px;
+  }
+   */
+/*
+  .projects h3 {
+    color: #3498db;
+  }
+  */
+
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    /* header h1 {
+      font-size: 2em;
+    }
+  
+    .subtitle {
+      font-size: 1em;
+    }
+  
+    section {
+      padding: 15px;
+    }
+  
+    h2 {
+      font-size: 1.5em;
+    }
+  
+    button {
+      padding: 10px 15px;
+    }
+  
+    .skills li {
+      padding: 8px 12px;
+    } */
+  }
+  
+  .social-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .social-button {
+    background-color: transparent; /* Transparent background */
+    color: #007bff; /* Blue text color for visibility */
+    padding: 10px 20px;
+    border: 2px solid #007bff; /* Blue border to match the text color */
+    border-radius: 30px; /* Oval shape */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s ease-in-out;
+  }
+  
+  .social-button:hover {
+    background-color: #007bff; /* Dark blue background on hover */
+    color: #fff; /* White text on hover for contrast */
+    transform: scale(1.1); /* Scale effect on hover */
+  }
+
+  

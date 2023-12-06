@@ -19,8 +19,8 @@ export default function Certification({ certifications }) {
                                         {entry.provider}
                                     </p>
                                     <div className="inline">
-                                        <h3>{entry.issuedOn} - {entry.validUntil}&emsp;|&emsp;</h3>
-                                        <h3>{entry.credentialId}</h3>
+                                        <h3><label>Issued On: </label> {entry.issuedOn} <label>Valid Until: </label> {entry.validUntil}&emsp;|&emsp;</h3>
+                                        <h3><label>Credential Id: </label> {entry.credentialId}</h3>
 
                                     </div>
                                     <h4>{entry.url}</h4>

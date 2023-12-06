@@ -5,6 +5,30 @@ import { url } from "../components/Constants.jsx";
 
 export default function UserDetails() {
   let navigate = useNavigate();
+  // New state variables for validation errors
+  const [nameError, setNameError] = useState('');
+  const [phoneError, setPhoneError] = useState('');
+
+  // Validation function for the name field
+  const validateName = (name) => {
+    if (!name || name.length < 3) {
+      setNameError("Name must be at least 3 characters long");
+      return false;
+    }
+    setNameError('');
+    return true;
+  };
+
+  // Validation function for the phone field
+  const validatePhone = (phone) => {
+    const phoneRegex = /^[0-9]{10}$/; // Example: Validates 10 digit numbers
+    if (!phoneRegex.test(phone)) {
+      setPhoneError("Invalid phone number");
+      return false;
+    }
+    setPhoneError('');
+    return true;
+  };
 
   useEffect(() => {
     async function getUserData() {
@@ -18,22 +42,22 @@ export default function UserDetails() {
         setHomeLocation(jsonResponse.homeLocation);
         setCurrentAddress(jsonResponse.currentLocation);
         setAboutMe(jsonResponse.aboutMe);
-        if (jsonResponse.educationList!=[]) {
+        if (jsonResponse.educationList != []) {
           setEducation(jsonResponse.educationList);
         }
-        if(jsonResponse.skills!=[]){
+        if (jsonResponse.skills != []) {
           setUserSkills(jsonResponse.skills);
         }
-        if(jsonResponse.workExperienceList!=[]){
+        if (jsonResponse.workExperienceList != []) {
           setWorkExperience(jsonResponse.workExperienceList);
         }
-        if(jsonResponse.externalLinks!=[]){
+        if (jsonResponse.externalLinks != []) {
           setSocialMedia(jsonResponse.externalLinks);
         }
-        if(jsonResponse.certifications!=[]){
+        if (jsonResponse.certifications != []) {
           setCertifications(jsonResponse.certifications);
         }
-        if(jsonResponse.projects!=[]){
+        if (jsonResponse.projects != []) {
           setProjects(jsonResponse.projects);
         }
 
@@ -57,6 +81,18 @@ export default function UserDetails() {
     name: '',
     url: ''
   }]);
+
+  const handleNameChange = (event) => {
+    const newName = event.target.value;
+    setName(newName);
+    validateName(newName);
+  };
+
+  const handlePhoneChange = (event) => {
+    const newPhone = event.target.value;
+    setPhone(newPhone);
+    validatePhone(newPhone);
+  };
 
   // const [education, setEducation] = useState([{institutionName: '', degreeName: '', year: '', fieldOfStudy :'', description: ''}]);
   const [education, setEducation] = useState([{
@@ -182,6 +218,13 @@ export default function UserDetails() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    const isNameValid = validateName(Name);
+    const isPhoneValid = validatePhone(phone);
+
+    if (!isNameValid || !isPhoneValid) {
+      // Prevent form submission if validation fails
+      return;
+    }
 
     if (profilePhoto != null) {
       let formData = new FormData();
@@ -267,8 +310,11 @@ export default function UserDetails() {
             type="text"
             placeholder="Name"
             value={Name}
-            onChange={(event) => setName(event.target.value)}
+            onChange={handleNameChange}
+            style={{ borderColor: nameError ? 'red' : 'initial' }}
           />
+          {nameError && <div style={{ color: 'red' }}>{nameError}</div>}
+
 
           <label htmlFor="title">Title</label>
           <input
@@ -285,8 +331,10 @@ export default function UserDetails() {
             type="tel"
             placeholder="Phone"
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={handlePhoneChange}
+            style={{ borderColor: phoneError ? 'red' : 'initial' }}
           />
+          {phoneError && <div style={{ color: 'red' }}>{phoneError}</div>}
 
           {/* Home Address field */}
           <label htmlFor="home-address">Home Address</label>
