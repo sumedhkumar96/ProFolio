@@ -7,7 +7,7 @@ ProFolio is a web application that helps people build visually appealing and hig
 
 ### ***Author Details:***
 1. **Sumedh Kumar Manoor Surendranath**<br/>
-Email: manos01@pfw.edu / sumedhkumar96@gmail.com<br/>
+Email: manos01@pfw.edu / sumedh.kumar.work@gmail.com<br/>
 
 2. **Aditya R**<br/>
 Email: ramea03@pfw.edu / adeeteya@gmail.com<br/>
